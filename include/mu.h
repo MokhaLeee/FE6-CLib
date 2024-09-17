@@ -3,7 +3,9 @@
 #include "prelude.h"
 
 #include "proc.h"
+#include "unit.h"
 #include "spriteanim.h"
+#include "constants/videoalloc_global.h"
 
 enum
 {
@@ -68,6 +70,12 @@ struct MuConfig
     /* 48 */ struct MuProc * mu;
 };
 
+enum { MU_COUNT = 4 };
+extern u8 gMuImgBuf[4 * 0x110 * CHR_SIZE]; // OVERLAY
+
+typedef void (* MuStateFunc)(struct MuProc * mu);
+extern MuStateFunc CONST_DATA sMuStateFuncs[];
+
 void InitMus(void);
 struct MuProc * StartMuExt(int x, int y, int jid, int arg_3);
 struct MuProc * StartMu(struct Unit * unit);
@@ -84,16 +92,43 @@ bool MuExists(void);
 bool MuExistsActive(void);
 bool IsMuActive(struct MuProc * proc);
 void SetMuMoveScript(struct MuProc * mu, u8 const * movescr);
+void MuStepSe_Init(struct GenericProc * proc);
+void MuStepSe_PlaySeA(struct GenericProc * proc);
+void MuStepSe_PlaySeB(struct GenericProc * proc);
 struct MuProc * StartMuScripted(u16 x, u16 y, u16 jid, int pal, u8 const * movescr);
 void StartPlayMuStepSe(int song, int alt_offset, int x);
 void PlayMuStepSe(struct MuProc * mu);
 void EndMuMovement(struct MuProc * mu);
 void RunMuMoveScript(struct MuProc * mu);
 void StartMuFogBump(int x, int y);
+
+struct MuFogBumpProc
+{
+    /* 00 */ PROC_HEADER;
+
+    /* 2C */ int x, y;
+    /* 34 */ u8 pad_34[0x50 - 0x34];
+    /* 50 */ struct SpriteAnim * anim;
+    /* 54 */ u8 pad_54[0x64 - 0x54];
+    /* 64 */ short clock;
+};
+
+void MuFogBump_Init(struct MuFogBumpProc * proc);
+void MuFogBump_ScaleLoop(struct MuFogBumpProc * proc);
+void MuFogBump_EndLoop(struct MuFogBumpProc * proc);
 bool IsMuFogBumpActive(void);
+void Mu_OnStateBump(struct MuProc * mu);
+void Mu_OnState_08060460(struct MuProc * mu);
+void Mu_OnStateSleeping(struct MuProc * mu);
+void Mu_OnStateNone(struct MuProc * mu);
+void Mu_OnStateDoNothing(struct MuProc * mu);
+void Mu_OnStateMovement(struct MuProc * mu);
 void UpdateMuStepSounds(struct MuProc * mu);
+void Mu_OnLoop(struct MuProc * mu);
+void Mu_OnEnd(struct MuProc * mu);
 void EndAllMus(void);
 void EndMu(struct MuProc * proc);
+void func_fe6_08060904(struct MuProc * mu);
 void HaltMu(struct MuProc * mu);
 void LockMus(void);
 void ReleaseMus(void);
@@ -108,21 +143,57 @@ u8 * GetMuImgBufById(int id);
 u8 const * GetMuImg(struct MuProc * proc);
 u16 const * GetMuAnimForJid(u16 jid);
 void StartMuDeathFade(struct MuProc * mu);
+void MuDeathFade_OnLoop(struct GenericProc * proc);
 void HideMu(struct MuProc * mu);
 void ShowMu(struct MuProc * mu);
 void SetMuScreenPosition(struct MuProc * mu, int x, int y);
 void SetMuScreenOffset(struct MuProc * mu, int x_offset, int y_offset);
 void StartMuFadeIntoFlash(struct MuProc * mu, int flash);
 void StartMuFadeFromFlash(struct MuProc * mu);
+void MuRestorePalInfo_Apply(struct GenericProc * proc);
 void StartMuActionAnim(struct MuProc * mu);
+void MuActionAnimFinishFunc(int arg);
 void StartMuDelayedFaceDefender(struct MuProc * mu);
+void MuDelayedFaceDefenderFunc(int arg);
 void StartMuSpeedUpAnim(struct MuProc * mu);
+void MuSlowDownAnimFreezeFunc(int arg);
+
+struct MuFadeProc
+{
+    /* 00 */ PROC_HEADER;
+    /* 2C */ struct MuProc * mu;
+    /* 30 */ u8 clock;
+};
+
 void func_fe6_0806142C(struct MuProc * mu, int flash);
+void func_fe6_08061474(struct MuFadeProc * proc);
+void func_fe6_08061494(struct MuFadeProc * proc);
+void func_fe6_080614C8(struct MuFadeProc * proc);
+void func_fe6_08061518(struct MuFadeProc * proc);
+void func_fe6_08061554(struct MuFadeProc * proc);
+void func_fe6_080615D4(struct MuFadeProc * proc);
 void StartMuFlashFadeFrom(struct MuProc * mu, int flash);
+void MuFlashFadeFrom_RestorePal(struct MuFadeProc * proc);
 void SetMuMaxWalkSpeed(void);
+void MuMaxWalkSpeedFunc(ProcPtr mu);
 void SetMuSpecialSprite(struct MuProc * mu, int jid, u16 const * pal);
 void SetMuPal(struct MuProc * mu, int pal);
 
+extern u16 const * CONST_DATA gMuFlashPalLut[];
+extern struct ProcScr CONST_DATA ProcScr_MuStepSe[];
+extern short CONST_DATA sMoveOffsetLut[4 * 2];
+extern u16 CONST_DATA MuSoundScr_Foot[];
+extern u16 CONST_DATA MuSoundScr_FootHeavy[];
+extern u16 CONST_DATA MuSoundScr_Mounted[];
+extern u16 CONST_DATA MuSoundScr_Wyvern[];
+extern u16 CONST_DATA MuSoundScr_Pegasus[];
+extern struct ProcScr CONST_DATA ProcScr_MuFogBump[];
 extern struct ProcScr CONST_DATA ProcScr_Mu[];
+extern u16 CONST_DATA sMuChrOffLut[MU_COUNT];
+extern u8 CONST_DATA sMuWalkSpeedLut[];
+extern u8 CONST_DATA sMuImgBufOffLut[];
 extern struct ProcScr CONST_DATA ProcScr_MuDeathFade[];
+extern struct ProcScr CONST_DATA ProcScr_MuRestorePalInfo[];
+extern struct ProcScr CONST_DATA ProcScr_Unk_08664914[];
+extern struct ProcScr CONST_DATA ProcScr_MuFlashFadeFrom[];
 extern struct MuInfo CONST_DATA MuInfoTable[];
