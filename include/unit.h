@@ -2,7 +2,6 @@
 #define UNIT_H
 
 #include "prelude.h"
-
 #include "bm.h"
 
 #define UNIT_WEAPON_EXP_COUNT 8
@@ -226,7 +225,7 @@ struct JInfo
 
     /* 28 */ u8 wexp[UNIT_WEAPON_EXP_COUNT];
 
-    /* 30 */ void const * banim_info;
+    /* 30 */ const struct BanimInfoEnt * banim_info;
 
     /* 34 */ i8 const * mov_table;
     /* 38 */ i8 const * avo_terrain_table;

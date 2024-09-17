@@ -48,6 +48,9 @@ enum { FALSE, TRUE };
 
 #if !defined(__cplusplus) && !defined(bool)
 typedef fi8 bool;
+enum { false, true };
+#define false false
+#define true  true
 #endif
 typedef i8 bool8;
 

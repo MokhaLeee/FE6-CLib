@@ -64,7 +64,7 @@ u32 func_fe6_080368DC(void const * src, void * dst);
 // func_fe6_08036964
 // func_fe6_08036974
 int func_fe6_08036984(void);
-// func_fe6_08036994
+void func_fe6_08036994(void);
 // func_fe6_080369A0
 // func_fe6_080369E0
 // func_fe6_08036A40
@@ -254,7 +254,7 @@ void func_fe6_0803C080(ProcPtr parent);
 // func_fe6_0803CE7C
 // func_fe6_0803CEDC
 // func_fe6_0803CF14
-// func_fe6_0803CF58
+void func_fe6_0803CF58(void);
 // func_fe6_0803CF70
 // func_fe6_0803CF9C
 // func_fe6_0803CFE4
@@ -431,225 +431,6 @@ void func_fe6_0803C080(ProcPtr parent);
 // func_fe6_08041200
 // func_fe6_08041210
 
-
-// func_fe6_080791A0
-void func_fe6_080791B4(fu8 pid);
-void func_fe6_080791DC(fu8 pid);
-// func_fe6_0807921C
-// func_fe6_08079250
-// func_fe6_080792C8
-// func_fe6_08079388
-// func_fe6_080793F0
-bool IsUnitMandatoryDeploy(struct Unit * unit);
-// func_fe6_08079424
-// func_fe6_08079624
-// func_fe6_080796B0
-// func_fe6_0807979C
-// func_fe6_080797DC
-// func_fe6_08079804
-// func_fe6_080798EC
-// func_fe6_08079928
-// func_fe6_08079A28
-// func_fe6_08079A94
-// func_fe6_08079BC8
-// func_fe6_08079C38
-// func_fe6_08079D70
-// func_fe6_08079D84
-// func_fe6_08079EA0
-// func_fe6_08079F50
-void RearrangeMandatoryDeployUnits(void);
-// func_fe6_0807A194
-// func_fe6_0807A1C8
-// func_fe6_0807A268
-// func_fe6_0807A59C
-// func_fe6_0807A67C
-// func_fe6_0807A84C
-// func_fe6_0807A940
-// func_fe6_0807ABF4
-// func_fe6_0807AC9C
-// func_fe6_0807ACE8
-// func_fe6_0807ACFC
-// func_fe6_0807AD6C
-// func_fe6_0807AD78
-// func_fe6_0807B0DC
-// func_fe6_0807B0E4
-// func_fe6_0807B178
-// func_fe6_0807B200
-// func_fe6_0807B28C
-// func_fe6_0807B3D8
-// func_fe6_0807B49C
-// func_fe6_0807B4C0
-// func_fe6_0807B5A0
-// func_fe6_0807B69C
-void func_fe6_0807B6BC(void);
-// func_fe6_0807B6D0
-// func_fe6_0807B6EC
-// func_fe6_0807B714
-// func_fe6_0807B7C8
-// func_fe6_0807B888
-// func_fe6_0807B89C
-// func_fe6_0807B8B0
-void func_fe6_0807B8CC(ProcPtr proc, fu8 arg_1, fu8 arg_2, int arg_3);
-// func_fe6_0807B90C
-// func_fe6_0807B9CC
-// func_fe6_0807BC04
-// func_fe6_0807BE88
-// func_fe6_0807BF70
-// func_fe6_0807C090
-// func_fe6_0807C288
-// func_fe6_0807C364
-// func_fe6_0807C500
-// func_fe6_0807C504
-ProcPtr func_fe6_0807C508(ProcPtr parent);
-// func_fe6_0807C520
-void func_fe6_0807C5B8(/* TODO: args */);
-void func_fe6_0807C7B8(/* TODO: args */);
-// func_fe6_0807C840
-void func_fe6_0807C884(/* TODO: args */);
-void func_fe6_0807C97C(/* TODO: args */);
-void func_fe6_0807C9F4(/* TODO: args */);
-void func_fe6_0807CA48(/* TODO: args */);
-void func_fe6_0807CA9C(/* TODO: args */);
-// func_fe6_0807CAD4
-void func_fe6_0807CB08(/* TODO: args */);
-// func_fe6_0807CB40
-void func_fe6_0807CB78(/* TODO: args */);
-void func_fe6_0807CBB0(/* TODO: args */);
-void func_fe6_0807CBDC(/* TODO: args */);
-// func_fe6_0807CC28
-void func_fe6_0807CC34(void(*func)(/* TODO: args */), fu8 arg_1, int arg_2, fu8 arg_3, int arg_4, fu8 arg_5);
-// func_fe6_0807CCC4
-// func_fe6_0807CD24
-// func_fe6_0807CD5C
-// func_fe6_0807CDF4
-// func_fe6_0807CE98
-// func_fe6_0807CEF0
-// func_fe6_0807CF2C
-// func_fe6_0807CF78
-// func_fe6_0807CFA0
-// func_fe6_0807CFA4
-// func_fe6_0807CFB8
-// func_fe6_0807CFBC
-// func_fe6_0807CFDC
-// func_fe6_0807D074
-// func_fe6_0807D088
-// func_fe6_0807D0A8
-// func_fe6_0807D16C
-// func_fe6_0807D180
-// func_fe6_0807D1AC
-// func_fe6_0807D2E0
-// func_fe6_0807D2F4
-// func_fe6_0807D338
-// func_fe6_0807D358
-// func_fe6_0807D4A8
-// func_fe6_0807D6C0
-// func_fe6_0807D834
-// func_fe6_0807D9E4
-// func_fe6_0807DB80
-// func_fe6_0807DCB8
-// func_fe6_0807DDC8
-// func_fe6_0807DE60
-// func_fe6_0807DEC8
-// func_fe6_0807DF60
-// func_fe6_0807DFEC
-// func_fe6_0807E06C
-// func_fe6_0807E0D4
-// func_fe6_0807E41C
-// func_fe6_0807E544
-// func_fe6_0807E5A8
-// func_fe6_0807EB70
-// func_fe6_0807EDBC
-// func_fe6_0807FBE8
-// func_fe6_0807FCFC
-// func_fe6_0807FF98
-// func_fe6_08080284
-// func_fe6_080813E8
-// func_fe6_08081540
-// func_fe6_080815BC
-void func_fe6_080815E4(struct Unit * unit, ProcPtr parent);
-void func_fe6_08081620(struct Unit * unit, ProcPtr parent);
-// func_fe6_0808165C
-// func_fe6_0808166C
-// func_fe6_0808171C
-// func_fe6_08081970
-// func_fe6_08081DF8
-// func_fe6_08081E3C
-// func_fe6_08081E50
-// func_fe6_08081E58
-// func_fe6_08081ED4
-// func_fe6_08081EE8
-// func_fe6_08081F20
-ProcPtr func_fe6_0808230C(ProcPtr parent);
-void func_fe6_08082320(ProcPtr self, int arg_1, int arg_2, int arg_3, int arg_4, int arg_5, int arg_6);
-// func_fe6_08082348
-// func_fe6_08082360
-// func_fe6_080823A0
-// func_fe6_080823F4
-// func_fe6_08082498
-// func_fe6_0808255C
-ProcPtr func_fe6_08082560(ProcPtr parent);
-// func_fe6_08082574
-// func_fe6_080825B8
-// func_fe6_08082708
-// func_fe6_080827CC
-// func_fe6_080827D8
-// func_fe6_080827F8
-// func_fe6_080828B8
-// func_fe6_080829E8
-// func_fe6_08082A08
-// func_fe6_08082A40
-// func_fe6_08082A7C
-// func_fe6_08082ABC
-// func_fe6_08082AC8
-// func_fe6_08082AD8
-void func_fe6_08082B00(int arg_0, int arg_1, int msg, ProcPtr parent);
-// func_fe6_08082B1C
-// func_fe6_08082B44
-bool func_fe6_08082B74(struct Unit * unit);
-// func_fe6_08082B98
-// func_fe6_08082C34
-// func_fe6_08082C80
-void func_fe6_08082CBC(void);
-ProcPtr func_fe6_08082CF4(ProcPtr parent);
-// func_fe6_08082D08
-// func_fe6_08082D54
-// func_fe6_08082DA4
-// func_fe6_08082E74
-// func_fe6_08082EC0
-// func_fe6_08082EEC
-// func_fe6_08082F18
-// func_fe6_08082F54
-// func_fe6_08082FE8
-// func_fe6_08083078
-// func_fe6_080830AC
-// func_fe6_08083180
-// func_fe6_080832A0
-// func_fe6_08083378
-// func_fe6_0808344C
-// func_fe6_0808347C
-// func_fe6_080834B4
-// func_fe6_0808357C
-// func_fe6_08083618
-// func_fe6_08083688
-// func_fe6_08083750
-// func_fe6_080837C8
-// func_fe6_080838FC
-// func_fe6_08083900
-// func_fe6_08083930
-// func_fe6_08083944
-// func_fe6_08083A68
-// func_fe6_08083B8C
-// func_fe6_08083BC4
-// func_fe6_08083E70
-// func_fe6_08083F40
-// func_fe6_08083FF0
-// func_fe6_08084134
-// func_fe6_08084138
-// func_fe6_08084168
-// func_fe6_080841B4
-// func_fe6_080841EC
-// func_fe6_080841F8
-
 // func_fe6_0808AA84
 // func_fe6_0808AB44
 // func_fe6_0808ABD4
@@ -690,28 +471,28 @@ ProcPtr func_fe6_08082CF4(ProcPtr parent);
 // func_fe6_0808C084
 // func_fe6_0808C098
 // func_fe6_0808C32C
-// func_fe6_0808C340
-// func_fe6_0808C350
+// GetSelectedGameOption
+// GetSelectedOptionValue
 // func_fe6_0808C380
-void func_fe6_0808C390(ProcPtr parent, int arg_1, int arg_2);
-// func_fe6_0808C428
+void StartMuralBackgroundExt(ProcPtr parent, int arg_1, int arg_2);
+// DrawGameOptionIcon
 // func_fe6_0808C4A8
-// func_fe6_0808C514
-// func_fe6_0808C58C
+// DrawGameOptionText
+// DrawOptionValueTexts
 // func_fe6_0808C668
 // func_fe6_0808C680
-// func_fe6_0808C6A8
-// func_fe6_0808C75C
-// func_fe6_0808C9AC
-// func_fe6_0808C9C8
-// func_fe6_0808CA14
-// func_fe6_0808CAF0
-// func_fe6_0808CC18
+// DrawConfigUiSprites
+// Config_Init
+// WindowColorOptionChangeHandler
+// MusicOptionChangeHandler
+// GenericOptionChangeHandler
+// GetGameOption
+// SetGameOption
 // func_fe6_0808CDCC
-// func_fe6_0808CE4C
-// func_fe6_0808D07C
+// Config_Loop
+// Config_End
 // func_fe6_0808D0C0
-fu8 func_fe6_0808D0F8(void);
+fu8 GetAuguryIndex(void);
 // func_fe6_0808D168
 // func_fe6_0808D1B8
 // func_fe6_0808D204
@@ -986,7 +767,7 @@ void func_fe6_08094030(int arg_0, int arg_1, int arg_2, ProcPtr proc);
 // func_fe6_080947AC
 // func_fe6_080947B8
 // func_fe6_080947DC
-void func_fe6_080947F0(u8 arg_0, ProcPtr parent);
+void StartClassDemo(u8 arg_0, ProcPtr parent);
 // func_fe6_0809480C
 // func_fe6_0809485C
 // func_fe6_08094878
@@ -1025,85 +806,13 @@ void func_fe6_080947F0(u8 arg_0, ProcPtr parent);
 // func_fe6_08095D40
 // func_fe6_08095D48
 // func_fe6_08095D58
-// func_fe6_08095D5C
-// func_fe6_08095D88
-// func_fe6_08095DF0
-void func_fe6_08095E10(struct Unit * unit, u16 const * iid_list);
-void func_fe6_08095E30(struct Unit * unit, u16 const * iid_list);
-void func_fe6_08095E50(struct Unit * unit, u16 const * iid_list);
-// func_fe6_08095E70
-// func_fe6_08095E90
-// func_fe6_08095F5C
-void func_fe6_08095FC4(void);
-void func_fe6_08095FF8(void);
-// func_fe6_0809602C
-// func_fe6_0809604C
-// func_fe6_080960B8
-// func_fe6_080960D4
-// func_fe6_08096164
-// func_fe6_080961F4
-// func_fe6_08096234
-// func_fe6_080964E0
-// func_fe6_08096514
-// func_fe6_0809656C
-// func_fe6_080965A0
-// func_fe6_080965C0
-// func_fe6_080965F0
-// func_fe6_08096610
-// func_fe6_08096630
-// func_fe6_0809664C
-// func_fe6_0809666C
-// func_fe6_0809668C
-// func_fe6_080966C4
-// func_fe6_08096944
-// func_fe6_08096A0C
-// func_fe6_08096A28
-// func_fe6_08096A58
-// func_fe6_08096A78
-// func_fe6_08096A98
-// func_fe6_08096AC4
-// func_fe6_08096AFC
-// func_fe6_08096B38
-// func_fe6_08096F70
-// func_fe6_08097014
-// func_fe6_0809704C
-// func_fe6_08097084
-// func_fe6_080970BC
-// func_fe6_08097180
-// func_fe6_08097280
-// func_fe6_080972AC
-// func_fe6_08097354
-// func_fe6_08097418
-// func_fe6_08097444
-// func_fe6_080974A0
-// func_fe6_0809750C
-// func_fe6_080975A0
-// func_fe6_080975C8
-// func_fe6_08097600
-// func_fe6_08097638
-// func_fe6_08097728
-// func_fe6_0809773C
-// func_fe6_0809777C
-// func_fe6_080977C0
-// func_fe6_08097830
-// func_fe6_080978AC
-// func_fe6_080979AC
-// func_fe6_080979C8
-// func_fe6_08097A54
-// func_fe6_08097AC4
-// func_fe6_08097BC0
-// func_fe6_08097CF4
-// func_fe6_08097D10
-// func_fe6_08097D34
-// func_fe6_08097D50
-// func_fe6_08097D7C
-// func_fe6_08097DA8
-// func_fe6_08097DD8
-// func_fe6_08097DFC
+
+/* shop.h */
+
 // func_fe6_08097E2C
-void func_fe6_08097E84(void);
-void func_fe6_08097EAC(void);
-// func_fe6_08097ECC
+void StartArenaScreen(void);
+void StartArenaResultsScreen(void);
+// ArenaUi_Init
 // func_fe6_08098258
 // func_fe6_08098290
 // func_fe6_080982B0
@@ -1120,12 +829,12 @@ void func_fe6_08097EAC(void);
 // func_fe6_080985AC
 // func_fe6_080985D8
 // func_fe6_08098624
-// func_fe6_080986DC
-// func_fe6_08098730
+// Arena_PlayResultSong
+// Arena_PlayArenaSong
 void func_fe6_0809874C(void);
 // func_fe6_08098764
-// func_fe6_08098798
-void func_fe6_080987B8(ProcPtr todo_event_proc);
+// WriteSuspandPlaterIdle
+void PostGameOverHandler(ProcPtr todo_event_proc);
 // func_fe6_080987D4
 // func_fe6_080987E8
 // func_fe6_0809882C

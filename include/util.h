@@ -90,14 +90,14 @@ void StartSlowLockingFadeFromWhite(ProcPtr parent);
 // func_fe6_08014840
 // func_fe6_08014858
 // func_fe6_08014870
-// func_fe6_08014888
-// func_fe6_080148A0
-// func_fe6_080148B8
-// func_fe6_080148CC
-// func_fe6_080148E0
-// func_fe6_080148F8
-// func_fe6_0801490C
-// func_fe6_08014920
+void func_fe6_08014888(ProcPtr parent);
+void func_fe6_080148A0(ProcPtr parent);
+void FadeInBlackSpeed04(ProcPtr parent);
+void FadeInBlackSpeed08(ProcPtr parent);
+void FadeInBlackSpeed08Unk(ProcPtr parent);
+void FadeInBlackSpeed10(ProcPtr parent);
+void FadeInBlackSpeed20(ProcPtr parent);
+void FadeInBlackSpeed40(ProcPtr parent);
 // func_fe6_08014934
 // func_fe6_08014948
 // func_fe6_0801495C
@@ -144,8 +144,8 @@ void func_fe6_08015344(void);
 int Screen2Pan(int x);
 void PlaySeSpacial(int song, int x);
 void PlaySeDelayed(int song, int delay);
-void func_fe6_0801548C(short song);
-void func_fe6_0801549C(short speed);
+void _StartBgm(short song);
+void _FadeBgmOut(short speed);
 // func_fe6_080154AC
 // func_fe6_08015504
 void PutDrawTextCentered(struct Text * text, int x, int y, char const * str, int width);

@@ -33,6 +33,13 @@ enum
     TALK_FLAG_7 = (1 << 7),
 };
 
+enum talk_choice
+{
+    TALK_CHOICE_CANCEL = 0,
+    TALK_CHOICE_YES,
+    TALK_CHOICE_NO
+};
+
 struct TalkSt
 {
     /* 00 */ char const * str;

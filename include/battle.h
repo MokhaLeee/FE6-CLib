@@ -194,6 +194,14 @@ void InitObstacleBattleUnit(void);
 void ComputeBattleObstacleStats(void);
 void UpdateObstacleFromBattle(struct BattleUnit * bu);
 void BeginBattleAnimations(void);
+
+enum AnimConfType {
+    PLAY_ANIMCONF_ON = 0,
+    PLAY_ANIMCONF_OFF = 1,
+    PLAY_ANIMCONF_SOLO_ANIM = 2,
+    PLAY_ANIMCONF_ON_UNIQUE_BG = 3,
+};
+
 int GetUnitSoloBattleAnimType(struct Unit * unit);
 int GetBattleAnimType(void);
 void BattlePrintDebugUnitInfo(struct BattleUnit * instigator, struct BattleUnit * target);

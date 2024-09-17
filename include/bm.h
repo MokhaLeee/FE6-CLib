@@ -144,7 +144,7 @@ struct PlaySt
     /* 1B */ u8 unk_1B;
 
     /* 1C */ // option bits
-    /* bit  0 */ u32 unk_1C_1 : 1;
+    /* bit  0 */ u32 config_unique_pal : 1;
     /* bit  1 */ u32 config_terrain_mapui : 1; // TODO: constants
     /* bit  2 */ u32 config_unit_mapui : 2; // TODO: constants
     /* bit  4 */ u32 config_no_auto_cursor : 1;

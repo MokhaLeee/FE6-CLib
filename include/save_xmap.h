@@ -48,8 +48,8 @@ bool IsExtraMapAvailable(void);
 void ReadExtraMapInfo(void);
 bool ListAvailableTrialChapters(i8 * list_out);
 char const * func_fe6_080867F0(int chapter);
-char const * func_fe6_080867FC(int chapter);
-char const * func_fe6_08086910(int chapter);
+char const * DecodeExtraMapGoalMsg(int chapter);
+char const * DecodeExtraMapInfoMsg(int chapter);
 void CreateTrialChapterBonusUnits(void);
 struct ChapterStats * func_fe6_08086AAC(void);
 

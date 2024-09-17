@@ -2,6 +2,8 @@
 
 enum
 {
+    IID_NONE = 0,
+
     IID_IRONSWORD = 0x01,
     IID_IRONBLADE = 0x02,
     IID_STEELSWORD = 0x03,

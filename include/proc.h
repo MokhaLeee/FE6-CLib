@@ -70,6 +70,7 @@ enum
 #define PROC_CALL_ARG(func, arg)          { PROC_CMD_CALL_ARG, (arg), (func) }
 #define PROC_19                           { PROC_CMD_19, 0, 0 }
 
+#define PROC_YIELD                        PROC_SLEEP(0)
 #define PROC_NAME_DEBUG(name)             PROC_19
 
 #define PROC_HEADER_EXT(parent_type)                                                                    \
@@ -143,7 +144,7 @@ enum
     PROC_MARK_6 = 6,
     PROC_MARK_7 = 7,
     PROC_MARK_8 = 8,
-    PROC_MARK_10 = 10,
+    PROC_MARK_PAL_CHG = 10,
     PROC_MARK_GAMECTRL = 11,
 };
 

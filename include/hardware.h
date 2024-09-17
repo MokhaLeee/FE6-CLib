@@ -162,6 +162,14 @@ struct KeySt
 
 enum
 {
+    BG_0 = 0,
+    BG_1,
+    BG_2,
+    BG_3,
+};
+
+enum
+{
     BG0_SYNC_BIT = (1 << 0),
     BG1_SYNC_BIT = (1 << 1),
     BG2_SYNC_BIT = (1 << 2),
@@ -222,6 +230,8 @@ void SetOnHBlankB(Func func);
 
 extern u8 EWRAM_DATA gBuf[0x2000];
 
+extern i8 EWRAM_DATA gFadeComponentStep[0x20];
+extern i8 EWRAM_DATA gFadeComponents[0x600];
 extern u16 EWRAM_DATA gPal[0x200];
 
 extern u16 EWRAM_DATA gBg0Tm[0x400];

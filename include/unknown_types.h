@@ -94,10 +94,10 @@ struct ChapterInfo
 
     /* 3C */ u16 msg_unk_0C;
     /* 3E */ u8 number_id;
-    /* 3F */ u8 unk_3F;
-    /* 40 */ u8 unk_40;
-    /* 41 */ u8 unk_41;
-    /* 42 */ u8 unk_42;
+    /* 3F */ u8 gmap_dispx;
+    /* 40 */ u8 gmap_dispy;
+    /* 41 */ u8 gmap_cursorx;
+    /* 42 */ u8 gmap_cursory;
     /* 43 */ i8 victory_bgm_enemy_threshold;
 };
 
@@ -111,7 +111,5 @@ struct MapChangeInfo
 
 struct BanimInfoEnt
 {
-    /* 00 */ u8 identifier;
-    /* 01 */ u8 generic;
-    /* 02 */ u16 banim_id;
+    u16 wtype, index;
 };

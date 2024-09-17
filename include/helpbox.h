@@ -105,7 +105,7 @@ void func_fe6_08070DA8(u16 * tm, int pal);
 void func_fe6_08070DC8(u16 * tm, int pal);
 void func_fe6_08070DE8(u16 * tm, int pal);
 int func_fe6_08070E0C(struct PlaySt const * play_st);
-void func_fe6_08070E70(void * vram, int pal);
+void LoadHelpBoxGfx(void * vram, int pal);
 // func_fe6_08070EEC
 void PutSpriteTalkBox(int x_box, int y_box, int w_box, int h_box);
 // DrawHelpBoxWeaponLabels
