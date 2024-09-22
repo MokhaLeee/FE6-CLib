@@ -4,6 +4,7 @@
 #include "prelude.h"
 
 typedef u32 AnimScr;
+typedef u32 AnimSpriteScr;
 
 struct BaSprite
 {

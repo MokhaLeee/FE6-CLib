@@ -79,5 +79,5 @@
 .endm
 
 .macro ANIMSCR_FRAME duration, sheet_addr, frame_number, oam_offset
-    .4byte ANFMT_NOT_FORCESPRITE + ANFMT_INS_TYPE_COMMAND + (\frame_number << 16) + \duration, \sheet_addr, \oam_offset
+    .4byte ANFMT_NOT_FORCESPRITE + ANFMT_INS_TYPE_FRAME + (\frame_number << 16) + \duration, \sheet_addr, \oam_offset
 .endm

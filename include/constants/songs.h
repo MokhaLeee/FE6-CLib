@@ -111,7 +111,16 @@ enum
     SONG_BF = 0xBF,
     SONG_C4 = 0xC4,
     SONG_C6 = 0xC6,
-    SONG_C8 = 0xC8, // stat screen unit slide, also miss
+    SONG_C8 = 0xC8, // stat screen unit slide, also miss'
+    SONG_C9 = 0xC9,
+    SONG_CA = 0xCA,
+    SONG_CB = 0xCB,
+    SONG_CC = 0xCC,
+    SONG_CD = 0xCD,
+    SONG_CE = 0xCE,
+    SONG_CF = 0xCF,
+    SONG_D0 = 0xD0,
+    SONG_D1 = 0xD1,
     SONG_D2 = 0xD2,
     SONG_D5 = 0xD5,
     SONG_D6 = 0xD6,

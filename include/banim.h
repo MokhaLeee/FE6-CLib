@@ -73,17 +73,17 @@ struct ProcEfx {
     /* 2A */ u8 type;
     /* 2B */ STRUCT_PAD(0x2B, 0x2C);
     /* 2C */ i16 timer;
-    /* 2E */ i16 unk2E;
+    /* 2E */ i16 step;
     /* 30 */ i16 unk30;
     /* 32 */ u16 unk32;
     /* 34 */ STRUCT_PAD(0x34, 0x44);
     /* 44 */ u32 unk44;
     /* 48 */ u32 unk48;
-    /* 4C */ u32 unk4C;
-    /* 50 */ u32 unk50;
+    /* 4C */ u32 frame;
+    /* 50 */ u32 speed;
     /* 54 */ i16 * unk54;
     /* 58 */ i16 ** unk58;
-    /* 5C */ struct  BaSprite * anim;
+    /* 5C */ struct Anim * anim;
     STRUCT_PAD(0x60, 0x64);
     ProcPtr unk_64;
 };
@@ -187,6 +187,19 @@ extern i16 gEfxSplitedColorBufC[2][0x30];
 extern int gProcEkrBaseAppearExist;
 extern u32 gUnk_Banim_0201E0F8;
 extern u32 gBanimDoneFlag[2];
+extern ProcPtr gpProcEfxAnimeDrv;
+extern const void * gpImgSheet[2];
+extern int gEkrBg2ScrollFlip;
+extern u16 * gpBg2ScrollOffsetStart;
+extern u16 * gpBg2ScrollOffset;
+extern u16 gpBg2ScrollOffsetTable1[];
+extern u16 gpBg2ScrollOffsetTable2[];
+extern int gEkrBg1ScrollFlip;
+extern u16 * gpBg1ScrollOffsetStart;
+extern u16 * gpBg1ScrollOffset;
+extern u16 gpBg1ScrollOffsetList1[];
+extern u16 gpBg1ScrollOffsetList2[];
+extern int gEfxMagicChk_N;
 extern u8 gEkrPids[2];
 extern struct Unit * gpEkrTriangleUnits[2];
 extern u16 * gpBanimTriAtkPalettes[2];
@@ -198,6 +211,8 @@ extern u32 gEkrInitPosReal;
 extern u32 gEfxFarAttackExist;
 extern u32 gEfxBgSemaphore;
 extern u32 gEfxHpBarResireFlag;
+extern u32 gUnk_Banim_0201774C;
+extern u32 gEfxTeonoState;
 extern struct Vec2i gEkrBg2QuakeVec;
 extern u32 gUnk_Banim_02017754;
 extern u32 gEkrBgPosition;
@@ -254,7 +269,7 @@ void func_fe6_080438E8(void);
 void func_fe6_080438F8(void);
 void EkrGauge_08043908(u16 val);
 // func_fe6_08043918
-// func_fe6_0804392C
+void func_fe6_0804392C(i16 x, i16 y);
 // func_fe6_08043940
 // func_fe6_08043950
 void EnableEkrGauge(void);
@@ -268,7 +283,7 @@ void EndEkrDispUP(void);
 void func_fe6_080441FC(void);
 void func_fe6_0804420C(void);
 // func_fe6_0804421C
-// func_fe6_08044230
+void func_fe6_08044230(u16 x, u16 y);
 void SyncEkrDispUP(void);
 void UnsyncEkrDispUP(void);
 void AsyncEkrDispUP(void);
@@ -345,12 +360,26 @@ void EfxDeadAlpha_Loop(struct ProcEfxDead * proc);
 void NewEfxDeadDragonAlpha(struct BaSprite * anim1, struct BaSprite * anim2);
 void EfxDeadDragonAlpha_Loop(struct ProcEfxDead * proc);
 
-void NewEfxFarAttackWithDistance(struct BaSprite * anim, int);
-// func_fe6_08045D6C
-// func_fe6_08045DA4
-// func_fe6_08045DDC
-// func_fe6_08045E50
-// func_fe6_08045EE8
+struct ProcEfxFarAttack
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ u8 pos;
+    /* 2A */ u16 unk_2a;
+    /* 2C */ i16 timer;
+    /* 2E */ i16 unk_2e;
+    /* 30 */ i16 terminator;
+    /* 32 */ i16 unk_32;
+    /* 34 */ i16 unk_34;
+    /* 36 */ i16 unk_36;
+    /* 38 */ i16 unk_38;
+};
+
+void NewEfxFarAttackWithDistance(struct Anim * anim, i16);
+void func_fe6_08045D6C(struct ProcEfxFarAttack * unused, int x);
+void func_fe6_08045DA4(struct ProcEfxFarAttack * proc);
+void func_fe6_08045DDC(struct ProcEfxFarAttack * proc);
+void func_fe6_08045E50(struct ProcEfxFarAttack * proc);
+void func_fe6_08045EE8(int);
 
 struct ProcEfxQuake {
     /* 00 */ PROC_HEADER;
@@ -378,7 +407,7 @@ struct ProcEfxQuake {
     gEkrBg2QuakeVec.x = (_x);     \
     gEkrBg2QuakeVec.y = (_y);
 
-ProcPtr NewEfxQuakePure(int index, int kind);
+ProcPtr NewEfxQuakePure(int type, int stopped);
 void EfxQuakePure_Loop(struct ProcEfxQuake * proc);
 ProcPtr NewEfxHitQuakePure(void);
 void EfxHitQuakePure_Loop(struct ProcEfxQuake * proc);
@@ -719,7 +748,7 @@ void SetAnimStateUnHidden(int pos);
 // func_fe6_0804C478
 void SetBanimArenaFlag(int flag);
 int GetBattleAnimArenaFlag(void);
-// func_fe6_0804C50C
+void func_fe6_0804C50C(int x);
 void PlayDeathSoundForArena(void);
 void func_fe6_0804C56C(void);
 void BeginAnimsOnBattle_Arena(void);
@@ -736,41 +765,166 @@ void NewEkrTogiInitPROC(void);
 // func_fe6_0804C818
 // func_fe6_0804C84C
 // func_fe6_0804C860
-// StartSpellAnimation
-// func_fe6_0804C8D0
-// func_fe6_0804C8D4
-// func_fe6_0804C918
-// func_fe6_0804C928
-// func_fe6_0804C9BC
-// func_fe6_0804C9EC
-// func_fe6_0804C9FC
-// func_fe6_0804CA48
-// func_fe6_0804CAD8
-// func_fe6_0804CB8C
-// func_fe6_0804CC68
-// func_fe6_0804CC78
-// func_fe6_0804CC84
-// func_fe6_0804CD4C
-// func_fe6_0804CD88
-// func_fe6_0804CDD0
-// func_fe6_0804CED4
-// func_fe6_0804CF34
-// func_fe6_0804D050
-// func_fe6_0804D088
-// func_fe6_0804D25C
-// func_fe6_0804D280
-// func_fe6_0804D2D4
-// func_fe6_0804D30C
-// func_fe6_0804D3A8
-// func_fe6_0804D44C
-// func_fe6_0804D4A4
-// func_fe6_0804D4CC
-// func_fe6_0804D550
-// func_fe6_0804D590
-// func_fe6_0804D5D4
-// func_fe6_0804D5E4
-// func_fe6_0804D62C
-// func_fe6_0804D664
+
+/* efxmagic */
+void StartSpellAnimation(struct Anim * anim);
+void func_fe6_0804C8D0(void);
+ProcPtr NewefxRestRST(struct Anim * anim, int unk44, int unk48, int frame, int unk50);
+void EfxRestRST_End(struct ProcEfx * proc);
+void EfxRestRST_Loop(struct ProcEfx * proc);
+void NewDummvRST(struct Anim * anim, int unk44);
+void EfxDummyRST_End(struct ProcEfx * proc);
+void EfxDummyRST_Loop(struct ProcEfx * proc);
+void NewEfxRestWIN(struct Anim * anim, int unk44, void * unk54, void * unk58);
+void EfxRestWIN_Loop(struct ProcEfx * proc);
+void NewEfxRestWINH(struct Anim * anim, int a, i16 b, void (* hblank)(void));
+void NewEfxRestWINH_(struct Anim * anim, int a, void (* hblank)(void));
+void EfxRestWINH_Dummy(struct ProcEfx * proc);
+void EfxRestWINH_Loop(struct ProcEfx * proc);
+void EfxRestWINH_DefaultHblank(void);
+
+struct ProcEfxALPHA
+{
+    PROC_HEADER;
+
+    /* 29 */ u8 unk29;
+
+    STRUCT_PAD(0x2A, 0x2C);
+
+    /* 2C */ i16 timer;
+    /* 2E */ i16 delay;
+    /* 30 */ i16 duration_total;
+
+    STRUCT_PAD(0x32, 0x44);
+
+    /* 44 */ int lo, hi, type;
+
+    STRUCT_PAD(0x50, 0x5C);
+
+    /* 5C */ struct Anim * anim;
+};
+
+void NewEfxALPHA(struct Anim * anim, int delay, int duration2, int lo, int hi, int type);
+void EfxALPHA_Loop(struct ProcEfxALPHA * proc);
+
+struct ProcEfxCircleWIN
+{
+    PROC_HEADER;
+    STRUCT_PAD(0x29, 0x2c);
+
+    /* 2C */ i16 timer;
+    /* 2E */ i16 unk_2e;
+    /* 30 */ i16 unk_30;
+    /* 32 */ i16 unk_32;
+
+    STRUCT_PAD(0x34, 0x3a);
+
+    /* 3A */ u16 unk_3a;
+
+    STRUCT_PAD(0x3c, 0x44);
+
+    /* 44 */ int unk_44;
+
+    STRUCT_PAD(0x48, 0x54);
+
+    /* 54 */ u16 * unk_54;
+    /* 58 */ int unk_58;
+    /* 5C */ struct Anim * anim;
+};
+
+void NewEfxCircleWIN(struct Anim * anim, int terminator, u16 * c, u16 d, u16 e);
+void EfxCircleWIN_Loop(struct ProcEfxCircleWIN * proc);
+
+struct ProcEfxMagicQuake
+{
+    PROC_HEADER;
+    STRUCT_PAD(0x29, 0x2c);
+
+    /* 2C */ i16 timer, duration;
+
+    STRUCT_PAD(0x30, 0x5c);
+
+    /* 5C */ struct Anim * anim;
+    /* 60 */ ProcPtr qproc;
+};
+
+void NewEfxMagicQUAKE(struct Anim * anim, int duration);
+void EfxMagicQUAKE_Loop(struct ProcEfxMagicQuake * proc);
+
+struct ProcEfxMagic {
+    PROC_HEADER;
+
+    /* 29 */ u8 hitted;
+    /* 2A */ u8 type;
+    /* 2B */ STRUCT_PAD(0x2B, 0x2C);
+    /* 2C */ i16 timer;
+    /* 2E */ i16 step;
+    /* 30 */ i16 unk30;
+    /* 32 */ u16 unk32;
+    /* 34 */ STRUCT_PAD(0x34, 0x44);
+    /* 44 */ u32 unk44;
+    /* 48 */ u32 unk48;
+    /* 4C */ u32 frame;
+    /* 50 */ u32 speed;
+    /* 54 */ i16 * unk54;
+    /* 58 */ i16 ** unk58;
+    /* 5C */ struct Anim * anim;
+    STRUCT_PAD(0x60, 0x64);
+    ProcPtr unk_64;
+};
+
+struct ProcEfxMagicOBJ {
+    PROC_HEADER;
+
+    STRUCT_PAD(0x29, 0x2C);
+
+    /* 2C */ i16 timer, terminator;
+
+    STRUCT_PAD(0x30, 0x5C);
+
+    /* 5C */ struct Anim * anim;
+    /* 60 */ struct Anim * anim2;
+
+    /* 64 */ ProcPtr seproc;
+};
+
+struct ProcEfxEclipseBG
+{
+    PROC_HEADER;
+
+    /* 29 */ u8 unk29;
+
+    STRUCT_PAD(0x2A, 0x2C);
+
+    /* 2C */ i16 timer;
+    /* 2E */ i16 terminator;
+    /* 30 */ i16 unk30;
+
+    STRUCT_PAD(0x32, 0x44);
+
+    /* 44 */ u32 frame;
+    /* 48 */ const u16 * frame_config;
+    /* 4C */ u16 ** tsal;
+    /* 50 */ u16 ** tsar;
+    /* 54 */ u16 ** img;
+    /* 58 */ u16 * pal;
+    /* 5C */ struct Anim * anim;
+};
+
+void NewEfxDummyMagic(struct Anim * anim);
+void EfxDummyMagic_Loop(struct ProcEfxMagic * proc);
+void NewEfxTeono(struct Anim * anim);
+void EfxTeono_Loop(struct ProcEfxMagic * proc);
+void NewEfxTeonoOBJ(struct Anim * anim);
+void EfxTeonoObj_Loop(struct ProcEfxMagicOBJ * proc);
+void EfxTeonoObj_End(struct ProcEfxMagicOBJ * proc);
+void NewEfxTeonoOBJ2(struct Anim * anim);
+void EfxTeonoOBJ2_Loop(struct ProcEfxMagicOBJ * proc);
+ProcPtr NewEfxTeonoSE(struct Anim * anim, struct Anim * anim2);
+void EfxTeonoSE_End(struct ProcEfxMagicOBJ * proc);
+void EfxTeonoSE_Loop(struct ProcEfxMagicOBJ * proc);
+// NewEfxArrow
+// EfxArrow_Loop
 // func_fe6_0804D728
 // func_fe6_0804D790
 // func_fe6_0804D7C0
@@ -1129,13 +1283,13 @@ void NewEfxDamageMojiEffect(struct BaSprite * anim, int hitted);
 // func_fe6_08056A3C
 // func_fe6_08056A68
 // func_fe6_08056AD8
-// func_fe6_08056B08
+void NewEfxPierceCritical(struct Anim * anim);
 // func_fe6_08056B28
 // func_fe6_08056B58
 // func_fe6_08056BA8
 // func_fe6_08056BD0
 // func_fe6_08056C00
-// func_fe6_08056C3C
+void NewEfxNormalEffect(struct Anim * anim);
 // func_fe6_08056C5C
 // func_fe6_08056C9C
 // func_fe6_08056D28
@@ -1246,8 +1400,8 @@ void EfxTmCpyExtHFlip(const u16 * src, i16 src_width, u16 * dst, i16 dst_width, 
 void func_fe6_0805B380(u16 * tm, int arg1, int arg2);
 void EkrModifyBarfx(u16 * tm, int);
 // func_fe6_0805B4D8
-void EfxPalBlackInOut(u16 const * pal_buf, int line, int length, int ref);
-void EfxPalWhiteInOut(u16 const * pal_buf, int line, int length, int ref);
+void EfxPalBlackInOut(u16 * pal_buf, int line, int length, int ref);
+void EfxPalWhiteInOut(u16 * pal_buf, int line, int length, int ref);
 void EfxPalFlashingInOut(u16 const * pal_buf, int line, int length, int r0, int g0, int b0);
 void EfxPalModifyPetrifyEffect(u16 * pal_buf, int line, int length);
 void EfxSplitColor(u16 * pal, u8 * dst, u32 length);
@@ -1301,16 +1455,22 @@ void EfxPlaySEwithCmdCtrl(struct BaSprite * anim, int cmd);
 // func_fe6_0805C1A0
 // func_fe6_0805C2B0
 // func_fe6_0805C2E0
-// func_fe6_0805C308
-// func_fe6_0805C358
-// func_fe6_0805C3B8
-// func_fe6_0805C3FC
-// func_fe6_0805C41C
+enum efx_hp_change_type {
+    EFX_HPT_CHANGED = 0,
+    EFX_HPT_DEFEATED = 1,
+    EFX_HPT_NOT_CHANGE = 2
+};
+
+i16 GetEfxHpChangeType(struct Anim * anim);
+void EfxPlayHittedSFX(struct Anim * anim);
+void EfxPlayCriticalHittedSFX(struct Anim * anim);
+int EfxCheckRetaliation(int is_retaliation);
+int EfxCheckStaffType(int weapon);
 void EkrPlayMainBGM(void);
 void EkrRestoreBGM(void);
-// func_fe6_0805C76C
-// func_fe6_0805C804
-// func_fe6_0805C820
+int GetProperAnimSoundLocation(struct Anim * anim);
+void PlaySFX(int songid, int volume, int locate, int type);
+void PlaySfxAutomatically(int songid, int volume, struct Anim * anim);
 bool EkrClasschgFinished(void);
 void EndEkrClasschg(void);
 void NewEkrClassChg(struct BaSprite * anim);
@@ -1451,7 +1611,7 @@ extern CONST_DATA struct ProcScr ProcScr_EfxDead[];
 extern CONST_DATA struct ProcScr ProcScr_EfxDeadPika[];
 extern CONST_DATA struct ProcScr ProcScr_EfxDeadAlpha[];
 extern CONST_DATA struct ProcScr ProcScr_EfxDeadDragonAlpha[];
-extern CONST_DATA struct ProcScr ProcScr_efxFarAttack[];
+extern CONST_DATA struct ProcScr ProcScr_EfxFarAttack[];
 extern CONST_DATA struct ProcScr ProcScr_EfxQuakePure[];
 // ??? EfxQuakePureVecs
 extern CONST_DATA struct ProcScr ProcScr_EfxHitQuakePure[];
@@ -1498,21 +1658,24 @@ extern CONST_DATA struct ProcScr ProcScr_EkrTogiInitPROC[];
 // ??? gUnk_085CCF38
 // ??? gUnk_085CDCA4
 // ??? gUnk_085CDD18
-// ??? gUnk_085D0DA0
+
+typedef void (* SpellAnimFunc)(struct Anim * anim);
+extern CONST_DATA SpellAnimFunc gEkrSpellAnimLut[];
+
 extern u32 AnimScr_ManaketeFlame[];
-// ??? gUnk_085D0E94
-// ??? gUnk_085D0EB4
-// ??? gUnk_085D0ED4
-// ??? gUnk_085D0EEC
-// ??? gUnk_085D0F0C
-// ??? gUnk_085D0F24
-// ??? gUnk_085D0F3C
-// ??? gUnk_085D0F54
-// ??? gUnk_085D0F6C
-// ??? gUnk_085D0F84
-// ??? gUnk_085D0FA4
-// ??? gUnk_085D0FBC
-// ??? gUnk_085D0FDC
+extern CONST_DATA struct ProcScr ProcScr_EfxRestRST[];
+extern CONST_DATA struct ProcScr ProcScr_EfxDummyRST[];
+extern CONST_DATA struct ProcScr ProcScr_EfxRestWIN[];
+extern CONST_DATA struct ProcScr ProcScr_EfxRestWINH[];
+extern CONST_DATA struct ProcScr ProcScr_EfxALPHA[];
+extern CONST_DATA struct ProcScr ProcScr_EfxCircleWIN[];
+extern CONST_DATA struct ProcScr ProcScr_EfxMagicQUAKE[];
+extern CONST_DATA struct ProcScr ProcScr_EfxDummyMagic[];
+extern CONST_DATA struct ProcScr ProcScr_EfxTeono[];
+extern CONST_DATA struct ProcScr ProcScr_EfxTeonoOBJ[];
+extern CONST_DATA struct ProcScr ProcScr_EfxTeonoOBJ2[];
+extern CONST_DATA struct ProcScr ProcScr_EfxTeonoSE[];
+extern CONST_DATA struct ProcScr ProcScr_EfxArrow[];
 // ??? gUnk_085D0FF4
 // ??? gUnk_085D100C
 // ??? gUnk_085D1024
@@ -1719,7 +1882,7 @@ extern u32 AnimScr_ManaketeFlame[];
 // ??? gUnk_085D3420
 // ??? gUnk_085D3434
 // ??? gUnk_085D3454
-// ??? ProcScr_EfxDamageMojiEffect
+extern CONST_DATA struct ProcScr ProcScr_EfxDamageMojiEffect[];
 // ??? gUnk_085D348C
 // ??? gUnk_085D34A4
 // ??? gUnk_085D34BC
@@ -1727,8 +1890,8 @@ extern u32 AnimScr_ManaketeFlame[];
 // ??? gUnk_085D34F4
 // ??? gUnk_085D350C
 // ??? gUnk_085D3524
-// ??? ProcScr_EfxYushaSpinShield
-// ??? ProcScr_EfxYushaSpinShieldOBJ
+extern CONST_DATA struct ProcScr ProcScr_EfxYushaSpinShield[];
+extern CONST_DATA struct ProcScr ProcScr_EfxYushaSpinShieldOBJ[];
 // ??? gUnk_085D3594
 // ??? gUnk_085D35AC
 // ??? gUnk_085D35E4
@@ -1768,12 +1931,12 @@ extern u32 AnimScr_ManaketeFlame[];
 // ??? gUnk_085D3A70
 // ??? gUnk_085D3A90
 // ??? gUnk_085D3AB0
-// ??? gUnk_085D3DB0
-// ??? gUnk_085D3E0C
-// ??? gUnk_085D3E2C
-// ??? gUnk_085D4148
-// ??? gUnk_085D41A4
-// ??? gUnk_085D41C4
+extern u32 AnimScr_TeonoObjCloseRight[];
+extern u32 AnimScr_TeonoObjFarRight[];
+extern u32 AnimScr_TeonoObj2Right[];
+extern u32 AnimScr_TeonoObjCloseLeft[];
+extern u32 AnimScr_TeonoObjFarLeft[];
+extern u32 AnimScr_TeonoObj2Left[];
 // ??? gUnk_085D4264
 // ??? gUnk_085D4274
 // ??? gUnk_085D42F0
@@ -1910,9 +2073,9 @@ extern CONST_DATA struct ProcScr ProcScr_EkrDragonIdunn[];
 // ??? gUnk_08604968
 // ??? gUnk_08604988
 // ??? gUnk_086049A8
-// ??? ProcScr_EkrIdunnDeamon
+extern CONST_DATA struct ProcScr ProcScr_EkrIdunnDeamon[];
 // ??? gUnk_086049E8
-// ??? ProcScr_EkrIdunnBodyFlashing
+extern CONST_DATA struct ProcScr ProcScr_EkrIdunnBodyFlashing[];
 // ??? gUnk_08604A18
 // ??? gUnk_08604A3C
 // ??? gUnk_08604A6C
@@ -1926,15 +2089,15 @@ extern AnimScr AnimScr_ManaketeEnter3[];
 extern AnimScr AnimScr_ManaketeExit1[];
 // ??? AnimScr_EkrIdunnDeamon
 // ??? gUnk_08605A70
-// ??? gUnk_08605A94
+extern i16 gUnk_08605A94[];
 // ??? gEfxTmyPalRefs
 extern CONST_DATA struct ProcScr ProcScr_EkrSubAnimeEmulator[];
-// ??? ProcScr_EfxSoundSE
+extern CONST_DATA struct ProcScr ProcScr_EfxSoundSE[];
 // ??? gBanimBossBGMs
 // ??? gUnk_08605F34
 // ??? gUnk_08605F50
 // ??? gUnk_08605F6C
-// ??? ProcScr_EkrClasschg
+extern CONST_DATA struct ProcScr ProcScr_EkrClasschg[];
 // ??? gUnk_08605FA8
 // ??? gUnk_08605FC0
 // ??? gUnk_0860601C
@@ -1946,14 +2109,14 @@ extern CONST_DATA struct ProcScr ProcScr_EkrSubAnimeEmulator[];
 // ??? gUnk_0860613C
 // ??? gUnk_0860615C
 // ??? gUnk_08606174
-// ??? FaceConfig_EkrLevelup
-// ??? ProcScr_EkrLevelup
+extern CONST_DATA struct ProcScr FaceConfig_EkrLevelup[];
+extern CONST_DATA struct ProcScr ProcScr_EkrLevelup[];
 // ??? gUnk_08606254
 // ??? gUnk_0860626C
 // ??? gUnk_0860628C
 // ??? gUnk_086062AC
 // ??? gUnk_086062EC
-// ??? ProcScr_EkrTriangle
+extern CONST_DATA struct ProcScr ProcScr_EkrTriangle[];
 // ??? gUnk_0860632C
 // ??? gUnk_08606344
 // ??? gUnk_0860635C
