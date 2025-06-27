@@ -105,8 +105,9 @@ struct GenericProc
     /* 3C */ int unk3C;
     /* 40 */ int unk40;
 
-    /* 44 */ u8 pad_38[0x4A - 0x44];
-
+    /* 44 */ short unk44;
+    /* 44 */ short unk46;
+    /* 44 */ short unk48;
     /* 4A */ short unk4A;
 
     // Is this part of that?
@@ -120,8 +121,8 @@ struct GenericProc
     /* 58 */ int unk58;
     /* 5C */ int unk5C;
     /* 60 */ int unk60;
-    /* 64 */ short unk64;
-    /* 66 */ short unk66;
+    /* 64 */ short timer1;
+    /* 66 */ short timer2;
     /* 68 */ short unk68;
     /* 6A */ short unk6A;
 };
@@ -142,8 +143,8 @@ enum
     PROC_MARK_MU = 4,
     PROC_MARK_5 = 5,
     PROC_MARK_6 = 6,
-    PROC_MARK_7 = 7,
-    PROC_MARK_8 = 8,
+    PROC_MARK_EVENT_ANIM = 7,
+    PROC_MARK_WMSTUFF = 8,
     PROC_MARK_PAL_CHG = 10,
     PROC_MARK_GAMECTRL = 11,
 };

@@ -463,6 +463,8 @@ extern u16 const Pal_ManimInfoFramePurple[]; // pal purple
 extern u8 const Tsa_ManimInfoFrameSingle[]; // tsa
 extern u8 const Tsa_ManimInfoFrameLeft[]; // tsa
 extern u8 const Tsa_ManimInfoFrameRight[]; // tsa
+extern u8 const Tsa_ShopWindows[];
+extern u8 const gUnk_082DCA2C[];
 extern u8 const Img_EkrExpBar[]; // img exp bar a
 extern u8 const Tsa_EkrExpBar[];
 extern u8 const Img_EkrExpBarChange[]; // img exp bar b

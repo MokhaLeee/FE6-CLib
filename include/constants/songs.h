@@ -33,14 +33,18 @@ enum
     SONG_33 = 0x33,
     SONG_34 = 0x34,
     SONG_37 = 0x37,
+    SONG_39 = 0x39,
     SONG_3B = 0x3B,
     SONG_3C = 0x3C,
     SONG_3D = 0x3D,
     SONG_3E = 0x3E,
     SONG_3F = 0x3F,
+    SONG_41 = 0x41,
     SONG_43 = 0x43,
     SONG_44 = 0x44,
     SONG_45 = 0x45,
+    SONG_46 = 0x46,
+    SONG_47 = 0x47,
     SONG_5A = 0x5A,
     SONG_5B = 0x5B,
     SONG_5C = 0x5C,
@@ -54,6 +58,7 @@ enum
     SONG_6A = 0x6A,
     SONG_6B = 0x6B,
     SONG_6C = 0x6C,
+    SONG_6D = 0x6D,
     SONG_6E = 0x6E,
     SONG_6F = 0x6F, // stat screen page slide
     SONG_70 = 0x70, // help box open
@@ -81,6 +86,7 @@ enum
     SONG_8D = 0x8D, // manim (unlock?)
     SONG_90 = 0x90,
     SONG_91 = 0x91,
+    SONG_92 = 0x92,
     SONG_96 = 0x96,
     SONG_97 = 0x97,
     SONG_9A = 0x9A,
@@ -103,6 +109,7 @@ enum
     SONG_B5 = 0xB5, // manim
     SONG_B6 = 0xB6,
     SONG_B7 = 0xB7, // manim poison
+    SONG_B9 = 0xB9,
     SONG_BA = 0xBA,
     SONG_BB = 0xBB,
     SONG_BC = 0xBC,
@@ -126,6 +133,7 @@ enum
     SONG_D6 = 0xD6,
     SONG_D8 = 0xD8, // crit?
     SONG_EC = 0xEC, // no damage
+    SONG_EE = 0xEE,
     SONG_FD = 0xFD, // manim
     SONG_10F = 0x10F,
     SONG_269 = 0x269,

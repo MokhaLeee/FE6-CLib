@@ -8,10 +8,10 @@
 enum
 {
     ARENA_RESULT_0,
-    ARENA_RESULT_1, // player victory?
-    ARENA_RESULT_2, // enemy victory?
-    ARENA_RESULT_3, // ???
-    ARENA_RESULT_4, // backed out?
+    ARENA_RESULT_WIN,
+    ARENA_RESULT_LOSS,
+    ARENA_RESULT_TIES,
+    ARENA_RESULT_YIELD,
 };
 
 struct ArenaSt
@@ -36,8 +36,21 @@ struct ArenaSt
     /* 1C */ u16 opponent_weapon;
 };
 
+void ArenaBeginInternal(struct Unit * unit);
 void ArenaBegin(struct Unit * unit);
 void ArenaResume(struct Unit * unit);
+int ArenaGetUnitWeaponKind(struct Unit * unit);
+int ArenaGetJobWeaponKind(struct JInfo const * jinfo);
+int ArenaGenOpposingJid(int weapon_kind);
+bool ArenaIsMagicWeaponKind(int weapon_kind);
+int ArenaGetOpposingLevel(int level);
+int ArenaGetPowerRanking(struct Unit * unit, bool opponent_is_magic);
+void ArenaGenOpponentUnit(void);
+void ArenaGenBaseWeapons(void);
+u16 ArenaGetUpgradedWeapon(u16 item);
+bool ArenaAdjustOpponentDamage(void);
+bool ArenaAdjustOpponentPowerRanking(void);
+void ArenaGenMatchupGoldValue(void);
 int ArenaGetMatchupGoldValue(void);
 int ArenaGetResult(void);
 void ArenaSetResult(int result);
@@ -45,5 +58,6 @@ void ArenaContinueBattle(void);
 bool ArenaIsUnitAllowed(struct Unit * unit);
 
 extern struct ArenaSt gArenaSt;
+extern struct Unit gArenaOpponent;
 
 #endif // ARENA_H

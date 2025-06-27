@@ -48,6 +48,7 @@
 #define TOTAL_OBJ_TILE_COUNT 1024
 
 #define RGB(r, g, b) (((b) << 10) + ((g) << 5) + (r))
+#define _RGB(r, g, b) ((r) | ((g) << 5) | ((b) << 10))
 
 #define RGB_BLACK RGB(0, 0, 0)
 #define RGB_WHITE RGB(31, 31, 31)

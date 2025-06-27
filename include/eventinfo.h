@@ -28,6 +28,10 @@ enum
     TILE_COMMAND_PILLAGE  = 0x1D,
 };
 
+// NOTE: this uses the RNG that is usually used for aesthetic purposes
+// this means that random events will not be the same accross suspend reloads
+#define EventRandNext_N(upper_bound) (DivRem(RandNextB(), (upper_bound)))
+
 typedef uptr EventListScr;
 
 struct EventInfo
@@ -71,6 +75,101 @@ struct BattleTalkEnt
     /* 04 */ u32 msg;
     /* 08 */ u32 flag;
     /* 0C */ u32 unk_0C;
+};
+
+struct Unk_0867619C
+{
+    /* 00 */ u16 msg;
+    /* 02 */ u8 y_offset;
+};
+
+extern struct Unk_0867619C CONST_DATA gUnk_0867619C[];
+
+struct UnkProc0806D82C
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x4C);
+    /* 4C */ i16 unk_4C;
+};
+
+struct UnkProc_08676854
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x64);
+    /* 64 */ i16 unk_64;
+};
+
+struct UnkProc_0867686C
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x64);
+    /* 64 */ i16 unk_64;
+};
+
+struct HardModeBonusLevelsOverrideEnt
+{
+    /* 00 */ u8 pid;
+    /* 04 */ int bonus_levels;
+};
+
+extern struct HardModeBonusLevelsOverrideEnt CONST_DATA gHardModeBonusLevelsOverrideList[];
+
+struct UnkProc_0806DDC4
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x44);
+    /* 44 */ u8 unk_44;
+    /* 45 */ u8 unk_45;
+};
+
+struct UnkProc_086768C4
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x64);
+    /* 64 */ u16 unk_64;
+};
+
+extern struct ProcScr CONST_DATA ProcScr_Unk_086768C4[];
+
+struct UnkProc_086768DC
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x4C);
+    /* 4C */ ProcPtr unk_4C;
+    /* 50 */ STRUCT_PAD(0x50, 0x64);
+    /* 64 */ i16 unk_64;
+};
+
+struct UnkProc_086768FC
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x64);
+    /* 64 */ i16 unk_64;
+};
+
+struct UnkProc_08676914
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x64);
+    /* 64 */ i16 unk_64;
+    /* 66 */ i16 unk_66;
+};
+
+struct Unk_0867692C { u8 x, y; u16 more; };
+
+extern struct Unk_0867692C CONST_DATA gUnk_0867692C[];
+extern struct Unk_0867692C CONST_DATA gUnk_0867695C[];
+
+struct UnkProc_08677348
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x2C);
+    /* 2C */ int unk_2C;
+    /* 30 */ int unk_30;
+    /* 34 */ int unk_34;
+    /* 38 */ int unk_38;
+    /* 3C */ i8 const * unk_3C;
+    /* 40 */ int unk_40;
 };
 
 void StartEventFromInfo(struct EventInfo const * info);
@@ -171,3 +270,50 @@ int GetChapterFlagBitsSize(void);
 
 extern u8 gChapterFlagBits[(MAX_CHAPTER_FLAGS + CHAR_BIT - 1) / CHAR_BIT];
 extern u8 gPermanentFlagBits[(MAX_PERMANENT_FLAGS + CHAR_BIT - 1) / CHAR_BIT];
+
+extern u16 const gUnk_08342A98[]; // colors
+extern struct ProcScr CONST_DATA ProcScr_Unk_08676220[];
+extern struct ProcScr CONST_DATA ProcScr_Unk_08676844[];
+extern struct ProcScr CONST_DATA ProcScr_Unk_08676854[];
+extern struct ProcScr CONST_DATA ProcScr_Unk_0867686C[];
+extern u8 gUnk_030048A8;
+extern u32 EWRAM_DATA gUnk_0203D354;
+extern u32 EWRAM_DATA gUnk_0203D358;
+extern u8 EWRAM_DATA gUnk_0203D35C;
+extern u8 EWRAM_DATA gUnk_0203D35D;
+extern u8 EWRAM_DATA gUnk_0203D360;
+extern u8 EWRAM_DATA gUnk_0203D361;
+extern u8 EWRAM_DATA gUnk_0203D362;
+extern u16 EWRAM_DATA gUnk_0203D364;
+extern struct ProcScr CONST_DATA ProcScr_Unk_08677FE0[];
+extern u32 EWRAM_DATA gUnk_0203D368;
+extern u32 EWRAM_DATA gUnk_0203D36C;
+extern struct Text EWRAM_DATA gUnkText_0203D370[];
+extern struct Text EWRAM_DATA gUnkText_0203D3A0;
+extern struct ProcScr CONST_DATA ProcScr_Unk_0867688C[];
+extern struct ProcScr CONST_DATA ProcScr_Unk_086768DC[];
+extern EventScr const * CONST_DATA gUnk_086770D4[];
+extern u8 EWRAM_DATA gUnk_0203D3D8; // ending related value
+extern u8 EWRAM_DATA gUnk_0203D3D9; // ending id
+extern EventScr const * CONST_DATA gUnk_08676738[];
+extern struct ProcScr CONST_DATA ProcScr_Unk_08677348[];
+extern struct ProcScr CONST_DATA ProcScr_Unk_086768FC[];
+extern struct ProcScr CONST_DATA ProcScr_Unk_08676914[];
+extern u8 gUnk_030048A4; // COMMON
+extern u8 gUnk_030048B8; // COMMON
+extern u8 const gUnk_0834B69C[]; // img
+extern u8 const gUnk_08349A98[]; // img
+extern u8 const gUnk_0834E1D4[]; // img
+extern u8 const gUnk_08352160[]; // img
+extern i8 CONST_DATA gUnk_086772FC[];
+extern i8 CONST_DATA gUnk_0867730C[];
+extern i8 CONST_DATA gUnk_0867731C[];
+extern i8 CONST_DATA gUnk_08677327[];
+extern struct ProcScr CONST_DATA ProcScr_Unk_08677378[];
+
+extern u8 const gUnk_0836F6D4[]; // img
+extern u8 const gUnk_08373F80[]; // tm
+extern u8 const gUnk_08374670[]; // compressed pal
+extern u16 const gUnk_08353308[]; // pal
+extern u16 CONST_DATA gUnk_08677360[]; // bg config
+extern i8 EWRAM_DATA gUnk_0203DCA7[];

@@ -164,7 +164,7 @@ extern u8 const gUnk_083215B8[]; // img
 extern u16 const gUnk_08321EE4[]; // pal
 extern u8 const gUnk_083210A0[]; // tsa
 extern u16 const gUnk_08320EEC[]; // tm
-extern u16 const gUnk_08320D98[]; // pal
+extern u16 const Pal_MonologueBG[]; // pal
 
 extern struct Text gUnk_0200D5BC[];
 extern struct Text gUnk_0200D5F4[][3];
@@ -197,39 +197,39 @@ extern u16 gUnk_0200D53A[]; // tm
 
 extern u8 CONST_DATA gUnk_0867871C[];
 
-// func_fe6_080741EC
-// func_fe6_08074254
-// func_fe6_080742D0
-// func_fe6_08074384
-// func_fe6_080743C8
-// func_fe6_080744A0
-// func_fe6_08074558
-// func_fe6_08074668
-// func_fe6_08074778
-// func_fe6_08074804
-// func_fe6_08074830
-// UnitListScreenSprites_Init
-// UnitListScreenSprites_Main
-// UnitListScreenSprites_Dummy
-// func_fe6_08074BA4
-// func_fe6_08074D54
-// func_fe6_08074EF0
-// func_fe6_08075338
-// func_fe6_080753A0
-// func_fe6_080754F4
-// func_fe6_08075570
-// func_fe6_08075D34
-// func_fe6_08075DF8
-// func_fe6_08075E94
-// func_fe6_08076060
+void func_fe6_080741EC(void);
+void func_fe6_08074254(fu8 x, fu8 y, fu8 width);
+void func_fe6_080742D0(fu8 sort_key);
+void func_fe6_08074384(int arg_0);
+void func_fe6_080743C8(fu16 arg_0);
+void func_fe6_080744A0(fu8 arg_0, fu8 arg_1, fi8 arg_2);
+void func_fe6_08074558(struct UnitListScreenProc * proc, fi8 arg_1);
+void func_fe6_08074668(bool use_win1);
+void func_fe6_08074778(struct UnitListScreenProc * proc);
+void func_fe6_08074804(struct UnitListScreenProc * proc);
+void func_fe6_08074830(struct UnitListScreenProc * proc);
+void UnitListScreenSprites_Init(struct UnitListScreenSpritesProc * proc);
+void UnitListScreenSprites_Main(struct UnitListScreenSpritesProc * proc);
+void UnitListScreenSprites_Dummy(struct UnitListScreenSpritesProc * proc);
+void func_fe6_08074BA4(struct UnitListScreenProc * proc);
+void func_fe6_08074D54(struct UnitListScreenProc * proc);
+void func_fe6_08074EF0(struct UnitListScreenProc * proc);
+void UnitList_Init(struct UnitListScreenProc * proc);
+void func_fe6_080753A0(struct UnitListScreenProc * proc);
+void func_fe6_080754F4(struct Unit * unit, int step);
+void func_fe6_08075570(struct UnitListScreenProc * proc);
+void func_fe6_08075D34(struct UnitListScreenProc * proc);
+void func_fe6_08075DF8(struct UnitListScreenProc * proc);
+void func_fe6_08075E94(struct UnitListScreenProc * proc);
+void func_fe6_08076060(struct UnitListScreenProc * proc);
 void StartUnitListScreen(void);
 void func_fe6_08076250(ProcPtr parent);
-// StartUnitListScreenForSoloAnim
-// func_fe6_080762E4
+void StartUnitListScreenForSoloAnim(ProcPtr parent);
+void func_fe6_080762E4(ProcPtr parent);
 void func_fe6_08076314(u16 * tm, fu8 arg_1);
 void func_fe6_080763D8(fu8 arg_0, fu8 arg_1, bool arg_2);
-// void func_fe6_08076448(ProcPtr proc, fu8 arg_1, u16 * tm, int arg_3, int arg_4);
-// func_fe6_08076D30
+void func_fe6_08076448(struct UnitListScreenProc * proc, fu8 unit_num, u16 * tm, fu8 page, bool put_name);
+int func_fe6_08076D30(struct Unit * unit);
 bool SortUnitList(fu8 arg_0, fu8 arg_1);
 
 extern int gUnk_0200E7D8; // unit id

@@ -89,8 +89,7 @@ struct ChapterInfo
     /* 36 */ u16 chibi_36;
     /* 38 */ u16 msg_38;
     /* 3A */ u8 asset_event_info;
-
-    /* 3B */ u8 pad_3B[0x3C - 0x3B];
+    /* 3B */ u8 asset_event_info_wm;
 
     /* 3C */ u16 msg_unk_0C;
     /* 3E */ u8 number_id;

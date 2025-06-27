@@ -8,7 +8,7 @@
 struct ProcEkrBattle {
     PROC_HEADER;
 
-    /* 29 */ u8 speedup;
+    /* 29 */ u8 yield_arena;
     /* 2A */ STRUCT_PAD(0x2A, 0x2C);
     /* 2C */ i16 timer;
     /* 2E */ i16 end;

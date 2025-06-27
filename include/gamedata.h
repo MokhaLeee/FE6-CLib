@@ -8,6 +8,12 @@
 #include "unit.h"
 #include "support.h"
 
+struct DebugPInfo {
+    int idx;
+    const char * pname;
+    const char * jname;
+};
+
 extern struct PInfo CONST_DATA PInfoTable[];
 extern struct JInfo CONST_DATA JInfoTable[];
 extern struct IInfo CONST_DATA IInfoTable[];

@@ -41,6 +41,7 @@ enum prepscreen_text_idx {
 
 struct UnkProc_08678E18;
 struct PrepScreenDispProc;
+struct PrepSubItemProc;
 
 enum PREP_SUB2_ACTION_IDX {
     PREP_SUB2ACT_NONE,
@@ -91,6 +92,30 @@ struct PrepMenuProc
     /* 58 */ ProcPtr procbg;
     /* 5C */ struct UnkProc_08678E18 * unk_5C;
     /* 60 */ ProcPtr unk_60;
+};
+
+struct PrepSubItemProc {
+    PROC_HEADER_EXT(struct PrepMenuProc);
+
+    STRUCT_PAD(0x29, 0x2B);
+
+    /* 2B */ u8 unk2B;
+    /* 2C */ u8 unk2C, unk2D;
+    /* 2E */ u8 unk2E, unk2F;
+    /* 30 */ u8 unk30, unk31;
+
+    STRUCT_PAD(0x32, 0x46);
+
+    /* 46 */ u8 unk46;
+
+    STRUCT_PAD(0x47, 0x50);
+
+    /* 50 */ u16 unk50;
+    /* 54 */ struct Unit * unit;
+
+    STRUCT_PAD(0x58, 0x60);
+
+    /* 60 */ ProcPtr unk60;
 };
 
 #define SYDIFF(proc) (*((i16 *)&(proc)->yDiff_cur))
@@ -294,18 +319,44 @@ u8 GetPrepScreenMenuCurrentItemIndex(struct PrepMenuProc * proc);
 void SetPrepMenuItemUsability(u8 index, u8 color);
 u8 GetPrepScreenMenuDispItemIndex(u8 disp_idx, fu8 is_submenu);
 
-void func_fe6_0807CF78(ProcPtr);
-void func_fe6_0807CFA0(ProcPtr);
+struct ProcPrepfx_08679368 {
+    PROC_HEADER;
+
+    STRUCT_PAD(0x29, 0x34);
+
+    /* 34 */ struct Text * text1;
+
+    STRUCT_PAD(0x38, 0x3c);
+
+    /* 3C */ struct Text * text2;
+
+    STRUCT_PAD(0x40, 0x44);
+
+    /* 3C */ struct Text * text3;
+};
+
+void func_fe6_0807CF78(struct ProcPrepfx_08679368 * proc);
+void func_fe6_0807CFA0(struct ProcPrepfx_08679368 * proc);
 // func_fe6_0807CFA4
 // func_fe6_0807CFB8
-void func_fe6_0807CFBC(ProcPtr);
-void func_fe6_0807CFDC(ProcPtr);
-// func_fe6_0807D074
-void func_fe6_0807D088(ProcPtr);
-void func_fe6_0807D0A8(ProcPtr);
+
+struct ProcPrepfx_086793A8 {
+    PROC_HEADER_EXT(struct PrepSubItemProc);
+
+    /* 2A */ u16 timer;
+    /* 2C */ ProcPtr procfx;
+    /* 30 */ int obj_offset;
+};
+
+void func_fe6_0807CFBC(struct ProcPrepfx_086793A8 * proc);
+void func_fe6_0807CFDC(struct ProcPrepfx_086793A8 * proc);
+ProcPtr func_fe6_0807D074(ProcPtr parent);
+
+void func_fe6_0807D088(struct ProcPrepfx_086793A8 * proc);
+void func_fe6_0807D0A8(struct ProcPrepfx_086793A8 * proc);
 // func_fe6_0807D16C
-void func_fe6_0807D180(ProcPtr);
-void func_fe6_0807D1AC(ProcPtr);
+void func_fe6_0807D180(struct ProcPrepfx_086793A8 * proc);
+void func_fe6_0807D1AC(struct ProcPrepfx_086793A8 * proc);
 // func_fe6_0807D2E0
 // func_fe6_0807D2F4
 // func_fe6_0807D338
@@ -320,21 +371,22 @@ void func_fe6_0807D1AC(ProcPtr);
 // func_fe6_0807DE60
 // func_fe6_0807DEC8
 // func_fe6_0807DF60
-// func_fe6_0807DFEC
+void func_fe6_0807DFEC(u8 a, int timer, int obj_off);
 // func_fe6_0807E06C
-void func_fe6_0807E0D4(ProcPtr);
-void func_fe6_0807E41C(ProcPtr);
+void func_fe6_0807E0D4(struct GenericProc * proc);
+void func_fe6_0807E41C(struct GenericProc * proc);
 // func_fe6_0807E544
-void func_fe6_0807E5A8(ProcPtr);
-void func_fe6_0807EB70(ProcPtr);
-void func_fe6_0807EDBC(ProcPtr);
+void func_fe6_0807E5A8(struct GenericProc * proc);
+void func_fe6_0807EB70(struct GenericProc * proc);
+void func_fe6_0807EDBC(struct GenericProc * proc);
 // func_fe6_0807FBE8
-void func_fe6_0807FCFC(ProcPtr);
-void func_fe6_0807FF98(ProcPtr);
-void func_fe6_08080284(ProcPtr);
-void func_fe6_080813E8(ProcPtr);
-void func_fe6_08081540(ProcPtr);
-void StartPrepSubtemScreen(struct PrepMenuProc * parent, int type);
+void func_fe6_0807FCFC(struct GenericProc * proc);
+void func_fe6_0807FF98(struct GenericProc * proc);
+void func_fe6_08080284(struct GenericProc * proc);
+void func_fe6_080813E8(struct GenericProc * proc);
+void func_fe6_08081540(struct GenericProc * proc);
+
+void StartPrepSubItemScreen(struct PrepMenuProc * parent, int type);
 void func_fe6_080815E4(struct Unit * unit, ProcPtr parent);
 void func_fe6_08081620(struct Unit * unit, ProcPtr parent);
 // func_fe6_0808165C
@@ -429,6 +481,8 @@ extern u8 gUnk_0200E7D4;
 extern struct Text gUnk_0200E88C[];
 extern u16 gPrepFadePal[0x200];
 extern u8 gUnk_020104A4[]; // img buf
+extern int gPrepSubMenuIcons[];
+extern u16 gUnk_0201636A;
 
 extern CONST_DATA struct ProcScr ProcScr_AtMenu[];
 extern CONST_DATA struct ProcScr ProcScr_PrepMenuFadeOut[];
@@ -472,7 +526,7 @@ extern struct ProcScr ProcScr_08679368[];
 extern struct ProcScr ProcScr_08679388[];
 extern struct ProcScr ProcScr_086793A8[];
 extern struct ProcScr ProcScr_086793C8[];
-extern struct ProcScr ProcScr_PrepTradeItemScreen[];
+extern struct ProcScr ProcScr_PrepSubItemScreen[];
 extern struct ProcScr ProcScr_08679490[];
 extern struct ProcScr ProcScr_PrepDiscardItemScreen[];
 extern struct ProcScr ProcScr_08679558[];
@@ -506,7 +560,5 @@ extern u16 const Pal_SpinningArrow[]; // pal
 extern u16 const gUnk_0831AABC[]; // pal (x2)
 extern u16 const gUnk_08326E64[]; // pal (x4)
 extern u16 const gUnk_08327108[]; // pal
-extern u32 const gUnk_0831B0A8[]; // img(lz)
-extern u16 const gUnk_08320D98[]; // pal (x4)
 extern u32 const gUnk_08321FA4[]; // img(lz)
 extern u16 const gUnk_08326910[]; // pal

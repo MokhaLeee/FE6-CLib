@@ -87,11 +87,11 @@ void StartSlowLockingFadeFromWhite(ProcPtr parent);
 // func_fe6_08014804
 // func_fe6_08014818
 // func_fe6_0801482C
-// func_fe6_08014840
-// func_fe6_08014858
-// func_fe6_08014870
-void func_fe6_08014888(ProcPtr parent);
-void func_fe6_080148A0(ProcPtr parent);
+void FadeInBlackWithCallBack_Speed04(ProcPtr parent);
+void FadeInBlackWithCallBack_Speed08(ProcPtr parent);
+void FadeInBlackWithCallBack_Speed10(ProcPtr parent);
+void FadeInBlackWithCallBack_Speed20(ProcPtr parent);
+void FadeInBlackWithCallBack_Speed40(ProcPtr parent);
 void FadeInBlackSpeed04(ProcPtr parent);
 void FadeInBlackSpeed08(ProcPtr parent);
 void FadeInBlackSpeed08Unk(ProcPtr parent);
@@ -114,7 +114,7 @@ void StartFadeCore(int kind, int speed, ProcPtr parent, Func end_callback);
 void func_fe6_08014AB8(void);
 // func_fe6_08014ACC
 void func_fe6_08014ADC(void);
-void func_fe6_08014AF8(void);
+void Fade_CommonCallBack(void);
 void func_fe6_08014B68(void);
 void StartTemporaryLock(ProcPtr proc, int arg_1);
 int NumberToString(int number, char * buf);
@@ -132,21 +132,21 @@ void func_fe6_0801501C(u16 * tm, int x, int y, u16 tileref, int width, int heigh
 // func_fe6_080150DC
 void CallDelayed(void (* func)(void), int delay);
 void CallDelayedArg(void (* func)(int), int arg, int delay);
-// func_fe6_080151E4
-// func_fe6_080151F8
-void func_fe6_08015208(u16 * out, int size, int value);
+void ClearTm(u8 * out, int size);
+// SetTm_unused
+void SetTm(u16 * out, int size, int value);
 void StartPartialGameLock(ProcPtr proc);
-void VramCopy(u8 const * src, u8 * dst, int size);
+void VramCopy(void const * src, void * dst, int size);
 void func_fe6_08015298(u8 const * src, u8 * dst, int width, int height);
 void PutTmLinear(u16 const * src, u16 * dst, int size, u16 tileref);
 u16 * GetTmOffsetById(int bgid, int x, int y);
-void func_fe6_08015344(void);
+void Clear4bppFirstTm(void);
 int Screen2Pan(int x);
 void PlaySeSpacial(int song, int x);
 void PlaySeDelayed(int song, int delay);
 void _StartBgm(short song);
 void _FadeBgmOut(short speed);
-// func_fe6_080154AC
+void BrightenPalette(int palid);
 // func_fe6_08015504
 void PutDrawTextCentered(struct Text * text, int x, int y, char const * str, int width);
 void VecMulMat(int const * vec, int const * mat, int * ovec);

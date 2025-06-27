@@ -251,6 +251,10 @@ extern i16 SHOULD_BE_CONST gSinLut[];
 #define RGB_GET_GREEN(color) (((color) >> 5) & 0x1F)
 #define RGB_GET_BLUE(color) (((color) >> 10) & 0x1F)
 
+#define RGB_R(color) ((color) & 0x1F)
+#define RGB_G(color) (((color) >> 5) & 0x1F)
+#define RGB_B(color) (((color) >> 10) & 0x1F)
+
 #define RGB5_MASK_R (0x1F << 0)
 #define RGB5_MASK_G (0x1F << 5)
 #define RGB5_MASK_B (0x1F << 10)
@@ -272,6 +276,9 @@ extern i16 SHOULD_BE_CONST gSinLut[];
 #define PAL_COLOR(palid, colornum) gPal[(palid) * 0x10 + (colornum)]
 #define PAL_BG_COLOR(palid, colornum) PAL_COLOR(palid, colornum)
 #define PAL_OBJ_COLOR(palid, colornum) PAL_COLOR((palid) + 0x10, colornum)
+
+#define PAL_BG(palid) (&PAL_BG_COLOR(palid, 0))
+#define PAL_OBJ(palid) (&PAL_OBJ_COLOR(palid, 0))
 
 #define SIN_Q12(angle) (gSinLut[(angle) & 0xFF])
 #define COS_Q12(angle) (gSinLut[0x40 + ((angle) & 0xFF)])

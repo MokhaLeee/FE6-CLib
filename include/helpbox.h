@@ -78,7 +78,7 @@ void StartItemHelpBox(int x, int y, int item);
 void StartHelpBoxExt(struct HelpBoxInfo const * info, int unk);
 void StartHelpBox_08070804(int x, int y, int msg);
 void CloseHelpBox(void);
-// KillHelpBox
+void KillHelpBox(void);
 // HelpBoxMoveControl_OnInitBox
 // HelpBoxMoveControl_OnIdle
 // HelpBoxMoveControl_OnEnd

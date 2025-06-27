@@ -166,7 +166,7 @@ void RestoreBodyFlashingPalForIdunn(int pos);
 void EfxBodyFlashingForDragon(int pos);
 int GetDragonPosition(void);
 void InitEkrDragonStatus(void);
-int func_fe6_08058F38(void);
+int CheckEkrDragonWorking(void);
 void EkrDragonTmCpyExt(int x);
 void func_fe6_08058FA8(const u8 * tsa);
 void func_fe6_08059018(const u8 * tsa);

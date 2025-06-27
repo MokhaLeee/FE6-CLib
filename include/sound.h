@@ -36,6 +36,10 @@ void StartBgmVolumeChange(int volume_from, int volume_to, int duration, ProcPtr 
     if (!gPlaySt.config_se_disable) \
         m4aSongNumStart((id))
 
+#define PlayBgm(id) \
+    if (!gPlaySt.config_bgm_disable) \
+        StartBgmCore((id), NULL)
+
 // TODO: move
 
 extern struct Song const Song_Unk_0857A61C;
