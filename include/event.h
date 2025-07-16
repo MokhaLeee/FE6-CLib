@@ -3,7 +3,6 @@
 #include "prelude.h"
 #include "proc.h"
 #include "unit.h"
-#include "face.h"
 #include "eventscript.h"
 
 typedef uptr EventScr;

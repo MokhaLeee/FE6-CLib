@@ -484,7 +484,7 @@ void func_fe6_080914DC(void);
 void func_fe6_0809154C(void);
 // func_fe6_08091588
 // CharacterEnding2_InitDisp
-// func_fe6_0809164C
+// CollectEndingCharacters
 // func_fe6_080916AC
 // func_fe6_0809172C
 // func_fe6_08091880

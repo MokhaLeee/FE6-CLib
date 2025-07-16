@@ -6049,7 +6049,7 @@ fun 0x080914DD, func_fe6_080914DC
 fun 0x0809154D, func_fe6_0809154C
 fun 0x08091589, func_fe6_08091588
 fun 0x0809159D, CharacterEnding2_InitDisp
-fun 0x0809164D, func_fe6_0809164C
+fun 0x0809164D, CollectEndingCharacters
 fun 0x080916AD, func_fe6_080916AC
 fun 0x0809172D, func_fe6_0809172C
 fun 0x08091881, func_fe6_08091880
