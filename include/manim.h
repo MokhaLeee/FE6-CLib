@@ -394,7 +394,7 @@ void func_fe6_0806A51C(u16 * buf, int x, int y, int arg_0C);
 void PrepareGradientScanlineBuf(u16 * buf, u16 arg_02, u16 arg_04, u16 arg_06, u16 arg_30);
 // ManimShiftingSineWaveScanlineBuf_Init
 // ManimShiftingSineWaveScanlineBuf_Loop
-void func_fe6_0806A7AC(void);
+void Scanline_SetupMonologue(void);
 // func_fe6_0806A87C
 
 extern struct ProcScr CONST_DATA ProcScr_PoisonDamageManim[];

@@ -44,7 +44,9 @@ enum banim_mode_index {
 #define EFX_TILEMAP_LOC(aMap, aX, aY) (aMap + (aX) + EFX_BG_WIDTH * (aY))
 
 enum video_banim {
+    BGPAL_EFX_0 = 0,
     BGPAL_EFX_SPELL_BG = 1,
+    BGPAL_EFX_4 = 4,
     BGPAL_EFXDRAGON_L = 6,
     BGPAL_EFXDRAGON_R = 7,
 
@@ -778,10 +780,30 @@ void SetAnimStateUnHidden(int pos);
 void NewEfxAnimeDrvProc(void);
 void EndEfxAnimeDrvProc(void);
 void ExecAllBas(void);
+
+struct BanimUnkStructComm
+{
+    /* 00 */ i16 terrain_l; // terrain L
+    /* 02 */ i16 pal_l; // pal ID L
+    /* 04 */ i16 chr_l; // chr L
+    /* 06 */ i16 terrain_r;
+    /* 08 */ i16 pal_r;
+    /* 0A */ i16 chr_r; // chr R
+    /* 0C */ i16 distance;
+    /* 0E */ i16 unk0E;
+    /* 10 */ u16 unk10;
+    /* 14 */ ProcPtr proc14; // sub emulator proc a
+    /* 18 */ ProcPtr proc18; // sub emulator proc b
+    /* 1C */ void * unk1C;
+    /* 20 */ void * unk20;
+    /* 24 */ void * unk24;
+};
+extern struct BanimUnkStructComm gUnk_Banim_0201E0FC;
+
 // NewEkrUnitMainMini
 // func_fe6_0804BF00
 // func_fe6_0804BF24
-// func_fe6_0804BF40
+void func_fe6_0804BF40(struct BanimUnkStructComm *buf); // FE8: sub_805AA68
 // func_fe6_0804C2EC
 // func_fe6_0804C318
 // func_fe6_0804C330
@@ -1558,8 +1580,8 @@ enum ekr_lvup_status_index {
 struct ProcEkrlvup {
     PROC_HEADER;
 
-    /* 29 */ bool8 finished;
-    /* 2A */ bool8 is_promotion;
+    /* 29 */ u8 finished;
+    /* 2A */ u8 is_promotion;
     /* 2C */ i16 timer;
     /* 2E */ i16 index;
 
@@ -1584,8 +1606,8 @@ extern u16 gEkrLvupScrollPos2;
 extern int gEkrLvupApfxUnexist;
 
 extern const u16 sEfxLvupPartsPos[];
-extern CONST_DATA char *EkrLvupMsgsStr[];
-extern CONST_DATA char *EkrLvupMsgsMag[];
+extern CONST_DATA char EkrLvupMsgsStr[][5];
+extern CONST_DATA char EkrLvupMsgsMag[][5];
 
 bool CheckEkrLvupDone(void);
 void EndEkrLevelUp(void);
@@ -1648,8 +1670,8 @@ void NewEkrTriangle(struct BaSprite * anim);
 
 extern CONST_DATA u16 *gBattleBGDataTable[];
 
-// PutBanimBgIMG
-// PutBanimBgTSA
+void PutBanimBgIMG(int index);
+void PutBanimBgTSA(int index);
 void PutBanimBgPAL(int);
 void PutBanimBG(int);
 
@@ -2183,10 +2205,10 @@ extern CONST_DATA struct ProcScr ProcScr_EkrDragonFae[];
 extern CONST_DATA struct ProcScr ProcScr_EkrFaefx[];
 extern const u16 * CONST_DATA TsaLut_EkrFaefx[];
 extern CONST_DATA struct ProcScr ProcScr_EkrDragonIdunn[];
-// ??? gUnk_08604948
-// ??? gUnk_08604968
-// ??? gUnk_08604988
-// ??? gUnk_086049A8
+extern CONST_DATA struct ProcScr ProcScr_EkrDragonfx_IdunnIntro[];
+// ??? ProcScr_EkrDragonfx_IdunnBaseAppear
+// ??? ProcScr_EkrDragonfx_IdunnBodyAnime
+// ??? ProcScr_EkrDragonfx_IdunnExit2
 extern CONST_DATA struct ProcScr ProcScr_EkrIdunnDeamon1[];
 // ??? ProcScr_EkrIdunnDeamon2
 extern CONST_DATA struct ProcScr ProcScr_EkrIdunnBodyFlashing[];
@@ -2194,7 +2216,7 @@ extern CONST_DATA struct ProcScr ProcScr_EkrIdunnBodyFlashing[];
 // ??? gUnk_08604A3C
 // ??? gUnk_08604A6C
 // ??? gUnk_08604A9C
-// ??? gUnk_08604ACC
+// ??? ProcScr_EkrDragonDeath
 extern AnimScr AnimScr_ManaketeEnter1[];
 extern AnimScr AnimScr_ManaketeExit3[];
 extern AnimScr AnimScr_ManaketeEnter2[];

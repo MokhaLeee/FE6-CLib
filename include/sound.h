@@ -21,7 +21,7 @@ bool IsBgmPlaying(void);
 void func_fe6_08002F9C(int volume);
 void SetBgmVolume(int volume);
 void FadeBgmOut(int speed);
-void func_fe6_080030B4(int speed);
+void EarthQuakeSoundFadeOut(int speed);
 void StartBgmCore(int song, struct MusicPlayer * music_player);
 void StartOrChangeBgm(int song, int speed, struct MusicPlayer * music_player);
 void StartBgm(int song, struct MusicPlayer * music_player);

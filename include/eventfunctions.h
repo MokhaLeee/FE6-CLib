@@ -8,13 +8,6 @@
 #include "event.h"
 #include "eventinfo.h"
 
-enum
-{
-    ENDING_0,
-    ENDING_1,
-    ENDING_2,
-};
-
 struct TutorialEventProcA
 {
     /* 00 */ PROC_HEADER;
@@ -212,84 +205,184 @@ void AddChapter16xArrowTraps(void);
 void func_fe6_0806D6B4(void);
 void AddChapter21xStepTraps(void);
 void func_fe6_0806D77C(void);
-// func_fe6_0806D7C8
-// func_fe6_0806D7E4
-// func_fe6_0806D7F4
-// func_fe6_0806D808
-// func_fe6_0806D81C
-// func_fe6_0806D82C
-// func_fe6_0806D850
-// func_fe6_0806D868
-// func_fe6_0806D894
-// func_fe6_0806D8B0
-// func_fe6_0806D9B4
-// func_fe6_0806D9F4
-// func_fe6_0806DA54
-// func_fe6_0806DA90
-// func_fe6_0806DAA0
-// func_fe6_0806DAB0
-// func_fe6_0806DAC0
-// func_fe6_0806DAD0
-// func_fe6_0806DAF0
-void func_fe6_0806DB00(int arg_0, ProcPtr proc);
-// func_fe6_0806DB2C
-// func_fe6_0806DB38
-// func_fe6_0806DB58
-// func_fe6_0806DB88
-// func_fe6_0806DBA0
-// func_fe6_0806DBA8
-// func_fe6_0806DC24
-// func_fe6_0806DC38
-// func_fe6_0806DC48
-// func_fe6_0806DC50
-// func_fe6_0806DC90
-// func_fe6_0806DCA4
-// func_fe6_0806DD08
-// func_fe6_0806DD84
-// func_fe6_0806DD98
-// func_fe6_0806DDC4
-// func_fe6_0806DDCC
-void func_fe6_0806DDD4(void);
-// func_fe6_0806DDE0
+
+struct DemoMonologueMsg
+{
+    /* 00 */ u16 msg;
+    /* 02 */ u8 y_offset;
+};
+
+extern struct DemoMonologueMsg CONST_DATA gDemoMonologueMsg[];
+
+struct ProcDemoSceneIntro
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x4C);
+    /* 4C */ i16 timer;
+};
+
+void DemoScene_StartMonologue(void);
+void SetBanimConfigUniqueBG(void);
+void SetBanimConfigON(void);
+void CleanupDemoSceneIntro(void);
+void EndDemoSceneIntro(void);
+void DemoSceneIntro_Blocked(ProcPtr proc);
+void DemoSceneIntro_Init(struct ProcDemoSceneIntro * proc);
+void DemoSceneIntro_FadeOut(struct ProcDemoSceneIntro * proc);
+void DemoSceneIntro_StartExt(void);
+void PutDemoMonologueMsg(void);
+void DemoScene_TmpCleanup(void);
+void DemoScene_JumpToChapterDirectly(int chapter, int x, int y);
+void DemoScene_JumpToCh4(void);
+void DemoScene_JumpToCh1(void);
+void DemoScene_JumpToCh10A(void);
+void DemoScene_JumpToCh2(void);
+void DemoScene_JumpToCh22(void);
+void DemoScene_SetRoyHp_10(void);
+EventScr const * GetDemoSceneEvent_Unused(int arg_0, int arg_1);
+void StartDemoSceneEvent(int arg_0, ProcPtr proc);
+void EndAllProcsMark1(void);
+void TrueEnding_EarthQuake_Main(void);
+void TrueEnding_EarthQuake(ProcPtr proc);
+void TrueEnding_EarthQuakeEnd(void);
+
+struct UnkProc_08676854
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x64);
+    /* 64 */ i16 unk_64;
+};
+
+void func_fe6_0806DBA0(struct UnkProc_08676854 * proc);
+void func_fe6_0806DBA8(struct UnkProc_08676854 * proc);
+void func_fe6_0806DC24(ProcPtr parent);
+void func_fe6_0806DC38(void);
+
+struct ProcEpilogueCredit
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x64);
+    /* 64 */ i16 unk_64;
+};
+
+void EpilogueCredit_Init(struct ProcEpilogueCredit * proc);
+void EpilogueCredit_FadeBg(struct ProcEpilogueCredit * proc);
+void Epilogue_StartCredit(ProcPtr parent);
+void RemoveEndingMonologueBG(void);
+
+void EpilogueMonologue_Init(void);
+void DrawEpilogueMonologue(ProcPtr parent);
+bool EpilogueMonologueExists(void);
+
+void Epilogue_RemoveEventEngineBG(struct EventProc * proc);
+void Epilogue_RemoveEventEngineNoMap(struct EventProc * proc);
+void TrueEnding_SetNiceWeather(void);
+void Epilogue_StartWind(void);
 void func_fe6_0806DE00(void);
-void func_fe6_0806DE20(void);
-// func_fe6_0806DE40
-// func_fe6_0806DE5C
-// func_fe6_0806DE78
-// func_fe6_0806DEA0
-// func_fe6_0806DEB4
-// func_fe6_0806DEC4
-// func_fe6_0806DEF8
-// func_fe6_0806DF18
-// func_fe6_0806DF3C
-// func_fe6_0806DF94
-// func_fe6_0806DFAC
-// func_fe6_0806DFC4
-// func_fe6_0806DFD0
-// func_fe6_0806DFD8
-// func_fe6_0806E004
-// func_fe6_0806E040
-// func_fe6_0806E04C
-// func_fe6_0806E060
-// func_fe6_0806E074
-// func_fe6_0806E0B8
-// func_fe6_0806E178
-// func_fe6_0806E240
-void func_fe6_0806E278(void);
+void TruEnding_PlaySe269(void);
+void func_fe6_0806DE40(void);
+
+struct UnkProc_086768C4
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x64);
+    /* 64 */ u16 unk_64;
+};
+
+void func_fe6_0806DE5C(struct UnkProc_086768C4 * proc);
+void func_fe6_0806DE78(struct UnkProc_086768C4 * proc);
+void func_fe6_0806DEA0(ProcPtr parent);
+void func_fe6_0806DEB4(void);
+
+void RenderMapForDirectJump(void);
+
+struct UnkProc_086768DC
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x4C);
+    /* 4C */ ProcPtr unk_4C;
+    /* 50 */ STRUCT_PAD(0x50, 0x64);
+    /* 64 */ i16 unk_64;
+};
+
+void TrueEnding_SortAllies_Init(struct UnkProc_086768DC * proc);
+void TrueEnding_SortAllies_Loop(struct UnkProc_086768DC * proc);
+void TrueEnding_SortAllies(ProcPtr parent);
+bool TrueEnding_SortAlliesExists(void);
+
+struct ProcEpilogueBgmFade
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x64);
+    /* 64 */ i16 timer;
+    /* 66 */ i16 timer2;
+};
+
+
+void Epilogue_BgmFadeIn_Init(struct ProcEpilogueBgmFade * proc);
+void Epilogue_BgmFadeOut_Init(struct ProcEpilogueBgmFade * proc);
+void Epilogue_BgmFadeIn_Loop(struct ProcEpilogueBgmFade * proc);
+void Epilogue_BgmFadeOut_Loop(struct ProcEpilogueBgmFade * proc);
+void EarthQuakeSoundFadeOutDefault(void);
+void Epilogue_BgmFadeIn(ProcPtr parent);
+void Epilogue_BgmFadeOut(ProcPtr parent);
+
+void func_fe6_0806E074(void);
+
+struct GameEndingPosition { u8 x, y; u16 more; };
+
+extern struct GameEndingPosition CONST_DATA gGameEndingPosition1[];
+extern struct GameEndingPosition CONST_DATA gGameEndingPosition2[];
+
+void GameEnding_PutUnitsOnPosition1(void);
+void GameEnding_PutUnitsOnPosition2(void);
+void GameEnding_DeployRoy(void);
+void SetFlagIfDefeatedByBindingBlade(void);
+
+enum ending_id {
+    TRUE_ENDING,
+    NORMAL_ENDING,
+    FALSE_ENDING,
+};
+extern u8 EWRAM_DATA gEndingId;
+
 void UpdateEndingId(void);
 fu8 GetEndingId(void);
+
+extern EventScr CONST_DATA EventScr_TrueEnding_IndunnNotDie[];
+extern EventScr CONST_DATA EventScr_TrueEnding_IndunnDie[];
+extern EventScr const * CONST_DATA EventScrs_EndingScene[];
+extern EventScr CONST_DATA EventScr_TrueEnding[];
+extern EventScr CONST_DATA EventScr_FalseEnding[];
+extern EventScr CONST_DATA EventScr_CharacterEnding[];
+
 void StartGameEndingScene(ProcPtr parent);
-// func_fe6_0806E32C
-// func_fe6_0806E36C
-// func_fe6_0806E430
-// func_fe6_0806E50C
-// func_fe6_0806E520
-void func_fe6_0806E684(int arg_0, int arg_1);
-// func_fe6_0806E714
-// func_fe6_0806E730
-// func_fe6_0806E73C
-// func_fe6_0806E7A0
-// func_fe6_0806E7BC
-// func_fe6_0806E7D8
-// func_fe6_0806E7F4
-// func_fe6_0806E810
+void func_fe6_0806E32C(void);
+
+struct ProcEndingMonologueText
+{
+    /* 00 */ PROC_HEADER;
+    /* 29 */ STRUCT_PAD(0x29, 0x2C);
+    /* 2C */ int bg_y;
+    /* 30 */ int delay_timer;
+    /* 34 */ int main_timer;
+    /* 38 */ int bg_x;
+    /* 3C */ i8 const * ctrl_y;
+    /* 40 */ int paulse_timer;
+};
+
+
+void EndingMonologueText_Init(struct ProcEndingMonologueText * proc);
+void EndingMonologueText_Loop(struct ProcEndingMonologueText * proc);
+void EndingMonologue_PutText(ProcPtr parent);
+
+void EndingMonologue_Init(void);
+void EndingMonologue_MoveText(int arg_0, int arg_1);
+void EndingMonologue_Loop(ProcPtr proc);
+void EndingMonologue_End(void);
+void func_fe6_0806E73C(void);
+void StartEndingMonologue0(ProcPtr parent);
+void StartEndingMonologue1(ProcPtr parent);
+void StartEndingMonologue2(ProcPtr parent);
+void StartEndingMonologue3(ProcPtr parent);
+bool EndEndingMonologue(void);

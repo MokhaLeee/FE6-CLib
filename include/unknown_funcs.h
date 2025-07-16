@@ -433,53 +433,16 @@ void func_fe6_0803CF58(void);
 
 // func_fe6_0808AA84
 // func_fe6_0808AB44
-// func_fe6_0808ABD4
-// func_fe6_0808AEFC
-// func_fe6_0808AF4C
-// func_fe6_0808B028
-// func_fe6_0808B194
-// func_fe6_0808B2BC
-// func_fe6_0808B378
-// func_fe6_0808B3B8
-// func_fe6_0808B40C
-// func_fe6_0808B430
-// func_fe6_0808B52C
-// func_fe6_0808B56C
-// func_fe6_0808B578
-// func_fe6_0808B598
-// func_fe6_0808B628
-// func_fe6_0808B640
-// func_fe6_0808B7A0
-// func_fe6_0808B7B4
-// func_fe6_0808B854
-// func_fe6_0808B928
-// func_fe6_0808B93C
-// func_fe6_0808B9B4
-// func_fe6_0808B9CC
-// func_fe6_0808BBCC
-// func_fe6_0808BCBC
-// func_fe6_0808BCF0
-// func_fe6_0808BD28
-// NewProc_0868AA08
-// func_fe6_0808BD6C
-// func_fe6_0808BD78
-// func_fe6_0808BDF8
-// NewProc_0868AA80
-// func_fe6_0808BE70
-// func_fe6_0808BF00
-// func_fe6_0808BFF0
-// func_fe6_0808C084
-// func_fe6_0808C098
-// NewProc_0868AAA8
 
+/* xmap.h */
 /* config.h */
 
 // func_fe6_0808FD94
 // func_fe6_0808FDE8
 // func_fe6_0808FE3C
 // func_fe6_0808FEC0
-// func_fe6_0808FED8
-// func_fe6_0808FEF0
+void func_fe6_0808FED8(void);
+void func_fe6_0808FEF0(void);
 // func_fe6_0808FF04
 // func_fe6_0808FF9C
 // func_fe6_0808FFE0
@@ -489,30 +452,30 @@ void func_fe6_0803CF58(void);
 // func_fe6_0809058C
 // func_fe6_080905A0
 // func_fe6_0809060C
-// func_fe6_08090620
+void func_fe6_08090620(void);
 // func_fe6_08090630
 // func_fe6_08090644
 // func_fe6_08090660
 // func_fe6_08090674
 // func_fe6_08090720
 // func_fe6_08090740
-// func_fe6_0809076C
-// func_fe6_08090834
+// func_credit_0809076C
+// func_credit_08090834
 void func_fe6_08090854(u16 *tm, int oam2);
 // func_fe6_08090880
 // func_fe6_080908A4
 // func_fe6_08090A20
-// func_fe6_08090A40
-// func_fe6_08090B80
+// Fin_Init
+// Fin_Loop
 // func_fe6_08090BA0
 // func_fe6_08090BC8
 // func_fe6_08090D34
-// func_fe6_08090D54
-// func_fe6_08090D68
-// func_fe6_08090D78
-// func_fe6_08090F34
+bool func_fe6_08090D54(void);
+// EndingCredit_Init
+// EndingCredit_Loop
+void StartCharacterEndings(void);
 // func_fe6_08090F48
-// func_fe6_08091008
+void StartGameCredit(void);
 // func_fe6_0809101C
 // func_fe6_0809104C
 // func_fe6_080910DC
@@ -520,7 +483,7 @@ void func_fe6_08090854(u16 *tm, int oam2);
 void func_fe6_080914DC(void);
 void func_fe6_0809154C(void);
 // func_fe6_08091588
-// func_fe6_0809159C
+// CharacterEnding2_InitDisp
 // func_fe6_0809164C
 // func_fe6_080916AC
 // func_fe6_0809172C
@@ -536,13 +499,13 @@ void func_fe6_0809154C(void);
 // func_fe6_08091C40
 // func_fe6_08091D70
 // func_fe6_08091E08
-// func_fe6_08091E28
-// func_fe6_08091F6C
-// func_fe6_08091FFC
+// CharacterEnding2_InitExt
+// CharacterEnding2_Loop
+// CharacterEnding2_End
 // func_fe6_08092028
 // func_fe6_08092040
 // func_fe6_08092054
-// func_fe6_080920B4
+// Ending_DrawPInfoText
 
 /* worldmap.h */
 /* monologue.h */

@@ -112,7 +112,7 @@ void PutSpriteTalkBox(int x_box, int y_box, int w_box, int h_box);
 // DrawHelpBoxWeaponStats
 // DrawHelpBoxStaffLabels
 void func_fe6_08071274(struct HelpBoxPrintProc * proc);
-void func_fe6_08071308(struct HelpBoxPrintProc * proc);
+void DemoMonologueDisp_Main(struct HelpBoxPrintProc * proc);
 // func_fe6_08071374
 // func_fe6_080713DC
 // func_fe6_08071410
@@ -167,7 +167,7 @@ extern struct ProcScr CONST_DATA ProcScr_HelpBoxMoveControl[];
 extern u8 const * CONST_DATA gUnk_08677F20[]; // array img ref
 
 extern struct ProcScr CONST_DATA ProcScr_Unk_08677FD0[];
-extern struct ProcScr CONST_DATA ProcScr_Unk_08677FE0[];
+extern struct ProcScr CONST_DATA ProcScr_DemoMonologueDisp[];
 extern struct ProcScr CONST_DATA gUnk_08677FF8[];
 extern struct ProcScr CONST_DATA gUnk_08678020[];
 extern struct ProcScr CONST_DATA gUnk_08678040[];

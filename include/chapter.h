@@ -8,7 +8,7 @@ int IsFirstPlaythrough(void);
 void InitPlayConfig(int is_hard);
 void ResetBmSt(void);
 void StartChapter(struct GenericProc * parent);
-void func_fe6_08029084(void);
+void JumpToChapterDirectly(void);
 void ResumeChapterFromSuspend(struct GenericProc * parent);
 void func_fe6_08029240(void);
 void func_fe6_080292B8(void);

@@ -51,7 +51,7 @@ char const * func_fe6_080867F0(int chapter);
 char const * DecodeExtraMapGoalMsg(int chapter);
 char const * DecodeExtraMapInfoMsg(int chapter);
 void CreateTrialChapterBonusUnits(void);
-struct ChapterStats * func_fe6_08086AAC(void);
+struct ChapterStats * GetXmapChapterStats(void);
 
 extern struct ExtraMapInfo * CONST_DATA gExtraMapInfo;
 

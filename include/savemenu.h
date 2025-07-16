@@ -27,12 +27,12 @@ enum
     L_SAVEMENU_4 = 4,
     L_SAVEMENU_5 = 5,
     L_SAVEMENU_6 = 6,
-    L_SAVEMENU_7 = 7,
-    L_SAVEMENU_8 = 8,
-    L_SAVEMENU_9 = 9,
-    L_SAVEMENU_10 = 10,
-    L_SAVEMENU_11 = 11,
-    L_SAVEMENU_12 = 12,
+    L_SAVEMENU_EXTRA_INTRO = 7,
+    L_SAVEMENU_EXTRA_EXIT = 8,
+    L_SAVEMENU_EXTRA_MENU = 9,
+    L_SAVEMENU_XMAP1_MAIN = 10,
+    L_SAVEMENU_XMAP1_INTRO = 11,
+    L_SAVEMENU_XMAP1_EXIT = 12,
     L_SAVEMENU_13 = 13,
     L_SAVEMENU_14 = 14,
     L_SAVEMENU_15 = 15,
@@ -82,9 +82,9 @@ struct SaveMenuProc
     /* 30 */ u8 unk_30;
     /* 31 */ u8 unk_31;
     /* 32 */ u8 unk_32;
-    /* 33 */ u8 unk_33;
-    /* 34 */ u8 unk_34;
-    /* 35 */ u8 unk_35;
+    /* 33 */ u8 max_index;
+    /* 34 */ u8 hand_index;
+    /* 35 */ u8 sel_index;
     /* 36 */ u8 unk_36;
     /* 37 */ u8 unk_37[3]; // unsure of length
     /* 3A */ u8 unk_3A[3];
@@ -163,7 +163,7 @@ struct UnkProc_0868A2CC
 
 // SaveMenuOnHBlank
 // func_fe6_08087C60
-fu8 func_fe6_08087C78(fu8 byte, int num);
+fu8 GetSaveMenuSelectIndex(fu8 byte, int num);
 fu8 func_fe6_08087CB0(fu8 byte);
 // func_fe6_08087CD4
 // SaveMenu_InitSong
@@ -179,27 +179,27 @@ fu8 func_fe6_08087CB0(fu8 byte);
 // func_fe6_08088870
 // func_fe6_08088B40
 // func_fe6_08088B9C
-// func_fe6_08088C04
-// func_fe6_08088C58
-// func_fe6_08088CB0
-// func_fe6_08088D0C
-// func_fe6_08088D6C
+// SaveMenu_ExtraMenuScrollIn
+// SaveMenu_ExtraMenuScrollOut
+// SaveMenu_XMap1ScrollIn
+// SaveMenu_XMap1ScrollOut
+// SaveMenu_ExtraMenu_Loop
 // func_fe6_08088EB8
-// func_fe6_08088F60
+// SaveMenu_Xmap1_Loop
 // func_fe6_080890B8
 // SaveMenu_Finish
-// func_fe6_08089180
+// SaveMenu_StartXmapSoundRoom
 // func_fe6_080891DC
 void StartMainMenu(ProcPtr parent);
 void StartSaveMenu(ProcPtr parent);
 
-// func_fe6_08089254
-// func_fe6_0808927C
-// func_fe6_08089310
+// SaveDraw_SavePalette
+// SaveDrawFadeIn_Loop
+// SaveDrawFadeOut_Loop
 // func_fe6_080893D0
 // func_fe6_08089490
-// func_fe6_08089550
-// func_fe6_08089564
+void StartSaveDrawFadeIn(ProcPtr proc);
+void StartSaveDrawFadeOut(ProcPtr proc);
 // func_fe6_08089578
 void func_fe6_0808958C(ProcPtr parent);
 void func_fe6_080895A0(u16 const * src, u16 * dst, int count);
@@ -227,7 +227,7 @@ void func_fe6_0808A42C(void);
 // func_fe6_0808A4B8
 void func_fe6_0808A4F0(void);
 void func_fe6_0808A524(struct SaveMenuProc * proc);
-// func_fe6_0808A658
+// SaveMenu_GetNextSaveIndex
 // func_fe6_0808A6C8
 // func_fe6_0808A79C
 // func_fe6_0808A7B8

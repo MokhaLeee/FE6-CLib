@@ -414,7 +414,7 @@ extern EventScr CONST_DATA EventScr_Unk_08672BE4[];
 extern EventScr CONST_DATA EventScr_Unk_08672D10[];
 extern EventScr CONST_DATA EventScr_Unk_08672DB4[];
 extern EventScr CONST_DATA EventScr_Unk_08672DE0[];
-extern EventScr CONST_DATA EventScr_Unk_08672E0C[];
+extern EventScr CONST_DATA EventScr_FinalEnding[];
 
 extern EventScr CONST_DATA EventScr_Unk_08672E40[];
 extern EventScr CONST_DATA EventScr_Unk_08672ED8[];

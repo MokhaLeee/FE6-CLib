@@ -50,3 +50,5 @@
 #else
 #  define STATIC_ASSERT(expr)
 #endif
+
+#define _UNUSED __attribute__((unused))

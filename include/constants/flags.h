@@ -358,5 +358,5 @@ enum
     FLAG_118 = 0x76,
     FLAG_119 = 0x77,
 
-    FLAG_123 = 0x7B,
+    FLAG_IDUNN_NOT_DIE = 0x7B,
 };

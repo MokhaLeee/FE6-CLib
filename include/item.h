@@ -242,7 +242,7 @@ int GetUnitItemUseReach(struct Unit * unit, int item_slot);
 int GetUnitStaffReach(struct Unit * unit);
 int GetTotalConvoyItemsValue(void);
 int GetTotalUnitItemsValue(void);
-int func_fe6_08017104(void);
+int GetTotalAsset(void);
 
 enum { ITEM_USES_SHIFT = 8 };
 

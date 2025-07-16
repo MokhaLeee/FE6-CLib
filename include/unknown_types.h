@@ -50,6 +50,16 @@ enum
     MOVE_SCRIPT_MAX_LENGTH = 0x40,
 };
 
+enum ChapterInfo_RefRanks
+{
+    REFRANK_A,
+    REFRANK_B,
+    REFRANK_C,
+    REFRANK_D,
+
+    REFRANK_MAX
+};
+
 struct ChapterInfo
 {
     /* 00 */ char const * debug_name;
@@ -81,7 +91,10 @@ struct ChapterInfo
     /* 19 */ u8 wall_hp;
     /* 1A */ u8 class_roll_set;
 
-    /* 1B */ u8 pad_1B[0x30 - 0x1B];
+    // ranks
+    /* 1B */ u8 tactics_ranks[REFRANK_MAX];
+    /* 20 */ u16 exp_ranks[REFRANK_MAX];
+    /* 28 */ u16 combat_ranks[REFRANK_MAX];
 
     /* 30 */ u16 msg_30;
     /* 32 */ u16 msg_32;
