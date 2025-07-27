@@ -10,6 +10,11 @@ enum
     FRAMES_PER_HOUR   = 60 * FRAMES_PER_MINUTE,
 };
 
+#ifndef CHR_SIZE
+#define CHR_SIZE 0x20
+#define CHR_LINE 0x20
+#endif
+
 #if MODERN
 #  define IO_ALIGNED(n) ALIGNED(n)
 #else
@@ -400,3 +405,26 @@ extern i16 SHOULD_BE_CONST gSinLut[];
 #define SetBackdropColor(color) \
     gPal[0] = (color); \
     EnablePalSync()
+
+/* MOSAIC */
+#define MOSAIC_LO2BG(_mosaic) ({ \
+    int ___mosaic = _mosaic; \
+    int __local_mosaic_lo = (u8)___mosaic & 0xF; \
+    int __local_mosaic_hi = ___mosaic << 4; \
+    \
+    (__local_mosaic_hi | __local_mosaic_lo); \
+})
+
+#if BUGFIX
+#define SetMosaicDisp(_mosaic) { \
+    gDispIo.mosaic = MOSAIC_LO2BG(_mosaic); \
+}
+#else
+#define SetMosaicDisp(_mosaic) { \
+    int __local_mosaic = _mosaic; \
+    u8 *__pr_disp = ((u8 *) &gDispIo); \
+    u8 *__pr_mosaic = __pr_disp + 0x38; \
+    \
+    *__pr_mosaic = MOSAIC_LO2BG(__local_mosaic); \
+}
+#endif

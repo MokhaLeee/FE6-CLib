@@ -3,8 +3,10 @@
 #include "gba/gba.h"
 
 // TODO: move elsewhere
+#ifndef CHR_SIZE
 #define CHR_SIZE 0x20
 #define CHR_LINE 0x20
+#endif
 
 enum
 {

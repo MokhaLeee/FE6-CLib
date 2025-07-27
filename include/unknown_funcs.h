@@ -83,7 +83,7 @@ void func_fe6_08036994(void);
 // func_fe6_08036D08
 // func_fe6_08036D3C
 // func_fe6_08036D60
-// func_fe6_08036DEC
+int func_fe6_08036DEC(void);
 // func_fe6_08036E00
 // func_fe6_08036E14
 // func_fe6_08036E50

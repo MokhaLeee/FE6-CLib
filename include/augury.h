@@ -60,7 +60,7 @@ extern EWRAM_OVERLAY(0) i8 gAuguryChoice;
 extern EWRAM_OVERLAY(0) struct Text gAuguryTexts[7];
 extern EWRAM_OVERLAY(0) i16 ProcAugury_0868AFF0_EndEnable;
 extern EWRAM_OVERLAY(0) i16 unk_02016A1A;
-extern EWRAM_OVERLAY(0) i16 unk_02016A1C;
+extern EWRAM_OVERLAY(0) u16 unk_02016A1C;
 extern EWRAM_OVERLAY(0) u16 unk_02016A1E;
 extern EWRAM_OVERLAY(0) u16 unk_02016A20;
 extern EWRAM_OVERLAY(0) u16 unk_02016A22;

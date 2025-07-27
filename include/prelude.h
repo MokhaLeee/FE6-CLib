@@ -1,5 +1,15 @@
 #pragma once
 
+#define FE6 1
+#define FE7J 0
+#define FE7E 0
+#define FE7U 0
+#define FE8J 0
+#define FE8U 0
+
+#define FE7 (FE7J || FE7E || FE7U)
+#define FE8 (FE8J || FE8U)
+
 #if defined(MODERN) && MODERN
 #  ifndef MODERN
 #    define MODERN
