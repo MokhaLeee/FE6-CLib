@@ -30,7 +30,7 @@ struct BaSprite
     /* 24 */ u32 const * script;
 
     /* 28 */ void const * imgSheet;
-    /* 2C */ void const * unk2C;
+    /* 2C */ void * imgBuf;
     /* 30 */ void const * sprDataPool; // aka "OAM data"
 
     /* 34 */ struct BaSprite * prev;
@@ -38,7 +38,7 @@ struct BaSprite
 
     /* 3C */ void const * sprData;
     /* 40 */ void const * unk40;
-    /* 44 */ void const * unk_44;
+    /* 44 */ void * priv;
 };
 
 #define Anim BaSprite /* Macro for FE8U */
@@ -88,6 +88,8 @@ enum
     BAS_INS_KIND_FRAME   = 6,
 };
 
+#define BAS_CMD(x) (x)
+
 enum
 {
     // Command Identifiers
@@ -135,28 +137,22 @@ enum anim_flag2
 
 enum anim_flag3
 {
-    ANIM_BIT3_TAKE_BACK_ENABLE   = (1 << 0),
-    ANIM_BIT3_NEXT_ROUND_START   = (1 << 1),
-
-    /**
-     * If set, C01 will block the anim
-     * set bit when hit effect applied
-     * and then cleared after hitted
-     */
-    ANIM_BIT3_C01_BLOCKING_IN_BATTLE = (1 << 2),
-    ANIM_BIT3_HIT_EFFECT_APPLIED = (1 << 3),
-    ANIM_BIT3_0010               = (1 << 4),
-    ANIM_BIT3_BLOCKING           = (1 << 5),
-    ANIM_BIT3_BLOCKEND           = (1 << 6),
-    ANIM_BIT3_0080               = (1 << 7),
-    ANIM_BIT3_0100               = (1 << 8),
-    ANIM_BIT3_0200               = (1 << 9),
-    ANIM_BIT3_0400               = (1 << 10),
-    ANIM_BIT3_0800               = (1 << 11),
-    ANIM_BIT3_1000               = (1 << 12),
-    ANIM_BIT3_2000               = (1 << 13),
-    ANIM_BIT3_4000               = (1 << 14),
-    ANIM_BIT3_NEW_ROUND_START    = (1 << 15),
+    ANIM_BIT3_C02_BLOCK_END           = (1 << 0),
+    ANIM_BIT3_NEXT_ROUND_START        = (1 << 1),
+    ANIM_BIT3_C01_BLOCK_END_PREBATTLE = (1 << 2),
+    ANIM_BIT3_C01_BLOCK_END_INBATTLE  = (1 << 3),
+    ANIM_BIT3_0010                    = (1 << 4),
+    ANIM_BIT3_BLOCKING                = (1 << 5),
+    ANIM_BIT3_BLOCKEND                = (1 << 6),
+    ANIM_BIT3_UNUSED_0080             = (1 << 7),
+    ANIM_BIT3_UNUSED_0100             = (1 << 8),
+    ANIM_BIT3_UNUSED_0200             = (1 << 9),
+    ANIM_BIT3_UNUSED_0400             = (1 << 10),
+    ANIM_BIT3_UNUSED_0800             = (1 << 11),
+    ANIM_BIT3_UNUSED_1000             = (1 << 12),
+    ANIM_BIT3_UNUSED_2000             = (1 << 13),
+    ANIM_BIT3_4000                    = (1 << 14),
+    ANIM_BIT3_NEW_ROUND_START         = (1 << 15),
 };
 
 void BasUpdateAll(void);
@@ -223,6 +219,38 @@ void BasPutOam(struct BaSprite * banim_sprite);
         +31bit | 1bit  | 0b
 
 */
+#define ANFMT_FORCESPRITE 0x00000000
+#define ANFMT_NOT_FORCESPRITE 0x80000000
+#define ANFMT_PTRINS 0x40000000
+#define ANFMT_INST_TYPE(type) (((type) & 0x3F) << 24)
+#define ANIMFMT_OAM_DURATION(duration) (((duration) & 3) + ((duration & 0x3C) << 26))
+
+#define ANINS_IS_NOT_FORCESPRITE(instruction) ((instruction) & ANFMT_NOT_FORCESPRITE)
+#define ANINS_IS_PTRINS(instruction) ((instruction) & ANFMT_PTRINS)
+#define ANINS_FORCESPRITE_GET_ADDRESS(instruction) ((void*) ((instruction) &~ 0xF0000003))
+#define ANINS_FORCESPRITE_GET_DELAY(instruction) ((((instruction) >> 26) & 0x1C) + ((instruction) & 3))
+#define ANINS_PTRINS_GET_TYPE(instruction) (0x3 & ((instruction) >> 28))
+#define ANINS_PTRINS_GET_ADDRESS(instruction) ((void*) ((instruction) &~ 0xF0000000))
+#define ANINS_GET_TYPE(instruction) (0x3F & ((instruction) >> 24))
+#define ANINS_WAIT_GET_DELAY(instruction) ((instruction) & 0xFFFF)
+#define ANINS_MOVE_GET_XOFF(instruction) (((int) ((instruction) << 24)) >> 24)
+#define ANINS_MOVE_GET_YOFF(instruction) (((int) ((instruction) << 16)) >> 24)
+#define ANINS_MOVE_GET_DELAY(instruction) (((instruction) >> 16) & 0xFF)
+#define ANINS_COMMAND_GET_ID(instruction) (0xFF & (instruction))
+#define ANINS_FRAME_GET_DELAY(instruction) ((instruction) & 0xFFFF)
+#define ANINS_FRAME_GET_UNK(instruction) ((instruction) >> 16) & 0xFF
+
+/* Anim Script commands */
+#define ANIMSCR_FRAME(delay, img, oam2) \
+    (ANFMT_NOT_FORCESPRITE + ANFMT_INST_TYPE(BAS_INS_KIND_FRAME) + ((delay) & 0xFFFF)), \
+    (AnimScr)(img), \
+    (AnimScr)(oam2)
+
+#define ANIMSCR_BLOCKED \
+    (ANFMT_NOT_FORCESPRITE + ANFMT_INST_TYPE(BAS_INS_KIND_STOP))
+
+#define ANIMSCR_FORCE_SPRITE(anim_sprite, duration) \
+    (ANFMT_FORCESPRITE + (AnimScr)(anim_sprite) + ANIMFMT_OAM_DURATION(duration))
 
 struct BaSpriteData
 {

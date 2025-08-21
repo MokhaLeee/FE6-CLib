@@ -7,12 +7,12 @@
 
 #include "m4a.h"
 
-extern struct MusicPlayer gMusicPlayer_03006530;
-extern struct MusicPlayer gMusicPlayer_03006600;
-extern struct MusicPlayer gMusicPlayer_03006570;
-extern struct MusicPlayer gMusicPlayer_03006260;
-extern struct MusicPlayer gMusicPlayer_030062A0;
-extern struct MusicPlayer gMusicPlayer_030064B0;
+extern struct MusicPlayer gMPlayInfo_SE1_SYS1;
+extern struct MusicPlayer gMPlayInfo_SE2_SYS2;
+extern struct MusicPlayer gMPlayInfo_SE3_BMP1;
+extern struct MusicPlayer gMPlayInfo_SE4_BMP2;
+extern struct MusicPlayer gMPlayInfo_SE5_BMP3;
+extern struct MusicPlayer gMPlayInfo_SE6_BMP4;
 extern struct MusicPlayer gMusicPlayer_FightBgm;
 extern struct MusicPlayer gMusicPlayer_MainBgm;
 

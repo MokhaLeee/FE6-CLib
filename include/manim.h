@@ -495,19 +495,19 @@ extern u8 const gUnk_082E0E14[]; // img
 extern u16 const gUnk_082E10EC[]; // pal
 extern u16 const gUnk_082E110C[]; // sprite anim
 extern u8 const gUnk_082DFAD4[]; // img
-extern u16 const gUnk_081B4274[]; // pal
+extern u16 const Pal_EfxHammarneBG[]; // pal
 extern u8 const gUnk_082E07A8[]; // ???
 extern u8 const gUnk_082DF868[]; // ??? ^
 extern u8 const gUnk_08307928[]; // ???
-extern u8 const gUnk_081B7468[]; // img
-extern u16 const gUnk_081B7650[]; // pal
+// extern u8 const Img_EfxHammarneOBJ[]; // img
+extern u16 const Pal_EfxRestOBJ[]; // pal
 extern u16 const gUnk_082E0A14[]; // sprite anim
 extern u8 const gUnk_082E161C[]; // img
 extern u8 const gUnk_082E11DC[]; // img
 extern u16 const gUnk_082E172C[]; // pal
 extern u16 const gUnk_082E174C[]; // sprite anim
 extern u8 const gUnk_082E1884[]; // img
-extern u16 const gUnk_081B8934[]; // pal
+extern u16 const Pal_EfxMshieldBG[]; // pal
 extern u8 const gUnk_082E2440[]; // ???
 extern u8 const gUnk_082DF724[]; // img
 extern u8 const gUnk_082DF844[]; // ???

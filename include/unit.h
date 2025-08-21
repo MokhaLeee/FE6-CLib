@@ -173,8 +173,7 @@ struct PInfo
     /* 21 */ u8 growth_res;
     /* 22 */ u8 growth_lck;
 
-    /* 23 */ u8 banim_pal_a;
-    /* 24 */ u8 banim_pal_b;
+    /* 23 */ u8 banim_pal[2];
     /* 25 */ // pad
 
     /* 28 */ u32 attributes;
