@@ -150,7 +150,7 @@ extern u32 const Img_SpinningArrow[];
 // extern ??? gUnk_08326EE6
 // extern ??? gUnk_08327108
 
-extern struct ProcScr CONST_DATA ProcScr_OpeningSequence[];
+extern struct ProcScr CONST_DATA ProcScr_OpAnim[];
 extern struct ProcScr CONST_DATA ProcScr_WorldMapIntroEvent[];
 extern struct ProcScr CONST_DATA ProcScr_Config[];
 extern u16 CONST_DATA Pal_ManimFireDragonMu[];
@@ -416,9 +416,9 @@ extern u8 const Img_08343FAC[];
 // extern const ??? gUnk_08344304
 extern u8 const Img_Fin[];
 extern u16 const Pal_Fin[];
-extern u8 const Img_Credit_08344CD0[];
-extern u16 const Tsa_Credit_0834523C[];
-extern u16 const Pal_Credit_08345420[];
+extern u8 const Img_Ending_CopyRight[];
+extern u16 const Tsa_Ending_CopyRight[];
+extern u16 const Pal_Ending_CopyRight[];
 // extern const ??? Tsa_EndingPInfoBG
 // extern const ??? gUnk_08345934
 // extern const ??? gUnk_08346184
@@ -507,8 +507,8 @@ extern u16 const Pal_Title_08364A94[];
 // extern const ??? gUnk_0837CB8C
 // extern const ??? gUnk_0837EEB4
 // extern const ??? gUnk_0837F418
-// extern const ??? gUnk_0837F478
-// extern const ??? gUnk_08380ECC
+// extern const ??? Img_OpAnimGlyphs
+// extern const ??? Pal_OpAnimGlyphs
 // extern const ??? gUnk_08380F4C
 // extern const ??? gUnk_08380F54
 // extern const ??? gUnk_08380F5A

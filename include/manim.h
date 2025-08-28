@@ -371,31 +371,6 @@ void ManimAnimateActorDamage(int actor_id, int damage);
 // func_fe6_08069B70
 // func_fe6_08069C04
 // func_fe6_08069C1C
-void InitScanlineEffect(void);
-void func_fe6_08069C74(void);
-void func_fe6_08069DA4(int x, int y, int arg_08);
-void func_fe6_08069DD8(void);
-void OnHBlank_WinHScanlines(void);
-void OnHBlank_08069E50(void);
-void OnHBlank_ManimFrameGradient(void);
-void OnHBlank_08069F58(void);
-void OnHBlank_08069FD8(void);
-void OnHBlank_0806A040(void);
-void StartManimFrameGradientScanlineEffect(u16 arg_0, u16 arg_1, u16 color_2, u16 color_3);
-void func_fe6_0806A218(u16 yStart, u16 yEnd, u16 arg_2, u16 arg_3);
-void func_fe6_0806A270(int x, int y, int a, int b, u8 const * unk);
-// PrepareSineWaveScanlineBuf
-// PrepareSineWaveScanlineBufExt
-void SwapScanlineBufs(void);
-void InitScanlineBuf(u16 * buf);
-void SetScanlineBufWinL(u16 * buf, int x, int y);
-void SetScanlineBufWinR(u16 * buf, int x, int y);
-void func_fe6_0806A51C(u16 * buf, int x, int y, int arg_0C);
-void PrepareGradientScanlineBuf(u16 * buf, u16 arg_02, u16 arg_04, u16 arg_06, u16 arg_30);
-// ManimShiftingSineWaveScanlineBuf_Init
-// ManimShiftingSineWaveScanlineBuf_Loop
-void Scanline_SetupMonologue(void);
-// func_fe6_0806A87C
 
 extern struct ProcScr CONST_DATA ProcScr_PoisonDamageManim[];
 extern struct ProcScr CONST_DATA ProcScr_TrapDamageManim[];
@@ -532,11 +507,6 @@ extern u8 const gUnk_082DE994[]; // img
 extern u8 const gUnk_082DEB08[]; // pal
 
 extern struct ManimSt EWRAM_DATA gManimSt;
-
-extern u16 EWRAM_DATA gManimScanlineBufA[DISPLAY_HEIGHT * 2];
-extern u16 EWRAM_DATA gManimScanlineBufB[DISPLAY_HEIGHT * 2];
-extern u16 * EWRAM_DATA gManimScanlineBufs[2];
-extern u16 * EWRAM_DATA gManimActiveScanlineBuf;
 
 extern struct UnkSt_030046D0 gUnk_030046D0[0x10];
 extern u16 gUnk_03004750[10 * 0x10];

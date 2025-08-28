@@ -313,13 +313,13 @@ extern CONST_DATA struct ProcScr ProcScr_0868B99C[];
 extern CONST_DATA struct ProcScr ProcScr_0868BB3C[];
 extern CONST_DATA struct ProcScr ProcScr_0868BB5C[];
 extern CONST_DATA struct ProcScr ProcScr_0868BB7C[];
-// extern CONST_DATA ??? ProcScr_0868BB9C
-// extern CONST_DATA ??? ProcScr_Credit_0868BBEC
-extern CONST_DATA struct ProcScr ProcScr_0868BC44[];
+// extern CONST_DATA ??? ProcScr_EndingCredit
+// extern CONST_DATA ??? ProcScr_EndingCopyRight
+extern CONST_DATA struct ProcScr ProcScr_EndingStep1_PutaMonologue[];
 // extern CONST_DATA ??? ProcScr_Fin
 // extern CONST_DATA ??? gUnk_0868BCE4
 extern CONST_DATA struct ProcScr ProcScr_0868BDB4[];
-// extern CONST_DATA ??? ProcScr_CharacterEndingsCredit
+// extern CONST_DATA ??? ProcScr_Ending
 // extern CONST_DATA ??? ProcScr_GameCredit
 // extern CONST_DATA ??? ProcScr_EndingPInfo1Detail
 extern CONST_DATA struct ProcScr ProcScr_EndingPInfo1[];

@@ -270,9 +270,9 @@ void EpilogueCredit_FadeBg(struct ProcEpilogueCredit * proc);
 void Epilogue_StartCredit(ProcPtr parent);
 void RemoveEndingMonologueBG(void);
 
-void EpilogueMonologue_Init(void);
-void DrawEpilogueMonologue(ProcPtr parent);
-bool EpilogueMonologueExists(void);
+void EndingTimeFlowMonologue_Init(void);
+void DrawEndingTimeFlowMonologue(ProcPtr parent);
+bool EndingTimeFlowMonologueExists(void);
 
 void Epilogue_RemoveEventEngineBG(struct EventProc * proc);
 void Epilogue_RemoveEventEngineNoMap(struct EventProc * proc);
@@ -289,10 +289,10 @@ struct UnkProc_086768C4
     /* 64 */ u16 unk_64;
 };
 
-void func_fe6_0806DE5C(struct UnkProc_086768C4 * proc);
-void func_fe6_0806DE78(struct UnkProc_086768C4 * proc);
-void func_fe6_0806DEA0(ProcPtr parent);
-void func_fe6_0806DEB4(void);
+void EndingBgmLooper_Init(struct UnkProc_086768C4 * proc);
+void EndingBgmLooper_Ioop(struct UnkProc_086768C4 * proc);
+void NewEndingBgmLooper(ProcPtr parent);
+void EndEndingBgmLooper(void);
 
 void RenderMapForDirectJump(void);
 
@@ -358,31 +358,3 @@ extern EventScr CONST_DATA EventScr_CharacterEnding[];
 
 void StartGameEndingScene(ProcPtr parent);
 void func_fe6_0806E32C(void);
-
-struct ProcEndingMonologueText
-{
-    /* 00 */ PROC_HEADER;
-    /* 29 */ STRUCT_PAD(0x29, 0x2C);
-    /* 2C */ int bg_y;
-    /* 30 */ int delay_timer;
-    /* 34 */ int main_timer;
-    /* 38 */ int bg_x;
-    /* 3C */ i8 const * ctrl_y;
-    /* 40 */ int paulse_timer;
-};
-
-
-void EndingMonologueText_Init(struct ProcEndingMonologueText * proc);
-void EndingMonologueText_Loop(struct ProcEndingMonologueText * proc);
-void EndingMonologue_PutText(ProcPtr parent);
-
-void EndingMonologue_Init(void);
-void EndingMonologue_MoveText(int arg_0, int arg_1);
-void EndingMonologue_Loop(ProcPtr proc);
-void EndingMonologue_End(void);
-void func_fe6_0806E73C(void);
-void StartEndingMonologue0(ProcPtr parent);
-void StartEndingMonologue1(ProcPtr parent);
-void StartEndingMonologue2(ProcPtr parent);
-void StartEndingMonologue3(ProcPtr parent);
-bool EndEndingMonologue(void);

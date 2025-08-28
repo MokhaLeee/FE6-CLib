@@ -63,7 +63,7 @@
 
 .macro PROC_START_CHILD_LOCKING scr
 	.short PROC_CMD_START_CHILD_BLOCKING
-	.short 0
+	.short 1
 	.4byte \scr
 .endm
 
