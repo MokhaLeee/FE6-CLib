@@ -125,3 +125,10 @@ struct BanimInfoEnt
 {
     u16 wtype, index;
 };
+
+struct SioMessage
+{
+    /* 00 */ u8 kind;
+    /* 01 */ u8 sender;
+    /* 02 */ u16 param;
+};

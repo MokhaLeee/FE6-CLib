@@ -50,7 +50,7 @@ struct WmArrowSt {
     /* 2E4 */ int unk_2E4[20];
 };
 
-extern struct WmArrowSt gWmArrowSt[2];
+extern struct WmArrowSt gWmArrowSt[3];
 
 // GetCompressedWmPalette
 // ApplyCompressedWmPalette

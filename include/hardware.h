@@ -148,6 +148,7 @@ struct DispIo
     /* 60 */ u32 bg3x;
     /* 64 */ u32 bg3y;
     /* 68 */ i8 color_addition;
+    /* 69 */ STRUCT_PAD(0x69, 0x70);
 };
 
 struct KeySt
@@ -249,6 +250,8 @@ extern struct KeySt * CONST_DATA gKeySt;
 extern struct DispIo gDispIo;
 
 extern i16 SHOULD_BE_CONST gSinLut[];
+
+extern IWRAM_DATA u8 SoundMainRam[0x400];
 
 // TODO: unify use of RGB5 instead of RGB for colors
 

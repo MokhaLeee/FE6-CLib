@@ -147,7 +147,7 @@ void PlaySeDelayed(int song, int delay);
 void _StartBgm(short song);
 void _FadeBgmOut(short speed);
 void BrightenPalette(int palid);
-// func_fe6_08015504
+// SioMemCpy
 void PutDrawTextCentered(struct Text * text, int x, int y, char const * str, int width);
 void VecMulMat(int const * vec, int const * mat, int * ovec);
 void MatMulMat(int const * lmat, int const * rmat, int * omat);

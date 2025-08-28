@@ -84,7 +84,7 @@ extern EWRAM_OVERLAY(0) u8 unk_02016AC3[0x81];
 extern EWRAM_OVERLAY(0) u8 unk_02016B44;
 extern EWRAM_OVERLAY(0) struct Text Texts_02016B48[6];
 extern EWRAM_OVERLAY(0) struct Text Texts_02016B78[2];
-extern EWRAM_OVERLAY(0) u8 unk_02016B88;
+extern EWRAM_OVERLAY(0) u8 gCurEndingUid;
 extern EWRAM_OVERLAY(0) u8 unk_02016B89;
 extern EWRAM_OVERLAY(0) u8 unk_02016B8A;
 extern EWRAM_OVERLAY(0) ProcPtr gpAuguryFaceProc;

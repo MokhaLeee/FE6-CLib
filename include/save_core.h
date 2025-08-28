@@ -33,6 +33,8 @@ struct SaveBlockInfo
     /* 0C */ u32 checksum32;
 };
 
+u8 *func_fe6_080841EC(void);
+void func_fe6_080841F8(void);
 void SramInit(void);
 bool IsSramWorking(void);
 void WipeSram(void);

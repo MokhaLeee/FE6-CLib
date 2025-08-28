@@ -97,21 +97,21 @@ int HelpBoxTryRelocateRight(struct HelpBoxProc * proc);
 // func_fe6_08070C4C
 // StartLockingHelpBox
 struct HelpBoxInfo const * GetLastHelpBoxInfo(void);
-void func_fe6_08070CB4(int flags, int pal);
-void func_fe6_08070D08(int chr, int chapter);
-void func_fe6_08070D48(int chr);
-void func_fe6_08070D78(int chr);
-void func_fe6_08070DA8(u16 * tm, int pal);
-void func_fe6_08070DC8(u16 * tm, int pal);
-void func_fe6_08070DE8(u16 * tm, int pal);
-int func_fe6_08070E0C(struct PlaySt const * play_st);
+void PutChapterTitlePalettle(int flags, int pal);
+void PutChapterTitleGfx(int chr, int chapter);
+void PutChapterTitleBG1(int chr);
+void PutChapterTitleBG2(int chr);
+void PutChapterTitleTextTSA(u16 * tm, int pal);
+void PutChapterTitleBgTSA(u16 * tm, int pal);
+void PutChapterTitleBgDefaultTSA(u16 * tm, int pal);
+int GetChapterTitleExtra(struct PlaySt const * play_st);
 void LoadHelpBoxGfx(void * vram, int pal);
 // func_fe6_08070EEC
 void PutSpriteTalkBox(int x_box, int y_box, int w_box, int h_box);
 // DrawHelpBoxWeaponLabels
 // DrawHelpBoxWeaponStats
 // DrawHelpBoxStaffLabels
-void func_fe6_08071274(struct HelpBoxPrintProc * proc);
+void TypeWritter_Loop(struct HelpBoxPrintProc * proc);
 void DemoMonologueDisp_Main(struct HelpBoxPrintProc * proc);
 // func_fe6_08071374
 // func_fe6_080713DC
@@ -164,9 +164,9 @@ void func_fe6_080721D0(void);
 extern struct ProcScr CONST_DATA ProcScr_HelpBox[];
 extern struct ProcScr CONST_DATA ProcScr_HelpBoxMoveControl[];
 
-extern u8 const * CONST_DATA gUnk_08677F20[]; // array img ref
+extern u8 const * CONST_DATA gChapterTitleData[]; // array img ref
 
-extern struct ProcScr CONST_DATA ProcScr_Unk_08677FD0[];
+extern struct ProcScr CONST_DATA ProcScr_TypeWritter[];
 extern struct ProcScr CONST_DATA ProcScr_DemoMonologueDisp[];
 extern struct ProcScr CONST_DATA gUnk_08677FF8[];
 extern struct ProcScr CONST_DATA gUnk_08678020[];

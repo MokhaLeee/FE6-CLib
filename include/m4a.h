@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "sound.h"
 
 struct WaveData;
 struct ToneData;
@@ -403,4 +404,16 @@ extern char gMaxLines[];
 #define NUM_MUSIC_PLAYERS ((u16) (uptr) gNumMusicPlayers)
 #define MAX_LINES ((u32) (uptr) gMaxLines)
 
-// end TODO
+extern IWRAM_DATA struct SoundInfo gSoundInfo;
+extern IWRAM_DATA struct MusicPlayer gMPlayInfo_SE4_BMP2;
+extern IWRAM_DATA struct MusicPlayer gMPlayInfo_SE5_BMP3;
+extern IWRAM_DATA struct MusicPlayer gMusicPlayer_FightBgm;
+extern IWRAM_DATA MPlayFunc gMPlayJumpTable[36];
+extern IWRAM_DATA struct CgbChannel gCgbChans[4];
+extern IWRAM_DATA struct MusicPlayer gMPlayInfo_SE6_BMP4;
+extern IWRAM_DATA struct MusicPlayer gMusicPlayer_MainBgm;
+extern IWRAM_DATA struct MusicPlayer gMPlayInfo_SE1_SYS1;
+extern IWRAM_DATA struct MusicPlayer gMPlayInfo_SE3_BMP1;
+extern IWRAM_DATA u8 gMPlayMemAccArea[0x10];
+extern IWRAM_DATA struct MusicPlayer gMPlayInfo_SE7_EVT;
+extern IWRAM_DATA struct MusicPlayer gMPlayInfo_SE2_SYS2;
