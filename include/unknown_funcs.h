@@ -436,76 +436,7 @@ void func_fe6_0803CF58(void);
 
 /* xmap.h */
 /* config.h */
-
-// func_fe6_0808FD94
-// func_fe6_0808FDE8
-// func_fe6_0808FE3C
-// func_fe6_0808FEC0
-void func_fe6_0808FED8(void);
-void func_fe6_0808FEF0(void);
-// func_fe6_0808FF04
-// func_fe6_0808FF9C
-// func_fe6_0808FFE0
-// func_fe6_080902F0
-// func_fe6_080904F0
-// func_fe6_08090508
-// func_fe6_0809058C
-// func_fe6_080905A0
-// func_fe6_0809060C
-void EndingStepAdvance(void);
-// func_fe6_08090630
-// func_fe6_08090644
-// func_fe6_08090660
-// EndingCredit_Init
-// EndingCredit_WaitingDisp
-// EndingCredit_Ending
-// EndingCopyRight_Init
-// EndingCopyRight_Loop
-void func_fe6_08090854(u16 *tm, int oam2);
-// EndingStep1_End
-// EndingStep1_Init
-// EndingStep1_Loop
-// Fin_Init
-// Fin_Loop
-// func_fe6_08090BA0
-// func_fe6_08090BC8
-// func_fe6_08090D34
-bool func_fe6_08090D54(void);
-// Ending_Init
-// Ending_Loop
-void StartCharacterEndings(void);
-// func_fe6_08090F48
-void StartGameCredit(void);
-// PersonEndingHasSupporter
-// EndingPInfoFadeOutExt
-// HBlank_Ending_SinglePInfo
-// HBlank_Ending_DyadPInfo
-void func_fe6_080914DC(void);
-void func_fe6_0809154C(void);
-// SetupEndingPInfo2Uids
-// CharacterEnding2_InitDisp
-// PopNextEndingPerson
-// PopNextEnding2Person
-// EndingPInfo1Detail_PutText
-// EndingPInfo1Detail_WaitingTypewritter
-// EndingPInfo1_DrawDetails
-// EndingPInfo1_StartMerge
-// EndingPInfo1_Idle
-// func_fe6_08091A24
-// func_fe6_08091A4C
-// func_fe6_08091A64
-// func_fe6_08091B94
-// func_fe6_08091C2C
-// func_fe6_08091C40
-// func_fe6_08091D70
-// func_fe6_08091E08
-// Ending_DrawDyadPInfo
-// CharacterEnding2_Loop
-// CharacterEnding2_End
-// func_fe6_08092028
-// PersonEndingInfo_Init
-// PersonEndingInfo_Loop
-// Ending_DrawPInfoTitle
+/* ending_credit */
 
 /* worldmap.h */
 /* monologue.h */

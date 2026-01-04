@@ -62,3 +62,9 @@
 #endif
 
 #define _UNUSED __attribute__((unused))
+
+#define LIMIT_AREA(num, min, max)   \
+    if (num > max)                  \
+        num = max;                  \
+    if (num < min)                  \
+        num = min;

@@ -140,7 +140,7 @@ void FaceChibiSpr_OnIdle(struct FaceProc * proc);
 void StartFaceChibiStr(int x, int y, int fid, int chr, int pal, bool is_flipped, ProcPtr parent);
 void EndFaceChibiSpr(void);
 void PutFace80x72(u16 * tm, int fid, int chr, int pal);
-void EndFacePtr(struct GenericProc * proc);
+void EndFacePtr(struct Proc * proc);
 void EndFaceIn8Frames(struct FaceProc * proc);
 void StartFaceFadeIn(struct FaceProc * proc);
 void StartFaceFadeOut(struct FaceProc * proc);

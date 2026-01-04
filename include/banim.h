@@ -73,6 +73,7 @@ enum video_banim {
 
     VRAMOFF_BANIM_SPELL_OBJ = 0x0800,
     VRAMOFF_BANIM_SPELL_BG  = 0x2000,
+    VRAMOFF_BANIM_SPELL_23E0 = 0x23E0,
     VRAMOFF_BANIM_8000 = 0x8000,
 
     VRAMOFF_OBJ_EKRGAUGE_SUBFIX = 0x3800,
@@ -333,7 +334,9 @@ extern struct ProcEkrGauge * gpProcEkrGauge;
 extern EWRAM_OVERLAY(banim) u16 Buf_EkrGaugeNumImg[0x200];
 extern EWRAM_OVERLAY(banim) u16 gUnk_Banim_02016DC0[];
 extern EWRAM_OVERLAY(banim) u8 gUnk_Banim_02016E40[0x200];
+extern EWRAM_OVERLAY(banim) u8 gUnk_Banim_02017040[0x200];
 extern EWRAM_OVERLAY(banim) u8 gUnk_Banim_02017240[0x200];
+extern EWRAM_OVERLAY(banim) u8 gUnk_Banim_02017440[0x200];
 extern EWRAM_OVERLAY(banim) u16 gEkrGaugeDecoder[18];
 
 // EkrGaugeModDec
@@ -804,7 +807,7 @@ void SetAnimStateUnHidden(int pos);
 /**
  * ekrmainmini
  */
-struct EkrMainMiniBuf {
+struct EkrMainMiniDesc {
     /* 00 */ u8 valid;
     /* 01 */ u8 faction_pal;
     /* 02 */ u16 x, y;
@@ -822,21 +825,21 @@ struct EkrMainMiniBuf {
     /* 20 */ u16 *oam_buf;
     /* 24 */ u8  *scr_buf;
     /* 28 */ const u16 *img_sheet;
-    /* 2C */ void *magicfx_buf;
+    /* 2C */ void *magicfx_desc;
     /* 30 */ ProcPtr proc;
 };
 
-void EkrMainMini_ExecCommands(struct EkrMainMiniBuf *buf, struct Anim *anim);
+void EkrMainMini_ExecCommands(struct EkrMainMiniDesc *desc, struct Anim *anim);
 void EkrMainMini_C01_Blocking(struct Anim *anim);
 void EkrMainMini_C0D_ExecNextRoundAfterAttack(struct Anim *anim);
-void EkrMainMini_InitAnim(struct EkrMainMiniBuf *buf);
-void EkrMainMini_UpdateAnim(struct EkrMainMiniBuf *buf);
-void EkrMainMini_ChangeAnim(struct EkrMainMiniBuf *buf, int bid);
-void EkrMainMini_SetAnimPosition(struct EkrMainMiniBuf *buf, u16 x, u16 y);
-void EkrMainMini_SetAnimLayer(struct EkrMainMiniBuf *buf, u16 layer);
-bool EkrMainMini_CheckBlocking(struct EkrMainMiniBuf *buf);
-void EkrMainMini_EndBlock(struct EkrMainMiniBuf *buf);
-bool EkrMainMini_CheckDone(struct EkrMainMiniBuf *buf);
+void EkrMainMini_InitAnim(struct EkrMainMiniDesc *desc);
+void EkrMainMini_UpdateAnim(struct EkrMainMiniDesc *desc);
+void EkrMainMini_ChangeAnim(struct EkrMainMiniDesc *desc, int bid);
+void EkrMainMini_SetAnimPosition(struct EkrMainMiniDesc *desc, u16 x, u16 y);
+void EkrMainMini_SetAnimLayer(struct EkrMainMiniDesc *desc, u16 layer);
+bool EkrMainMini_CheckBlocking(struct EkrMainMiniDesc *desc);
+void EkrMainMini_EndBlock(struct EkrMainMiniDesc *desc);
+bool EkrMainMini_CheckDone(struct EkrMainMiniDesc *desc);
 void NewEfxAnimeDrvProc(void);
 void EndEfxAnimeDrvProc(void);
 void EkrAnimeDrv_Loop(void);
@@ -846,11 +849,11 @@ struct ProcEkrUnitMainMini {
 
     STRUCT_PAD(0x29, 0x5C);
 
-    struct EkrMainMiniBuf *buf;
+    struct EkrMainMiniDesc *desc;
 };
 
-void NewEkrUnitMainMini(struct EkrMainMiniBuf *buf);
-void EndEkrMainMini(struct EkrMainMiniBuf *buf);
+void NewEkrUnitMainMini(struct EkrMainMiniDesc *desc);
+void EndEkrMainMini(struct EkrMainMiniDesc *desc);
 void EkrMainMini_Loop(struct ProcEkrUnitMainMini *proc);
 
 /**
@@ -1237,24 +1240,24 @@ void StartSpellAnimForblaze(struct Anim *anim);
 // EfxForblaze_Loop
 void NewEfxForblazeBG1(struct Anim *anim);
 // EfxForblazeBG1_Loop
-void NewEfxForblazeBGCOL1(struct Anim *anim);
+void NewEfxForblazeBGCOL1(struct Anim *anim, int duration);
 // EfxForblazeBGCOL1_Loop
-void NewEfxForblazeBGCtrl1(struct Anim *anim);
+void NewEfxForblazeBGCtrl1(void);
 // EfxForblazeBGCtrl1_Loop1
 // EfxForblazeBGCtrl1_Loop2
 // EfxForblazeBGCtrl1_Loop3
-void NewEfxForblazeOBJ(struct Anim *anim);
+void NewEfxForblazeObjHandle(struct Anim *anim, int duration);
+// EfxForblazeObjHandle_Loop
+void NewEfxForblazeOBJ(struct Anim *anim, int x, int y);
 // EfxForblazeOBJ_Loop
-void NewEfxForblazeOBJ2(struct Anim *anim);
-// EfxForblazeOBJ2_Loop
-void NewEfxForblazeBG2(struct Anim *anim);
+void NewEfxForblazeBG2(struct Anim *anim, int duration);
 // EfxForblazeBG2_Loop
 void NewEfxForblazeOBJCtrl(struct Anim *anim);
 // EfxForblazeOBJCtrl_Loop
-void NewEfxForblazeOBJFall(struct Anim *anim);
+void NewEfxForblazeOBJFall(struct Anim *anim, int duration, int unused);
 // EfxForblazeOBJFall_Loop
 void HBlank_EfxForblaze(void);
-void NewEfxForblazeRST(struct Anim *anim);
+void NewEfxForblazeRST(int duration);
 // EfxForblazeRST_Loop
 void StartSpellAnimDivine(struct Anim *anim);
 // EfxDivine_Loop
@@ -1894,10 +1897,10 @@ extern CONST_DATA struct ProcScr ProcScr_EkrLvupFan[];
 extern CONST_DATA struct ProcScr ProcScr_EkrGauge[];
 extern CONST_DATA u16 gUnk_085CB580[];
 extern CONST_DATA u16 gUnk_085CB5B0[];
-// ??? gUnk_085CB5C8
-// ??? gUnk_085CB5F8
-// ??? gUnk_085CB634
-// ??? gUnk_085CB670
+extern CONST_DATA u8 gUnk_085CB5C8[];
+extern CONST_DATA u8 gUnk_085CB5F8[];
+extern CONST_DATA u8 gUnk_085CB634[];
+extern CONST_DATA u8 gUnk_085CB670[];
 extern CONST_DATA u16 gUnk_085CB688[];
 extern CONST_DATA u16 gUnk_085CB6A0[];
 extern CONST_DATA u16 gUnk_085CB6A0[];
@@ -2079,9 +2082,9 @@ extern CONST_DATA u16 *TsaArray_EfxForblazeBG1[];
 extern CONST_DATA u16 *ImgArray_EfxForblazeBG1[];
 extern CONST_DATA struct ProcScr ProcScr_EfxForblazeBGCOL1[];
 extern CONST_DATA struct ProcScr ProcScr_EfxForblazeBGCtrl1[];
+extern CONST_DATA struct ProcScr ProcScr_EfxForblazeObjHandle[];
+extern CONST_DATA int XposArray_EfxForblazeOBJ[];
 extern CONST_DATA struct ProcScr ProcScr_EfxForblazeOBJ[];
-// ??? gUnk_085D2288
-extern CONST_DATA struct ProcScr ProcScr_EfxForblazeOBJ2[];
 extern CONST_DATA struct ProcScr ProcScr_EfxForblazeBG2[];
 extern CONST_DATA struct ProcScr ProcScr_EfxForblazeOBJCtrl[];
 extern CONST_DATA struct ProcScr ProcScr_EfxForblazeOBJFall[];
@@ -2304,7 +2307,7 @@ extern u32 AnimScr_EfxFireOBJ_R_Back[];
 extern u32 AnimScr_EfxElfireOBJ_R[];
 extern u32 AnimScr_EfxElfireOBJ_L[];
 extern CONST_DATA AnimScr AnimScr_EfxThunderstormOBJ[];
-extern CONST_DATA AnimScr AnimScr_EfxForblazeOBJ2[];
+extern CONST_DATA AnimScr AnimScr_EfxForblazeOBJ[];
 extern CONST_DATA AnimScr AnimScr_EfxForblazeOBJ3[];
 extern CONST_DATA AnimScr AnimScr_EfxForblazeOBJ4[];
 extern CONST_DATA AnimScr AnimScr_EfxForblazeOBJ5[];

@@ -95,7 +95,7 @@ enum
 
 // TODO: stop using this
 // this is just lazy bad
-struct GenericProc
+struct Proc
 {
     /* 00 */ PROC_HEADER;
 

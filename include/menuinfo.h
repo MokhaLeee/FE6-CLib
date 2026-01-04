@@ -6,7 +6,7 @@
 
 extern struct MenuInfo CONST_DATA MenuInfo_Debug_085C7474;
 extern struct MenuInfo CONST_DATA MenuInfo_Debug_085C73E4;
-extern struct MenuInfo CONST_DATA MenuInfo_Debug_085C742C;
+extern struct MenuInfo CONST_DATA MenuInfo_Debug_LoadGame;
 extern struct MenuInfo CONST_DATA MenuInfo_Debug_085C7450;
 extern struct MenuInfo CONST_DATA MenuInfo_DebugCpControl;
 extern struct MenuInfo CONST_DATA MenuInfo_Map;

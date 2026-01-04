@@ -43,9 +43,12 @@ void func_fe6_0809B99C(struct ProcTitleDisp * proc);
 void Title_StartBgm(struct ProcTitle * proc);
 void func_fe6_0809BB00(void);
 
+extern struct ProcScr CONST_DATA ProcScr_TitleScreenFromOp[];
 extern struct ProcScr CONST_DATA ProcScr_TitleScreen[];
 extern struct ProcScr CONST_DATA ProcScr_Title_08692258[];
+extern struct ProcScr CONST_DATA ProcScr_Title_08692268[];
 extern struct ProcScr CONST_DATA ProcScr_Title_08692298[];
 extern u16 CONST_DATA Sprite_086922F0[];
 extern u16 CONST_DATA Sprite_086922F8[];
 extern u16 CONST_DATA Sprite_08692300[];
+extern struct ProcScr CONST_DATA ProcScr_TitleScreenFromOp[];

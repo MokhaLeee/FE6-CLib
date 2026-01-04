@@ -187,7 +187,7 @@ bool func_fe6_0806D028(void);
 void func_fe6_0806D064(void);
 void func_fe6_0806D0E4(void);
 // func_fe6_0806D0FC
-bool func_fe6_0806D150(void);
+bool HaveAllLegendaryWeapons(void);
 void func_fe6_0806D17C(void);
 void func_fe6_0806D194(void);
 void func_fe6_0806D1AC(void);
@@ -258,15 +258,15 @@ void func_fe6_0806DBA8(struct UnkProc_08676854 * proc);
 void func_fe6_0806DC24(ProcPtr parent);
 void func_fe6_0806DC38(void);
 
-struct ProcEpilogueCredit
+struct ProcEndingCreditFade
 {
     /* 00 */ PROC_HEADER;
     /* 29 */ STRUCT_PAD(0x29, 0x64);
     /* 64 */ i16 unk_64;
 };
 
-void EpilogueCredit_Init(struct ProcEpilogueCredit * proc);
-void EpilogueCredit_FadeBg(struct ProcEpilogueCredit * proc);
+void EndingCreditFade_Init(struct ProcEndingCreditFade * proc);
+void EndingCreditFade_FadeBg(struct ProcEndingCreditFade * proc);
 void Epilogue_StartCredit(ProcPtr parent);
 void RemoveEndingMonologueBG(void);
 

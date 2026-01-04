@@ -42,7 +42,7 @@ void StartBgmVolumeChange(int volume_from, int volume_to, int duration, ProcPtr 
 
 // TODO: move
 
-extern struct Song const Song_Unk_0857A61C;
-extern struct Song const Song_Unk_0857B774;
-extern struct Song const Song_Unk_0857C1E4;
-extern struct Song const Song_Unk_0857C95C;
+extern struct Song const song_026;
+extern struct Song const song_028;
+extern struct Song const song_02A;
+extern struct Song const song_02B;

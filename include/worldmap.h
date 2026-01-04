@@ -155,8 +155,8 @@ int GetWmArrowCount(const u16 * buf);
 int func_fe6_08093288(const u16 * buf, int a);
 int func_fe6_080932D8(const u16 * buf, int a);
 void StartWmSpriteDisp(struct ProcWmSprite * proc);
-void WmSpriteDisp_Init(struct GenericProc * proc);
-void WmSpriteDisp_Loop(struct GenericProc * proc);
+void WmSpriteDisp_Init(struct Proc * proc);
+void WmSpriteDisp_Loop(struct Proc * proc);
 void StartWmSprite(void);
 bool WmSpriteExists(void);
 void EndWmSprite(void);
@@ -166,11 +166,11 @@ void DisplayWmArrow(int id, int color);
 void SetupWmTalkBoxGfx(void);
 
 void StartWmZoomIntro(ProcPtr parent);
-void WmZoomIntro_Init(struct GenericProc * proc);
-void WmZoomIntro_Loop(struct GenericProc * proc);
-void WmRotIntro_Init(struct GenericProc * proc);
-void WmRotIntro_Loop(struct GenericProc * proc);
-void WmRotIntro_End(struct GenericProc * proc);
+void WmZoomIntro_Init(struct Proc * proc);
+void WmZoomIntro_Loop(struct Proc * proc);
+void WmRotIntro_Init(struct Proc * proc);
+void WmRotIntro_Loop(struct Proc * proc);
+void WmRotIntro_End(struct Proc * proc);
 
 struct WmHighlightConfig {
     const void * img;

@@ -269,3 +269,9 @@
     .space 1  @ Padding
     .2byte \unknown
     .endm
+
+    .macro tone_data type, key, length, pan_sweep, wav, attack, decay, sustain, release
+    .byte \type, \key, \length, \pan_sweep
+    .word \wav
+    .byte \attack, \decay, \sustain, \release
+    .endm

@@ -107,13 +107,13 @@ void FadeInBlackSpeed40(ProcPtr parent);
 void WhileFadeExists(ProcPtr proc);
 // func_fe6_080149CC
 void StartFadeCore(int kind, int speed, ProcPtr parent, Func end_callback);
-// func_fe6_08014A28
-// func_fe6_08014A38
-// func_fe6_08014A44
-// func_fe6_08014A68
+// EndFadeCore
+// ColFade_Init
+// ColFade_Loop
+// ColFade_Step
 void func_fe6_08014AB8(void);
 // func_fe6_08014ACC
-void func_fe6_08014ADC(void);
+void RemoveFadeCoreCallBack(void);
 void Fade_CommonCallBack(void);
 void func_fe6_08014B68(void);
 void StartTemporaryLock(ProcPtr proc, int arg_1);

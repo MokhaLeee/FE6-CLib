@@ -142,7 +142,7 @@ extern u32 const Img_SpinningArrow[];
 // extern ??? gUnk_083210A0
 // extern ??? gUnk_083215B8
 // extern ??? gUnk_08321EE4
-// extern ??? gUnk_08321F24
+extern u16 const gUnk_Ui_Pal_08321F24[3 * 0x10];
 // extern ??? gUnk_08321FA4
 // extern ??? gUnk_08326910
 // extern ??? gUnk_08326930
@@ -371,7 +371,7 @@ extern u8 const Tsa_UnitBurstMapUi_Frame3[];
 extern u8 const Tsa_UnitBurstMapUi_Frame4[];
 extern u8 const Tsa_UnitBurstMapUi_Frame5[];
 
-extern u8 const Img_Unk_083092CC[];
+extern u8 const Img_PlayRankTimeOBJ[];
 
 // extern const ??? gUnk_08336CD0
 // extern const ??? gUnk_08336CF0
@@ -388,7 +388,7 @@ extern u8 const Tsa_0833BE84[];
 extern u8 const Tsa_0833BF08[];
 extern u16 const Pal_MuralBackground[];
 extern u16 const Pal_0833C01C[];
-extern u16 const Pal_0833C03C[];
+extern u16 const Pal_PlayRankTimeOBJ[];
 extern u8 const Img_0833C09C[];
 extern u8 const Tsa_0833C1D8[];
 extern u8 const Tsa_0833C234[];
@@ -398,28 +398,28 @@ extern u8 const Img_Unk_0833C378[];
 extern u16 const Pal_Unk_0833C944[];
 extern u8 const Img_WorldMap_PlayRank[];
 extern u8 const Tsa_08340ED8[];
-extern u16 const Pal_0834138C[];
-extern u8 const Img_PlayRank_083413CC[];
-extern u16 const Pal_08341DA0[];
+extern u16 const Pal_PlayRankWmBG[];
+extern u8 const Img_PlayRankFogBG[];
+extern u16 const Pal_PlayRankFogBG[];
 extern u8 const Img_PlayRank[];
 extern u8 const Img_PlayRankCharacters[];
 extern u16 const Pal_08342A98[];
 extern u16 const Pal_08342AB8[];
 extern u16 const Pal_08342AD8[];
 extern u8 const Tsa_08342AF8[];
-// extern const ??? gUnk_08342B54
-extern const u16 Pal_08343358[];
-extern u8 const Img_08343398[];
-extern u8 const Img_08343A80[];
-extern u8 const Img_08343FAC[];
-// extern const ??? gUnk_083442C4
+extern u8 const Img_PlayRankMissionCompletesOBJ[];
+extern const u16 Pal_PlayRankMissionCompletesOBJ[];
+extern u8 const Img_CreditGlyph_Cap[];
+extern u8 const Img_CreditGlyph_Low[];
+extern u8 const Img_CreditGlyph_Narrow[];
+extern const u16 Pal_CreditCharacterGlyph[];
 // extern const ??? gUnk_08344304
 extern u8 const Img_Fin[];
 extern u16 const Pal_Fin[];
 extern u8 const Img_Ending_CopyRight[];
 extern u16 const Tsa_Ending_CopyRight[];
 extern u16 const Pal_Ending_CopyRight[];
-// extern const ??? Tsa_EndingPInfoBG
+extern u16 const Tsa_EndingPInfoBG[];
 // extern const ??? gUnk_08345934
 // extern const ??? gUnk_08346184
 // extern const ??? gUnk_083461C4
@@ -436,11 +436,11 @@ extern u8 const Img_08352160[];
 extern u16 const Pal_EndingMonologueText[];
 extern const int gUnk_08353328[];
 // extern const ??? gUnk_08354728
-// extern const ??? gUnk_08354760
-// extern const ??? gUnk_08354780
-// extern const ??? gUnk_08357140
-// extern const ??? gUnk_083599AC
-// extern const ??? gUnk_0835A368
+// extern const ??? Pal_OpInfoViewLetters
+// extern const ??? Img_OpInfoViewLettersB
+// extern const ??? Img_OpInfoViewLettersA
+// extern const ??? Img_OpInfoViewIcon
+// extern const ??? Pal_OpInfoViewIcon
 // extern const ??? gUnk_0835A3E8
 // extern const ??? gUnk_0835A5D0
 // extern const ??? gUnk_0835A5F0
@@ -448,8 +448,8 @@ extern const int gUnk_08353328[];
 // extern const ??? gUnk_0835AB28
 // extern const ??? gUnk_0835B040
 // extern const ??? gUnk_0835C034
-// extern const ??? gUnk_0835C80C
-// extern const ??? gUnk_0835C824
+// extern const ??? OpInfoClassIntroMsgs
+// extern const ??? Str_OpInfo_Mag
 // extern const ??? gUnk_0835C829
 // extern const ??? String_ShopGoldG
 // extern const ??? gUnk_0835CA78
@@ -496,15 +496,15 @@ extern u16 const Pal_Title_08364A94[];
 // extern const ??? gUnk_0837AA68
 // extern const ??? gUnk_0837AAC8
 // extern const ??? gUnk_0837AAE8
-// extern const ??? gUnk_0837AB18
-// extern const ??? gUnk_0837ACB0
-// extern const ??? gUnk_0837ACD0
-// extern const ??? gUnk_0837C844
+// extern const ??? Img_OpAnimSparksOBJ
+// extern const ??? Pal_OpAnimSparksOBJ
+// extern const ??? Img_OpAnimThunderStorm
+// extern const ??? Tsa_OpAnimThunderStorm
 // extern const ??? gUnk_0837CB0C
 // extern const ??? gUnk_0837CB2C
 // extern const ??? gUnk_0837CB4C
 // extern const ??? gUnk_0837CB6C
-// extern const ??? gUnk_0837CB8C
+// extern const ??? Img_OpAnim_Dragon
 // extern const ??? gUnk_0837EEB4
 // extern const ??? gUnk_0837F418
 // extern const ??? Img_OpAnimGlyphs

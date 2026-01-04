@@ -150,13 +150,7 @@ extern u16 const * CONST_DATA gUnk_08678818[]; // sprites
 extern u16 CONST_DATA Sprite_08678758[]; // sprite
 extern u16 CONST_DATA Sprite_08678760[]; // sprite
 
-struct Unk_02016874
-{
-    /* 00 */ u16 unk_00[8]; // 0x10
-    /* 10 */ u16 unk_10; // this is part of unk_00
-};
-
-extern struct Unk_02016874 gUnk_02016874;
+extern u16 gUnk_Pal_02016874[0x10];
 
 extern u8 const gUnk_083198CC[]; // img
 extern u16 const Pal_SpinningArrow[]; // pal

@@ -10,11 +10,11 @@
 enum videoalloc_playrank {
 	BGPAL_PLAYRANK_0 = 0,
 	BGPAL_PLAYRANK_1 = 1,
-	BGPAL_PLAYRANK_4 = 4,
-	BGPAL_PLAYRANK_6 = 6,
+	BGPAL_PLAYRANK_WM = 4,
+	BGPAL_PLAYRANK_FOG = 6,
 
-	OBPAL_PLAYRANK_2 = 2,
-	OBPAL_PLAYRANK_3 = 3,
+	BGPAL_PLAYRANK_TIME = 2,
+	OBPAL_PLAYRANK_MISSION = 3,
 	OBPAL_PLAYRANK_4 = 4,
 	OBPAL_PLAYRANK_5 = 5,
 	OBPAL_PLAYRANK_B = 0xB,
@@ -25,6 +25,7 @@ enum videoalloc_playrank {
 	BGCHR_PLAYRANK_180 = 0x180,
 	BGCHR_PLAYRANK_680 = 0x680,
 
+	OBCHR_PLAYRANK_TIME = 0x80,
 	OBCHR_PLAYRANK_84 = 0x84,
 	OBCHR_PLAYRANK_98 = 0x98,
 };
@@ -51,6 +52,15 @@ enum PlayRankSt_texts_idx {
 	PLAYRANK_TEXT_8,
 
 	PLAYRANK_TEXT_MAX
+};
+
+enum PlayRankSt_trail_texts_idx {
+	PLAYRANK_TRAIL_TEXT_TACTICS,
+	PLAYRANK_TRAIL_TEXT_SURVIVAL,
+	PLAYRANK_TRAIL_TEXT_COMBAT,
+	PLAYRANK_TRAIL_TEXT_TOTAL,
+
+	PLAYRANK_TRAIL_TEXT_MAX
 };
 
 enum PlayRankSt_ranks {
@@ -90,10 +100,10 @@ struct PlayRankSt {
 	/* 98 */ u8 unk_98[7];
 	/* 9F */ u8 step;
 	/* A0 */ struct Text texts[PLAYRANK_TEXT_MAX];
-	/* A0 */ struct Text texts_rank_name[PLAYRANK_TEXT_MAX];
+	/* E8 */ struct Text texts_rank_name[PLAYRANK_TEXT_MAX];
 };
 
-void func_fe6_0808DD40(void);
+void SetupPlayRanks(void);
 void SetupXmapPlayRanks(void);
 void func_fe6_0808DE04(int lo, int hi, int x, int pal_bank);
 
@@ -153,11 +163,11 @@ struct Proc_0868B730 {
 void func_fe6_0808E4E8(struct Proc_0868B730 *proc);
 void func_fe6_0808E5F0(struct Proc_0868B730 *proc);
 
-void func_fe6_0808E6E0(void);
-void func_fe6_0808E6FC(void);
+void PlayRankTrialOBJ_Time_Loop(void);
+void NewPlayRankTrialOBJ_Time(void);
 
-void func_fe6_0808E710(void);
-void func_fe6_0808E730(void);
+void PlayRankFogHandler_Init(void);
+void PlayRankFogHandler_Loop(void);
 
 struct ProcPlayRank {
 	PROC_HEADER;
@@ -171,12 +181,12 @@ struct ProcPlayRank {
 void PlayRank_InitTexts(void);
 int PlayRank_ChapterTurns_DrawBase(struct Text *text, int chapter_gaiden, u8 centered);
 bool PlayRank_ChapterTurns_DrawTurn(int line);
-void SetupPlayRanks(int line);
+void PutPlayRankTexts(int line);
 void func_fe6_0808EB94(int line);
 int PlayRank_GetTotalPlayTime(void);
 void PlayRank_PutTotalPlayTime(int line);
 void func_fe6_0808EC78(int x);
-void func_fe6_0808ECD0(u16 *tm, int a, int b);
+void FillPlayRankFogsToBG(u16 *tm, int a, int b);
 void PlayRank_InitDisplay(void);
 void func_fe6_0808F060(struct ProcPlayRank *proc);
 void PlayRank_Loop(struct ProcPlayRank *proc);
@@ -217,12 +227,12 @@ void func_fe6_0808F7D0(int method, int lo, int hi, int x, int end, int pal_bank)
 void func_fe6_0808F838(struct Proc_0868B88C *proc);
 void func_fe6_0808F844(struct Proc_0868B88C *proc);
 
-// func_fe6_0808F8B8
-// func_fe6_0808F984
-// func_fe6_0808FA14
-// func_fe6_0808FD14
-// func_fe6_0808FD44
-void func_fe6_0808FD6C(ProcPtr parent);
+// PlayRankTrialOBJ_Init
+// PlayRankTrialOBJ_Loop
+// PlayRankTrail_Init
+// PlayRankTrail_Loop
+// NewPlayRank_unused
+void NewPlayRankTrail(ProcPtr parent);
 
 extern CONST_DATA struct HelpBoxInfo HelpInfo_0868B1B0;
 extern CONST_DATA struct HelpBoxInfo HelpInfo_0868B1CC;
@@ -279,7 +289,7 @@ struct UnkStruct_0868B5B0 {
 	struct UnkStruct_0868b508 *unk_00;
 	u8 x, y, _pad_[2];
 };
-extern CONST_DATA struct UnkStruct_0868B5B0 gUnk_0868B5B0[];
+extern CONST_DATA struct UnkStruct_0868B5B0 gPlayRankMissonObjInfo[];
 
 extern CONST_DATA struct BaSpriteData BaSprite_0868B5C8[];
 extern CONST_DATA u8 gUnk_0868B5E0[];
@@ -288,10 +298,10 @@ extern CONST_DATA struct ProcScr ProcScr_0868B610[];
 extern CONST_DATA struct ProcScr ProcScr_0868B648[];
 extern CONST_DATA struct ProcScr ProcScr_0868B6D8[];
 extern CONST_DATA struct ProcScr ProcScr_0868B700[];
-extern CONST_DATA u16 Sprite_0868B720[];
+extern CONST_DATA u16 Sprite_PlayRankTrial_Time[];
 extern CONST_DATA struct ProcScr ProcScr_0868B730[];
-extern CONST_DATA struct ProcScr ProcScr_0868B750[];
-extern CONST_DATA struct ProcScr ProcScr_0868B768[];
+extern CONST_DATA struct ProcScr ProcScr_PlayRankTrialOBJ_Time[];
+extern CONST_DATA struct ProcScr ProcScr_PlayRankFogHandler[];
 extern CONST_DATA u16 Msgs_PlayRankNum[10];
 extern CONST_DATA u8 gPlayRank_CombatRef[4];
 extern CONST_DATA u8 gPlayRank_SurvivalRef[4];
@@ -304,27 +314,35 @@ extern CONST_DATA u16 TotalRankB_Ref2[6];
 // extern CONST_DATA ??? BgConfig_PlayRank
 extern CONST_DATA struct ProcScr ProcScr_0868B80C[];
 extern CONST_DATA struct ProcScr ProcScr_0868B88C[];
-extern CONST_DATA struct ProcScr ProcScr_0868B8AC[];
+extern CONST_DATA struct ProcScr ProcScr_PlayRankTrialOBJ[];
 extern CONST_DATA struct ProcScr ProcScr_PlayRank[];
-extern CONST_DATA struct ProcScr ProcScr_0868B99C[];
+extern CONST_DATA struct ProcScr ProcScr_PlayRankTrail[];
 // extern CONST_DATA ??? BgConf_0868BA24
 // extern CONST_DATA ??? gUnk_0868BA3C
-// extern CONST_DATA ??? gUnk_0868BB1C
+
+struct UnkStruct_0868BB1C {
+	u8 unk_0;
+	u8 unk_1;
+	u8 unk_2;
+	u8 unk_3;
+};
+
+extern CONST_DATA struct UnkStruct_0868BB1C gUnk_0868BB1C[];
 extern CONST_DATA struct ProcScr ProcScr_0868BB3C[];
 extern CONST_DATA struct ProcScr ProcScr_0868BB5C[];
 extern CONST_DATA struct ProcScr ProcScr_0868BB7C[];
-// extern CONST_DATA ??? ProcScr_EndingCredit
-// extern CONST_DATA ??? ProcScr_EndingCopyRight
+extern CONST_DATA struct ProcScr ProcScr_EndingCredit[];
+extern CONST_DATA struct ProcScr ProcScr_EndingCopyRight[];
 extern CONST_DATA struct ProcScr ProcScr_EndingStep1_PutaMonologue[];
-// extern CONST_DATA ??? ProcScr_Fin
+extern CONST_DATA struct ProcScr ProcScr_Fin[];
 // extern CONST_DATA ??? gUnk_0868BCE4
 extern CONST_DATA struct ProcScr ProcScr_0868BDB4[];
-// extern CONST_DATA ??? ProcScr_Ending
-// extern CONST_DATA ??? ProcScr_GameCredit
-// extern CONST_DATA ??? ProcScr_EndingPInfo1Detail
+extern CONST_DATA struct ProcScr ProcScr_Ending[];
+extern CONST_DATA struct ProcScr ProcScr_GameCredit[];
+extern CONST_DATA struct ProcScr ProcScr_EndingPInfo1Detail[];
 extern CONST_DATA struct ProcScr ProcScr_EndingPInfo1[];
-// extern CONST_DATA ??? ProcScr_0868BEEC
-// extern CONST_DATA ??? ProcScr_0868BF14
+extern CONST_DATA struct ProcScr ProcScr_0868BEEC[];
+extern CONST_DATA struct ProcScr ProcScr_0868BF14[];
 extern CONST_DATA struct ProcScr ProcScr_EndingPInfo2[];
-// extern CONST_DATA ??? ProcScr_EndingPInfoFadeOut
+extern CONST_DATA struct ProcScr ProcScr_EndingPInfoFadeOut[];
 // extern CONST_DATA ??? gPersonEndingInfo
