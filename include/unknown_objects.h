@@ -134,7 +134,7 @@ extern u16 const Pal_0831AAFC[];
 // extern ??? gUnk_0831B068
 extern u8 const Img_MonologueBG[];
 extern u8 const Tsa_MonologueBG[];
-// extern ??? gUnk_08320436
+extern u16 Tsa_MonologueScrollingBG[30 * 40];
 extern u16 const Pal_MonologueBG[];
 extern u32 const Img_SpinningArrow[];
 // extern ??? gUnk_08320EEC
@@ -477,17 +477,19 @@ extern u16 const Pal_Title_08364A94[];
 // extern const ??? Img_EndingMonologue
 // extern const ??? Tsa_EndingMonologue
 // extern const ??? Zpal_EndingMonologue
-// extern const ??? gUnk_083747A4
-// extern const ??? gUnk_08375888
+
+/* opanim */
+// extern const ??? Img_OpAnim_083747A4
+// extern const ??? Pal_OpAnim_08375888
 // extern const ??? gUnk_083758A8
 // extern const ??? gUnk_08375908
 // extern const ??? gUnk_08375ADC
 // extern const ??? gUnk_08375B64
-// extern const ??? gUnk_08375B84
+// extern const ??? Tsa_OpAnim_08375B84
 // extern const ??? gUnk_08376B70
-// extern const ??? gUnk_08376DF4
-// extern const ??? gUnk_08376FDC
-// extern const ??? gUnk_08378C60
+// extern const ??? Pal_Lz_OpAnim_Fog
+// extern const ??? Img_OpAnim_Fog
+// extern const ??? Tsa_OpAnim_Fog
 // extern const ??? gUnk_08378F54
 // extern const ??? gUnk_08379D0C
 // extern const ??? gUnk_08379D2C
@@ -508,7 +510,7 @@ extern u16 const Pal_Title_08364A94[];
 // extern const ??? gUnk_0837EEB4
 // extern const ??? gUnk_0837F418
 // extern const ??? Img_OpAnimGlyphs
-// extern const ??? Pal_OpAnimGlyphs
+extern const u16 Pal_OpAnimGlyphs[];
 // extern const ??? gUnk_08380F4C
 // extern const ??? gUnk_08380F54
 // extern const ??? gUnk_08380F5A

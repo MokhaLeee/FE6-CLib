@@ -19,26 +19,27 @@ enum prepscreen_text_idx {
     TEXT_PREP_PICK_LEFT_BAR = 0,
 };
 
-// TODO: MOOOOVE
+enum prepscreen_videoalloc {
+    BGCHR_PREPMENU_230 = 0x230,
+    BGCHR_PREPMENU_240 = 0x240,
+    BGCHR_PREPMENU_700 = 0x700,
 
-#define BGCHR_PREPMENU_230 0x230
-#define BGCHR_PREPMENU_240 0x240
-#define BGCHR_PREPMENU_700 0x700
+    OBCHR_PREPMENU_240 = 0x240,
+    OBCHR_PREPMENU_380 = 0x380,
+    OBCHR_PREPMENU_390 = 0x390,
 
-#define OBCHR_PREPMENU_240 0x240
-#define OBCHR_PREPMENU_380 0x380
+    BGPAL_PREPMENU_2 = 0x02,
+    BGPAL_PREPMENU_A = 0x0A,
+    BGPAL_PREPMENU_E = 0x0E,
+    BGPAL_PREPMENU_F = 0x0F,
 
-#define BGPAL_PREPMENU_2 0x02
-#define BGPAL_PREPMENU_A 0x0A // ..E // background
-#define BGPAL_PREPMENU_E 0x0E
-#define BGPAL_PREPMENU_F 0x0F
-
-#define OBPAL_PREPMENU_0 0x00
-#define OBPAL_PREPMENU_2 0x02 // ..4
-#define OBPAL_PREPMENU_4 0x04
-#define OBPAL_PREPMENU_5 0x05
-#define OBPAL_PREPMENU_6 0x06 // ..A
-#define OBPAL_PREPMENU_D 0x0D
+    OBPAL_PREPMENU_0 = 0x00,
+    OBPAL_PREPMENU_2 = 0x02,
+    OBPAL_PREPMENU_4 = 0x04,
+    OBPAL_PREPMENU_5 = 0x05,
+    OBPAL_PREPMENU_6 = 0x06,
+    OBPAL_PREPMENU_D = 0x0D,
+};
 
 struct UnkProc_08678E18;
 struct PrepScreenDispProc;
@@ -93,6 +94,22 @@ struct PrepMenuProc
     /* 58 */ ProcPtr procbg;
     /* 5C */ struct UnkProc_08678E18 * unk_5C;
     /* 60 */ ProcPtr unk_60;
+};
+
+struct PrepSubItemfxProc {
+    PROC_HEADER;
+
+    u8 unk_29;
+    u8 unk_2A[3];
+    u8 unk_2D; // pad
+    u16 unk_2E;
+    u16 unk_30;
+    u16 unk_32;
+    u8 unk_34;
+    u8 unk_35; // pad
+
+    u16 unk_36;
+    u16 unk_38;
 };
 
 struct PrepSubItemProc {
@@ -337,7 +354,7 @@ struct ProcPrepfx_08679368 {
 void func_fe6_0807CF78(struct ProcPrepfx_08679368 *proc);
 void func_fe6_0807CFA0(struct ProcPrepfx_08679368 *proc);
 // func_fe6_0807CFA4
-// func_fe6_0807CFB8
+void dummy_0807CFB8(int a, int b, int c);
 
 struct ProcPrepfx_086793A8 {
     PROC_HEADER_EXT(struct PrepSubItemProc);
@@ -372,6 +389,7 @@ void func_fe6_0807D1AC(struct ProcPrepfx_086793A8 *proc);
 // func_fe6_0807DF60
 void func_fe6_0807DFEC(u8 a, int timer, int obj_off);
 // func_fe6_0807E06C
+
 void func_fe6_0807E0D4(struct Proc *proc);
 void func_fe6_0807E41C(struct Proc *proc);
 // func_fe6_0807E544
@@ -390,23 +408,70 @@ void func_fe6_080815E4(struct Unit * unit, ProcPtr parent);
 void func_fe6_08081620(struct Unit * unit, ProcPtr parent);
 // func_fe6_0808165C
 // func_fe6_0808166C
-void func_fe6_0808171C(ProcPtr);
-void func_fe6_08081970(ProcPtr);
-void func_fe6_08081DF8(ProcPtr);
-void StartPrepDiscardItemScreen(struct PrepMenuProc * parent);
-void func_fe6_08081E50(ProcPtr);
-void func_fe6_08081E58(ProcPtr);
-// func_fe6_08081ED4
-// func_fe6_08081EE8
-// func_fe6_08081F20
-ProcPtr func_fe6_0808230C(ProcPtr parent);
-void func_fe6_08082320(ProcPtr self, int arg_1, int arg_2, int arg_3, int arg_4, int arg_5, int arg_6);
-// func_fe6_08082348
-// func_fe6_08082360
-// func_fe6_080823A0
-// func_fe6_080823F4
-// func_fe6_08082498
-// func_fe6_0808255C
+
+struct ProcPrepDiscardScreen {
+	PROC_HEADER;
+
+	STRUCT_PAD(0x29, 0x2C);
+
+	/* 2C */ u8 in_arena;
+	/* 2D */ u8 unk_2D;
+	/* 2E */ u8 y;
+	/* 2F */ u8 unk_2F;
+	/* 30 */ u8 x;
+};
+
+void PrepDiscard_Init(struct ProcPrepDiscardScreen *proc);
+void PrepDiscard_Loop(struct ProcPrepDiscardScreen *proc);
+void PrepDiscard_End(struct ProcPrepDiscardScreen *proc);
+void StartPrepDiscardItemScreen(ProcPtr parent);
+
+struct ProcPrepDiscardHand {
+	PROC_HEADER_EXT(struct ProcPrepDiscardScreen);
+
+	STRUCT_PAD(0x29, 0x52);
+
+	u16 timer;
+};
+
+void PrepDiscardHand_Init(struct ProcPrepDiscardHand *proc);
+void PrepDiscardHand_Loop(struct ProcPrepDiscardHand *proc);
+ProcPtr NewPrepDiscardHand(ProcPtr parent);
+
+struct MenuScrollBarProc {
+    PROC_HEADER;
+
+    /* 2A */ u16 xBase;
+    /* 2C */ u8 yBase;
+    /* 2D */ u8 numSegments;
+    /* 2E */ u16 currentSegment;
+    /* 30 */ u16 prevSegment;
+    /* 32 */ u16 numTotalRows;
+    /* 34 */ u8 numVisibleRows;
+    /* 36 */ u16 oam2Chr;
+    /* 38 */ u16 oam2Pal;
+    /* 3A */ u8 topArrowFrameIdx;
+    /* 3B */ u8 bottomArrowFrameIdx;
+};
+
+void MenuScroll_Init(struct MenuScrollBarProc *proc);
+void MenuScroll_Loop(struct MenuScrollBarProc *proc);
+ProcPtr StartMenuScrollBar(ProcPtr parent);
+void func_fe6_08082320(struct PrepSubItemfxProc *proc, int a, int b, int c, int d, int e, int f);
+void func_fe6_08082348(struct PrepSubItemfxProc *proc, int a, u8 b);
+void func_fe6_08082360(struct Text *th, u16 *tm, int color, int x, const char *str);
+void func_fe6_080823A0(u8 * a, u16 * b);
+
+struct Proc_0867968C {
+    PROC_HEADER;
+
+    /* 2A */ u16 pos;
+    /* 2C */ u8 timer;
+};
+
+void PrepBgScrolling_Init(struct Proc_0867968C *proc);
+void PrepBgScrolling_Loop(struct Proc_0867968C *proc);
+void PrepBgScrolling_End(struct Proc_0867968C *proc);
 ProcPtr func_fe6_08082560(ProcPtr parent);
 
 struct Win1H {
@@ -527,16 +592,16 @@ extern struct ProcScr ProcScr_086793C8[];
 extern struct ProcScr ProcScr_PrepSubItemScreen[];
 extern struct ProcScr ProcScr_08679490[];
 extern struct ProcScr ProcScr_PrepDiscardItemScreen[];
-extern struct ProcScr ProcScr_08679558[];
+extern struct ProcScr ProcScr_PrepDiscardHand[];
 extern CONST_DATA u16 Sprite_08679578[];
 extern CONST_DATA u16 Sprite_08679580[];
-extern CONST_DATA u16 Sprite_08679588[];
+extern CONST_DATA u16 Sprite_MenuScrollContainer[];
 extern CONST_DATA u16 Sprite_08679590[];
 extern CONST_DATA u16 Sprite_08679598[];
-// ??? Sprites_086795F8
-// ??? Sprites_08679654
-extern struct ProcScr ProcScr_0867966C[];
-extern struct ProcScr ProcScr_0867968C[];
+// ??? MenuScrollBarSegmentSprites
+// ??? MenuScrollArrowSprites
+extern struct ProcScr ProcScr_menu_scroll[];
+extern struct ProcScr ProcScr_PrepBgScrolling[];
 extern struct ProcScr ProcScr_SallyCir1[];
 extern struct ProcScr ProcScr_SallyCir2[];
 extern struct ProcScr ProcScr_ViewCounter[];

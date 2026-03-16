@@ -3,31 +3,46 @@
 #include "prelude.h"
 #include "proc.h"
 
-extern bool bool_opanim_03005284;
+enum videoalloc_opanim {
+	OBPAL_OPANIM_0F = 0xF,
+};
 
-// func_fe6_080987D4
-// OpAnimfxTerminator_Loop
-// func_fe6_0809882C
-// OpAnim_OnEnd
-// OpAnim_Init
-// func_fe6_080988BC
-// OpAnin6_ResetBG
-void func_fe6_0809892C(int arg_0, int arg_1, int arg_2, int arg_3, int arg_4);
-// OpAnim_StartBGM
-// OpAnim_Start
-// func_fe6_08098A44
-// func_fe6_08098A4C
-// OpAnimAdvance
-// func_fe6_08098A78
-// func_fe6_08098A84
-// func_fe6_08098A90
-// func_fe6_08098A9C
-// func_fe6_08098AA8
-// func_fe6_08098AB4
-// func_fe6_08098AC0
-// func_fe6_08098ACC
-// OpAnim_SetupGlyph
-// func_fe6_08098AFC
+extern IWRAM_DATA u8 gUnk_03005280[4];
+extern IWRAM_DATA bool bool_opanim_03005284;
+extern IWRAM_DATA u8 Pad_Common_03005285[11];
+extern IWRAM_DATA int gOpAnimStep[8];
+
+void StartOpAnim_unused(void);
+void OpAnimfxTerminator_Loop(ProcPtr proc);
+void OpAnim_ResetDispIO(void);
+void OpAnim_OnEnd(void);
+void OpAnim_Init(void);
+void func_fe6_080988BC(void);
+void OpAnim6_ResetBG(void);
+void OpAnim_SetWin0Layers(int arg_0, int arg_1, int arg_2, int arg_3, int arg_4);
+void OpAnim_StartBGM(void);
+
+struct ProcOpAnimTimer {
+	PROC_HEADER;
+
+	STRUCT_PAD(0x29, 0x54);
+	u32 timer;
+};
+
+void OpAnim_StartTimer(ProcPtr proc);
+void OpAnimTimer_Init(struct ProcOpAnimTimer *proc);
+void OpAnimTimer_Loop(struct ProcOpAnimTimer *proc);
+void OpAnimAdvance(void);
+void PutOpAnimSubtitle0(void);
+void PutOpAnimSubtitle1(void);
+void PutOpAnimSubtitle2(void);
+void PutOpAnimSubtitle3(void);
+void PutOpAnimSubtitle4(void);
+void PutOpAnimSubtitle5(void);
+void PutOpAnimSubtitle6(void);
+void PutOpAnimSubtitle7(void);
+void OpAnim_SetupGlyph(int pal_id);
+void OpAnim_PutSubtitle(int idx);
 // func_fe6_08098B80
 // func_fe6_08098BB4
 // func_fe6_08098BBC
@@ -55,10 +70,10 @@ void func_fe6_0809892C(int arg_0, int arg_1, int arg_2, int arg_3, int arg_4);
 // func_fe6_08099314
 // func_fe6_08099328
 // func_fe6_08099358
-// func_fe6_0809937C
+void func_fe6_0809937C(void);
 // func_fe6_080993AC
 // func_fe6_080993E8
-// PutImg_OpAnimGlyphs
+void PutImg_OpAnimGlyphs(void);
 // func_fe6_08099424
 // func_fe6_0809947C
 // func_fe6_08099520
@@ -133,9 +148,9 @@ void func_fe6_0809892C(int arg_0, int arg_1, int arg_2, int arg_3, int arg_4);
 // func_fe6_0809A900
 // OpAnim_PutThunderStormGfx
 // func_fe6_0809AA20
-// OpAnin6_StartBGM
-// OpAnin6_PutThunderStormGfx
-// OpAnin6_StartThunderStorm
+// OpAnim6_StartBGM
+// OpAnim6_PutThunderStormGfx
+// OpAnim6_StartThunderStorm
 // func_fe6_0809AB4C
 // func_fe6_0809ABA8
 // func_fe6_0809ABF0
@@ -164,56 +179,53 @@ void func_fe6_0809892C(int arg_0, int arg_1, int arg_2, int arg_3, int arg_4);
 // func_fe6_0809B220
 // func_fe6_0809B280
 
-extern struct ProcScr CONST_DATA ProcScr_TitleScreenHandler[];
-// extern CONST_DATA ??? gUnk_08691494
-// extern CONST_DATA ??? gUnk_08691498
-// extern CONST_DATA ??? gUnk_0869149C
-// extern CONST_DATA ??? gUnk_086914A0
-// extern CONST_DATA ??? gUnk_086914A4
-// extern CONST_DATA ??? gUnk_086914A8
-// extern CONST_DATA ??? gUnk_086914AC
-// extern CONST_DATA ??? gUnk_086914B0
-// extern CONST_DATA ??? gUnk_086914B4
-// extern CONST_DATA ??? gUnk_086914B8
-// extern CONST_DATA ??? gUnk_086914BC
-// extern CONST_DATA ??? gUnk_086914C0
-// extern CONST_DATA ??? gUnk_086914C4
-// extern CONST_DATA ??? gUnk_086914C8
-// extern CONST_DATA ??? gUnk_086914CC
-// extern CONST_DATA ??? gUnk_086914D0
-// extern CONST_DATA ??? gUnk_086914D4
-// extern CONST_DATA ??? gUnk_086914D8
-// extern CONST_DATA ??? gUnk_086914DC
-// extern CONST_DATA ??? gUnk_086914E0
-// extern CONST_DATA ??? gUnk_086914F0
-// extern CONST_DATA ??? gUnk_086914F4
-// extern CONST_DATA ??? gUnk_086914F8
-extern CONST_DATA struct ProcScr ProcScr_OpAnimfxTerminator[];
+extern CONST_DATA struct ProcScr ProcScr_TitleScreenHandler[];
 extern CONST_DATA struct ProcScr ProcScr_OpAnim[];
-// extern CONST_DATA ??? BgConf_OpAnim_08691604
-// extern CONST_DATA ??? BgConf_OpAnim_0869161C
-// extern CONST_DATA ??? ProcScr_OpAnim_08691634
-// extern CONST_DATA ??? gUnk_08691644
-// extern CONST_DATA ??? gUnk_086916E5
-// extern CONST_DATA ??? Msgs_OpAnim_08691738
-// extern CONST_DATA ??? gUnk_08691778
-// extern CONST_DATA ??? ProcScr_086917D8
-// extern CONST_DATA ??? ProcScr_08691858
-// extern CONST_DATA ??? ProcScr_08691890
-// extern CONST_DATA ??? gUnk_086918B0
-// extern CONST_DATA ??? ProcScr_OpAnim_08691B20
-// extern CONST_DATA ??? BgConf_OpAnim_08691B38
-// extern CONST_DATA ??? BgConf_OpAnim_08691B50
-// extern CONST_DATA ??? gUnk_08691C78
-// extern CONST_DATA ??? ProcScr_OpAnimSparksOBJFALL
-// extern CONST_DATA ??? ProcScr_OpAnim_08691CC0
-// extern CONST_DATA ??? ProcScr_OpAnim_08691DE8
-// extern CONST_DATA ??? BgConf_OpAnim_08691DF8
-// extern CONST_DATA ??? gUnk_08691E10
-// extern CONST_DATA ??? gUnk_08691E30
-// extern CONST_DATA ??? ProcScr_OpAninThunderStorm
-// extern CONST_DATA ??? BgConf_OpAnim_086920A0
-// extern CONST_DATA ??? BgConf_OpAnim_086920B8
+extern u16 CONST_DATA BgConf_OpAnim_08691604[];
+extern u16 CONST_DATA BgConf_OpAnim_0869161C[];
+extern CONST_DATA struct ProcScr ProcScr_OpAnimTimer[];
+// ??? gUnk_08691644
+// ??? gUnk_086916E5
+// ??? Msgs_OpAnim_08691738[];
+// ??? gUnk_08691778
+extern CONST_DATA struct ProcScr ProcScr_086917D8[];
+extern CONST_DATA struct ProcScr ProcScr_Unk_08691810[];
+extern CONST_DATA struct ProcScr ProcScr_Unk_08691828[];
+extern CONST_DATA struct ProcScr ProcScr_Unk_08691840[];
+extern CONST_DATA struct ProcScr ProcScr_08691858[];
+extern CONST_DATA struct ProcScr ProcScr_08691890[];
+// ??? gUnk_086918B0
+extern CONST_DATA struct ProcScr ProcScr_OpAnim1[];
+extern CONST_DATA struct ProcScr ProcScr_Unk_086919D0[];
+extern CONST_DATA struct ProcScr ProcScr_Unk_086919E8[];
+extern CONST_DATA struct ProcScr ProcScr_OpAnim2[];
+extern CONST_DATA struct ProcScr ProcScr_Unk_08691AC0[];
+extern CONST_DATA struct ProcScr ProcScr_OpAnim_08691B20[];
+extern u16 CONST_DATA BgConf_OpAnim_08691B38[];
+extern u16 CONST_DATA BgConf_OpAnim_08691B50[];
+extern CONST_DATA struct ProcScr ProcScr_OpAnim4[];
+extern CONST_DATA struct ProcScr ProcScr_Unk_08691C38[];
+extern CONST_DATA struct ProcScr ProcScr_Unk_08691C58[];
+// ??? gUnk_08691C78
+extern CONST_DATA struct ProcScr ProcScr_OpAnimSparksOBJ[];
+extern CONST_DATA struct ProcScr ProcScr_OpAnimSparksOBJFALL[];
+extern CONST_DATA struct ProcScr ProcScr_OpAnim_08691CC0[];
+extern CONST_DATA struct ProcScr ProcScr_OpAnim3[];
+extern CONST_DATA struct ProcScr ProcScr_Unk_08691D70[];
+extern CONST_DATA struct ProcScr ProcScr_Unk_08691D88[];
+extern CONST_DATA struct ProcScr ProcScr_Unk_08691DB8[];
+extern CONST_DATA struct ProcScr ProcScr_OpAnim_08691DE8[];
+extern u16 CONST_DATA BgConf_OpAnim_08691DF8[];
+// ??? gUnk_08691E10
+// ??? gUnk_08691E30
+extern CONST_DATA struct ProcScr ProcScr_OpAnim6[];
+extern CONST_DATA struct ProcScr ProcScr_OpAnimThunderStorm[];
+extern CONST_DATA struct ProcScr ProcScr_OpAnim5[];
+extern CONST_DATA struct ProcScr ProcScr_Unk_08691FF8[];
+extern CONST_DATA struct ProcScr ProcScr_Unk_08692060[];
+extern CONST_DATA struct ProcScr ProcScr_Unk_08692090[];
+extern u16 CONST_DATA BgConf_OpAnim_086920A0[];
+extern u16 CONST_DATA BgConf_OpAnim_086920B8[];
 extern CONST_DATA struct ProcScr ProcScr_OpAnim_Nintendo[];
 extern CONST_DATA int gTitleDuration;
 extern CONST_DATA int gUnk_0869211C;
@@ -221,4 +233,4 @@ extern CONST_DATA int gUnk_08692120;
 extern CONST_DATA int gUnk_08692124;
 extern CONST_DATA int gUnk_08692128;
 extern CONST_DATA int gUnk_0869212C;
-// extern CONST_DATA ??? ProcScr_TitleScreenFromOp
+extern CONST_DATA struct ProcScr ProcScr_TitleScreenFromOp[];
